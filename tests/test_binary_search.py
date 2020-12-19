@@ -1,9 +1,8 @@
 import pytest
 
-import os; print(os.getcwd())
+from algo.binary_search import binary_search as search
 
-from algo.binary_search import binary_search as bs
 
 class TestBinarySearch:
-    def test_element_not_found(self):
-        assert bs([], 1, 0, 0) == -1
+    def test_empty(self):
+        assert search([], 1, 0, 0) == -1

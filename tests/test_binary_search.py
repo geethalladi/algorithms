@@ -15,3 +15,13 @@ class TestBinarySearch:
 
     def test_single_element(self):
         assert search([1], 1, 0, 1) == 0
+
+    def test_multiple_elements_found(self):
+        assert search([1, 3, 5, 7, 9, 11], 3, 0, 5) == 1
+
+    def test_multiple_elements_not_found(self):
+        assert search([1, 3, 5, 7, 9, 11], 12, 0, 5) == -1
+
+    def test_multiple_elements_not_found2(self):
+        assert search([1, 3, 5, 7, 9, 11], -1, 0, 5) == -1
+        

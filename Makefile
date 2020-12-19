@@ -3,3 +3,5 @@ init:
 
 test:
 	nosetests tests
+
+.PHONY: init test

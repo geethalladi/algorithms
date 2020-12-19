@@ -1,0 +1,5 @@
+* README
+
+Creating a python package containing implementation of some of the well known algorithms. Most of
+them were created for my own learning purpose. Readability and Correctness are given more weightage
+over run time performance. Use them with care.

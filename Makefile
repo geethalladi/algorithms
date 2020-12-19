@@ -2,6 +2,6 @@ init:
 	pip3 install -r requirements.txt
 
 test:
-	nosetests tests
+	pytest
 
 .PHONY: init test

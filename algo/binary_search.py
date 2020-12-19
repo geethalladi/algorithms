@@ -14,7 +14,7 @@ def binary_search(elements, key, start, end):
         # when there are no elements return -1
         return -1
 
-    mid = (start + end) / 2
+    mid = (start + end) // 2
     if elements[mid] == key:
         # add logger here
         return mid

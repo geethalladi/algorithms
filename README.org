@@ -3,3 +3,32 @@
 Creating a python package containing implementation of some of the well known algorithms. Most of
 them were created for my own learning purpose. Readability and Correctness are given more weightage
 over run time performance. Use them with care.
+
+** Algorithm Design Manual Lecture Practice
+
+This repository is a space for me to play around with the algorithms. Most of theme I learnt by
+watching the Algorithm Design Manual Lectures by Steve Skiena. Hopefully, I can implement more
+around the following topics
+
+*** Dynamic Programming
+*** Backtracking
+*** Graph Algorithms
+- Depth First Search
+- Breadth First Search
+- Spanning Trees
+- Shortest Path
+
+For the list of current TODO items grep for TODO in `adm.org` file.
+
+** Pre-conditions
+
+*** DONE Directory Structure
+- Decide how the source files and test files are going to be structured
+*** DONE Unit testing public functions in python
+- Decide the unit test library
+- Ability to unit test the public functions
+- Do a Test Driven Development
+- Unit tests before writing the implementation
+*** Visualizing graphs in python
+- Representing graphs in a Domain Specific Language
+- Ability to visualize this representation

@@ -1,5 +1,7 @@
 """
-Module containing a method to do binary_search
+Given a list of sorted numbers find the index of the given
+element using "binary search" algorithm. If the element is not
+present then return -1.
 """
 
 from typing import List

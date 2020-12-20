@@ -4,6 +4,10 @@ Module containing a method to do binary_search
 
 from typing import List
 
+import logging as log
+
+log.basicConfig(level=log.DEBUG)
+
 
 def binary_search(elements: List[int], key: int) -> int:
     """
@@ -17,6 +21,8 @@ def binary_search(elements: List[int], key: int) -> int:
 
 
 def _binary_search(elements: List[int], key: int, start: int, end: int) -> int:
+    log.info("Searching for %d in the range [%d, %d]", key, start, end)
+
     if((len(elements) <= 0) or (start > end)):
         # when there are no elements return -1
         return -1

@@ -20,7 +20,8 @@ def binary_search(elements: List[int], key: int) -> int:
     return _binary_search(elements, key, start, end)
 
 
-def _binary_search(elements: List[int], key: int, start: int, end: int) -> int:
+def _binary_search(elements: List[int], key: int,
+                   start: int, end: int) -> int:
     log.info("Searching for %d in the range [%d, %d]", key, start, end)
 
     if((len(elements) <= 0) or (start > end)):

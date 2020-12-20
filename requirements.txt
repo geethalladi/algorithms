@@ -13,9 +13,13 @@ click==7.1.2
 dataclasses==0.8
 decorator==4.4.2
 defusedxml==0.6.0
+distlib==0.3.1
 entrypoints==0.3
+filelock==3.0.12
 flake8==3.8.4
+flake8-mypy==17.8.0
 importlib-metadata==3.3.0
+importlib-resources==3.3.0
 ipykernel==5.4.2
 ipython==7.16.1
 ipython-genutils==0.2.0
@@ -33,6 +37,7 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
 mistune==0.8.4
+mypy==0.790
 mypy-extensions==0.4.3
 nbclient==0.5.1
 nbconvert==6.0.7
@@ -43,6 +48,7 @@ packaging==20.8
 pandocfilters==1.4.3
 parso==0.7.1
 pathspec==0.8.1
+pbr==5.5.1
 pep8==1.7.1
 pexpect==4.8.0
 pickleshare==0.7.5
@@ -67,6 +73,7 @@ regex==2020.11.13
 rope==0.18.0
 Send2Trash==1.5.0
 six==1.15.0
+stevedore==3.3.0
 terminado==0.9.1
 testpath==0.4.4
 toml==0.10.2
@@ -74,6 +81,9 @@ tornado==6.1
 traitlets==4.3.3
 typed-ast==1.4.1
 typing-extensions==3.7.4.3
+virtualenv==20.2.2
+virtualenv-clone==0.5.4
+virtualenvwrapper==4.8.4
 wcwidth==0.2.5
 webencodings==0.5.1
 widgetsnbextension==3.5.1

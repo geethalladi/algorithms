@@ -2,7 +2,10 @@
 Module containing a method to do binary_search
 """
 
-def binary_search(elements, key):
+from typing import List
+
+
+def binary_search(elements: List[int], key: int) -> int:
     """
     Returns the index of the `key` inside the `elements`
     list. The `elements` list is assumed to be sorted in
@@ -13,7 +16,7 @@ def binary_search(elements, key):
     return _binary_search(elements, key, start, end)
 
 
-def _binary_search(elements, key, start, end):
+def _binary_search(elements: List[int], key: int, start: int, end: int) -> int:
     if((len(elements) <= 0) or (start > end)):
         # when there are no elements return -1
         return -1

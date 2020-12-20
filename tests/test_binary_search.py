@@ -24,4 +24,3 @@ class TestBinarySearch:
 
     def test_multiple_elements_not_found2(self):
         assert search([1, 3, 5, 7, 9, 11], -1) == -1
-        

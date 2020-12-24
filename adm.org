@@ -23,11 +23,11 @@
 **** Hash Tables
 - Hash chaining, can also be an exercise (read the Java implementation)
 *** Sorting
-**** Selection Sort
+**** TODO Selection Sort
 **** Sort numbers using a dictionary
 - Find min / max with a dictionary and successor
 **** TODO Merge Sort
-**** Quick Sort
+**** TODO Quick Sort
 **** Bucket Sort
 **** Count Sort
 **** Finding the median + k-th largest / smallest element
@@ -48,9 +48,9 @@
 **** Implementation
 - Insertion, Deletion
 - Faster heap in O(n) time by Robert Floyd
-**** Heap Sort
+**** TODO Heap Sort
 - Selection sort using heap data structure
-**** Priority Queue using heap sort
+**** TODO Priority Queue using heap sort
 - Insert, Delete, find min / max
 ** Graphs
 *** Unweighted Graphs
@@ -59,24 +59,24 @@
 ***** TODO Adjacency List
 ***** Incidence Matrix
 **** Breadth First Search
-***** Finding shortest path
+***** TODO Finding shortest path
 ***** Connected Components
 ***** TODO Two coloring (bipartite graph)
 **** Depth First Search
 ***** TODO Finding cycle in a graph
 ***** Articulation Vertices
-***** Topological Sorting
-***** Strongly Connected Components
+***** TODO Topological Sorting
+***** TODO Strongly Connected Components
 *** Weighted Graphs
 **** Spanning Tree
-***** Spanning Tree using BFS / DFS
+***** TODO Spanning Tree using BFS / DFS
 - Using the tree of discovery
-***** Prim
+***** TODO Prim
 ***** Kruskal
 ***** Shortest path spanning trees
 ***** Minimum bottleneck Spanning Tree
 **** Shortest Path
-***** Single Source Shortest Path
+***** TODO Single Source Shortest Path
 ****** Dijkstra's Algorithm
 ***** All Pair Shortest Path
 ****** Floyd Warshall Algorithm
@@ -100,14 +100,14 @@
 **** Given Prime Factors, find the complete list of divisors
 *** Dynamic Programming
 **** TODO Fibonacci Numbers
-**** Binomial Coefficients
+**** TODO Binomial Coefficients
 **** X Y Z are strings, Z formed by inter-leaving X and Y
-**** Edit distance
+**** TODO Edit distance
 ***** insert, delete, substitute
 ***** With swap
 **** Breaking Strings into 'n' pieces (Order affects the cost)
 **** Maximum Monotone sub-sequence
-**** Dropping Egg
+**** TODO Dropping Egg
 **** High Density Bar codes
 **** Dividing the work into 'k' workers
 **** TODO Given an array of numbers, find the maximum sum in a contiguous array :L26:

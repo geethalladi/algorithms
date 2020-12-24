@@ -7,7 +7,6 @@ present then return -1.
 from typing import List
 
 import logging as log
-
 log.basicConfig(level=log.INFO)
 
 
@@ -19,12 +18,14 @@ def binary_search(elements: List[int], key: int) -> int:
     found
     """
     start, end = 0, (len(elements) - 1)
-    return _binary_search(elements, key, start, end)
+    return __bs(elements, key, start, end)
 
 
-def _binary_search(elements: List[int], key: int,
-                   start: int, end: int) -> int:
-    log.info("Searching for %d in the range [%d, %d]", key, start, end)
+def __bs(elements: List[int], key: int, start: int, end: int) -> int:
+    """
+    Private function doing the recursive binary search
+    """
+    log.debug("Searching for %d in the range [%d, %d]", key, start, end)
 
     if((len(elements) <= 0) or (start > end)):
         # when there are no elements return -1
@@ -37,7 +38,7 @@ def _binary_search(elements: List[int], key: int,
 
     if key < elements[mid]:
         # then find in the left half
-        return _binary_search(elements, key, start, mid - 1)
+        return __bs(elements, key, start, mid - 1)
 
     # find in the right half
-    return _binary_search(elements, key, mid + 1, end)
+    return __bs(elements, key, mid + 1, end)

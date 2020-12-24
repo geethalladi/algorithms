@@ -25,7 +25,7 @@ def find_maximum_subset(movies: List[Movie]) -> List[Movie]:
     gets more time to chose the rest of the movies
     """
     # Sort the movies, based on the end date (ascending order)
-    movies = sorted(movies)
+    # movies = sorted(movies)
 
     # reduce this list without any collision
     # resolving towards the movie that ends first

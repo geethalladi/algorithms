@@ -9,7 +9,7 @@
 # all the lectures
 ** General
 *** DONE binary search
-*** TODO Movie Star Scheduling Program
+*** DONE Movie Star Scheduling Program
 ** Basics
 # List of items to implement (preferably: after completing the lecture video series)
 *** Dictionaries

@@ -37,11 +37,12 @@ def find_maximum_subset(movies: List[Movie]) -> List[Movie]:
     # reduce this list without any collision
     # resolving towards the movie that ends first
     for m in movies:
+        # check if the input is really valid
+        # can be turned off in production
+        assert m.start <= m.end
+
         # if start is after (or equal to) begin
         if m.start >= begin:
-            # check if the input is really valid
-            # can be turned off in production
-            assert m.start <= m.end
             result.append(m)
             # the new begin is one day after this movie ends
             begin = m.end + 1

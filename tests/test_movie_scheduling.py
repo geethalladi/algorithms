@@ -18,7 +18,9 @@ class TestMovieScheduling:
 
     def test_two_movies_conflict(self):
         # Should chose only one movie
-        assert 1 == 1
+        m1 = Movie("LOTR", 1, 300)
+        m2 = Movie("Matrix", 1, 200)
+        assert max_sub([m1, m2]) == [m2]
 
     def test_two_movies_no_conflict(self):
         # Should chose both the movies

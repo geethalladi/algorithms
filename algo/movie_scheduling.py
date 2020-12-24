@@ -24,8 +24,8 @@ def find_maximum_subset(movies: List[Movie]) -> List[Movie]:
     Given a list of movies, find the subset which maximizes
     profit, as per the given condition.
 
-    Idea: Chose the movie that ends first. This way the actor
-    gets more time to chose the rest of the movies
+    Idea: Choose the movie that ends first. This way the actor
+    gets more time to choose the rest of the movies
     """
     # Sort the movies, based on the end date (ascending order)
     movies = sorted(movies, key=lambda movie: movie.end)

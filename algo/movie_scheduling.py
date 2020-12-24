@@ -13,7 +13,9 @@ log.basicConfig(level=log.INFO)
 
 
 class Movie(NamedTuple):
-    """Movie data type"""
+    """
+    Movie data type
+    """
     name: str
     start: int
     end: int
@@ -31,14 +33,14 @@ def find_maximum_subset(movies: List[Movie]) -> List[Movie]:
     movies = sorted(movies, key=lambda movie: movie.end)
     log.debug(movies)
 
-    # begin is the first day where I am free
+    # begin is the first day when I am free
     begin, result = 1, []
 
     # reduce this list without any collision
     # resolving towards the movie that ends first
     for m in movies:
         # check if the input is really valid
-        # can be turned off in production
+        # can be turned off if required
         assert m.start <= m.end
 
         # if start is after (or equal to) begin

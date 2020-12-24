@@ -3,14 +3,18 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
+from algo.movie_scheduling import find_maximum_subset as max_sub, Movie
+
+
 class TestMovieScheduling:
     def test_empty(self):
         # Given an empty list of Movies, it should work
-        assert 1 == 1
+        assert max_sub([]) == []
 
     def test_single_movie(self):
         # Given a single movie, it should work
-        assert 1 == 1
+        m = Movie("The Lord of the rings", 1, 300)
+        assert max_sub([m]) == [m]
 
     def test_two_movies_conflict(self):
         # Should chose only one movie

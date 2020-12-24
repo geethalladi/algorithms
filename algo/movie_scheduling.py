@@ -9,7 +9,7 @@ current movie.
 from typing import NamedTuple, List
 
 import logging as log
-log.basicConfig(level=log.DEBUG)
+log.basicConfig(level=log.INFO)
 
 
 class Movie(NamedTuple):
@@ -29,7 +29,7 @@ def find_maximum_subset(movies: List[Movie]) -> List[Movie]:
     """
     # Sort the movies, based on the end date (ascending order)
     movies = sorted(movies, key=lambda movie: movie.end)
-    log.info(movies)
+    log.debug(movies)
 
     # begin is the first day where I am free
     begin, result = 1, []

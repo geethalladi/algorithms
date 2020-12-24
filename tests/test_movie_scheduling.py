@@ -24,8 +24,20 @@ class TestMovieScheduling:
 
     def test_two_movies_no_conflict(self):
         # Should chose both the movies
-        assert 1 == 1
+        m1 = Movie("LOTR", 1, 200)
+        m2 = Movie("Matrix", 201, 300)
+        assert max_sub([m1, m2]) == [m1, m2]
 
     def test_multiple_movies_with_conflict(self):
         # Should return a proper subset of movies
-        assert 1 == 1
+
+        m1 = Movie("The Lord of the rings", 1, 200)
+        m2 = Movie("The Matrix", 30, 150)
+        m3 = Movie("Twelve Angry Men", 40, 100)
+        m4 = Movie("Harry Potter", 130, 250)
+        m5 = Movie("You only live twice", 140, 200)
+        m6 = Movie("Hitchhickers guide to the galaxy", 240, 270)
+        m7 = Movie("Batman", 300, 350)
+        m8 = Movie("X Men", 260, 360)
+
+        assert max_sub([m1, m2, m3, m4, m5, m6, m7, m8]) == [m3, m5, m6, m7]

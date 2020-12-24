@@ -33,7 +33,7 @@ def __bs(elements: List[int], key: int, start: int, end: int) -> int:
 
     mid = (start + end) // 2
     if elements[mid] == key:
-        # add logger here
+        log.debug("Element %d found in location, %d", key, mid)
         return mid
 
     if key < elements[mid]:

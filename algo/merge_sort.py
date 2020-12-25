@@ -52,7 +52,24 @@ def __merge(left: List[int], right: List[int]) -> List[int]:
     Merge two sorted lists
     """
     log.debug("Merging %s with %s", str(left), str(right))
-    result = []
-    result.extend(left)
-    result.extend(right)
+
+    i, j, result = 0, 0, []
+    while (i < len(left)) and (j < len(right)):
+        if left[i] <= right[j]:
+            # left one is smaller
+            result.append(left[i])
+            i += 1
+        else:
+            # right one is smaller
+            result.append(right[j])
+            j += 1
+
+    while i < len(left):
+        result.append(left[i])
+        i += 1
+
+    while j < len(right):
+        result.append(right[j])
+        j += 1
+
     return result

@@ -6,7 +6,7 @@ The Complexity is O(nlgn) in time and O(n) in space.
 from typing import List
 import logging as log
 
-log.basicConfig(level=log.DEBUG)
+log.basicConfig(level=log.INFO)
 
 
 def sort(elements: List[int]) -> List[int]:

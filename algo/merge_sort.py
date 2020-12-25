@@ -25,4 +25,33 @@ def sort(elements: List[int]) -> List[int]:
         log.debug("NO NEED TO SORT %s", str(elements))
         return elements
 
-    return elements
+    return __merge_sort(elements, 0, size - 1)
+
+
+def __merge_sort(elements: List[int], low: int, high: int) -> List[int]:
+    """
+    Apply merge sort in the given list, between [low, high]
+    """
+
+    log.debug("__merge(%s)", str(elements[low:(high+1)]))
+    if low >= high:
+        log.debug("SORT IS IDEMPOTENT HERE. SKIPPING")
+        return elements[low:(high+1)]
+
+    mid = (low + high) // 2
+
+    left = __merge_sort(elements, low, mid)
+    right = __merge_sort(elements, mid + 1, high)
+
+    return __merge(left, right)
+
+
+def __merge(left: List[int], right: List[int]) -> List[int]:
+    """
+    Merge two sorted lists
+    """
+    log.debug("Merging %s with %s", str(left), str(right))
+    result = []
+    result.extend(left)
+    result.extend(right)
+    return result

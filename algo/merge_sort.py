@@ -35,6 +35,7 @@ def __merge_sort(elements: List[int], low: int, high: int) -> List[int]:
 
     log.debug("__merge(%s)", str(elements[low:(high+1)]))
     if low >= high:
+        # This list is already sorted
         log.debug("SORT IS IDEMPOTENT HERE. SKIPPING")
         return elements[low:(high+1)]
 

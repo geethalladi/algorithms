@@ -26,7 +26,7 @@
 **** TODO Selection Sort
 **** Sort numbers using a dictionary
 - Find min / max with a dictionary and successor
-**** TODO Merge Sort
+**** DONE Merge Sort
 **** TODO Quick Sort
 **** Bucket Sort
 **** Count Sort

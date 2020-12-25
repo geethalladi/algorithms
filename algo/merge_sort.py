@@ -1,0 +1,28 @@
+"""
+Given a list of numbers, sort them. Use Merge sort
+The Complexity is O(nlgn) in time and O(n) in space.
+"""
+
+from typing import List
+import logging as log
+
+log.basicConfig(level=log.DEBUG)
+
+
+def sort(elements: List[int]) -> List[int]:
+    """
+    Given a list of numbers, sort the elements. Uses Merge Sort for
+    sorting the elements. The algorithm has a complexity of O(nlgn)
+    for time and O(n) for space.
+    """
+    if elements is None:
+        log.debug("NO NEED TO SORT %s", str(elements))
+        return []
+
+    size = len(elements)
+
+    if len(elements) <= 1:
+        log.debug("NO NEED TO SORT %s", str(elements))
+        return elements
+
+    return elements

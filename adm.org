@@ -23,11 +23,11 @@
 **** Hash Tables
 - Hash chaining, can also be an exercise (read the Java implementation)
 *** Sorting
-**** TODO Selection Sort
+**** Selection Sort
 **** Sort numbers using a dictionary
 - Find min / max with a dictionary and successor
 **** DONE Merge Sort
-**** TODO Quick Sort
+**** Quick Sort
 **** Bucket Sort
 **** Count Sort
 **** Finding the median + k-th largest / smallest element
@@ -48,35 +48,35 @@
 **** Implementation
 - Insertion, Deletion
 - Faster heap in O(n) time by Robert Floyd
-**** TODO Heap Sort
+**** Heap Sort
 - Selection sort using heap data structure
-**** TODO Priority Queue using heap sort
+**** Priority Queue using heap sort
 - Insert, Delete, find min / max
 ** Graphs
 *** Unweighted Graphs
 **** Graph Representations
-***** Adjacency Matrix
+***** TODO Adjacency Matrix
 ***** TODO Adjacency List
 ***** Incidence Matrix
 **** Breadth First Search
 ***** TODO Finding shortest path
 ***** Connected Components
-***** TODO Two coloring (bipartite graph)
+***** Two coloring (bipartite graph)
 **** Depth First Search
-***** TODO Finding cycle in a graph
+***** Finding cycle in a graph
 ***** Articulation Vertices
-***** TODO Topological Sorting
-***** TODO Strongly Connected Components
+***** Topological Sorting
+***** Strongly Connected Components
 *** Weighted Graphs
 **** Spanning Tree
-***** TODO Spanning Tree using BFS / DFS
+***** Spanning Tree using BFS / DFS
 - Using the tree of discovery
-***** TODO Prim
+***** Prim
 ***** Kruskal
 ***** Shortest path spanning trees
 ***** Minimum bottleneck Spanning Tree
 **** Shortest Path
-***** TODO Single Source Shortest Path
+***** Single Source Shortest Path
 ****** Dijkstra's Algorithm
 ***** All Pair Shortest Path
 ****** Floyd Warshall Algorithm
@@ -93,24 +93,24 @@
 **** N Queens
 **** Sudoku solving
 **** Construct 2^n subsets of n elements
-**** TODO Construct all permutations
+**** Construct all permutations
 **** Bandwidth Problem
 **** Derangement Problem
 **** 8 Pieces cover a chess board
 **** Given Prime Factors, find the complete list of divisors
 *** Dynamic Programming
-**** TODO Fibonacci Numbers
-**** TODO Binomial Coefficients
+**** Fibonacci Numbers
+**** Binomial Coefficients
 **** X Y Z are strings, Z formed by inter-leaving X and Y
-**** TODO Edit distance
+**** Edit distance
 ***** insert, delete, substitute
 ***** With swap
 **** Breaking Strings into 'n' pieces (Order affects the cost)
 **** Maximum Monotone sub-sequence
-**** TODO Dropping Egg
+**** Dropping Egg
 **** High Density Bar codes
 **** Dividing the work into 'k' workers
-**** TODO Given an array of numbers, find the maximum sum in a contiguous array :L26:
+**** Given an array of numbers, find the maximum sum in a contiguous array :L26:
 **** Given a string and multiplication table, parenthesize the expression :L26:
 *** Greedy Algorithm
 **** Vertex Cover in a tree

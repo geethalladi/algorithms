@@ -1,10 +1,11 @@
 * Obstacles
 
-# Obstacles is the way
-#  "The mind adapts and converts to its own purposes the
-#  obstacle to our acting. The impediment to action advances
-#  action. What stands in the way becomes the way"
-#  - Marcus Aurelius
+  # Obstacles are not negative Understand that obstacles shows
+  # (becomes) the way.
+
+  #  "The mind adapts and converts to its own purposes the obstacle to
+  #  our acting. The impediment to action advances action. What stands
+  #  in the way becomes the way" - Marcus Aurelius
 
 The following are the hurdles / obstacles faced while implementing algorithms in python
 

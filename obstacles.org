@@ -1,4 +1,5 @@
 * Obstacles
+
 # Obstacles is the way
 #  "The mind adapts and converts to its own purposes the
 #  obstacle to our acting. The impediment to action advances

@@ -19,16 +19,3 @@ around the following topics
 - Shortest Path
 
 For the list of current TODO items grep for TODO in `adm.org` file.
-
-** Pre-conditions
-
-*** DONE Directory Structure
-- Decide how the source files and test files are going to be structured
-*** DONE Unit testing public functions in python
-- Decide the unit test library
-- Ability to unit test the public functions
-- Do a Test Driven Development
-- Unit tests before writing the implementation
-*** Visualizing graphs in python
-- Representing graphs in a Domain Specific Language
-- Ability to visualize this representation

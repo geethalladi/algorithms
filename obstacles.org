@@ -1,0 +1,60 @@
+* Obstacles
+# Obstacles is the way
+#  "The mind adapts and converts to its own purposes the
+#  obstacle to our acting. The impediment to action advances
+#  action. What stands in the way becomes the way"
+#  - Marcus Aurelius
+
+The following are the hurdles / obstacles faced while implementing algorithms in python
+
+** DONE Directory Structure
+- Decide how the source files and test files are going to be structured
+
+** DONE Unit testing public functions in python
+- Decide the unit test library
+- Ability to unit test the public functions
+- Do a Test Driven Development
+- Unit tests before writing the implementation
+
+** DONE Makefile
+- Learning Makefile and using it as a runner
+
+** DONE Package dependencies
+- How to capture package dependencies with requirements.txt
+- Adding newer packages on demand
+
+** DONE Virtual Environment
+- Setting up a separate environment for this project
+- Integrating with emacs / elpy
+
+** DONE Disabling Lint errors
+- Flyspell check for linting errors
+- How to disable them when required
+
+** DONE Static types
+- Add support for static type checking with python 3
+
+** DONE Emacs Integration
+*** inferior mode
+- Integration with ipython
+- eval a file
+- reloading file
+*** workflow
+- Deciding how to do REPL driven development with emacs and python
+*** unit testing
+- What package
+- How to run a standalone file
+- How to switch to the corresponding test file
+- Create a snippet for test files
+
+** DONE Notes for future usage
+- Taking notes for future usage
+
+** DONE Visualizing graphs in python
+- Representing graphs in a Domain Specific Language
+- Ability to visualize this representation
+
+** Modules and their imports
+*** Sibling Package
+- As of now, using the full package path
+- Find ways to use relative package paths

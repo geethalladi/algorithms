@@ -35,5 +35,6 @@ class Vertex:
         Add an edge between this and the given vertex
         """
         self._connected_to[other.get_id()] = weight
-        if directed:
-            other.add_edge(self, weight, directed)
+        if not directed:
+            # if undirected, add the other edge as well
+            other.add_edge(self, weight, True)

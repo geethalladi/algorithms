@@ -7,8 +7,9 @@ class Vertex:
     """
     Vertex using adjacency list representation
     """
-    
-    def __init__(self: Vertex, key: str):
+
+    # TODO: How to qualify self here
+    def __init__(self, key: str):
         """
         Initialize the Vertex instance
         """
@@ -22,3 +23,4 @@ class Vertex:
         """
         return self.id
         
+

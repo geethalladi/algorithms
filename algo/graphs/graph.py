@@ -1,6 +1,7 @@
 from typing import Dict
 
-from vertex import Vertex
+# TODO: This should be a sibling package
+from algo.graphs.vertex import Vertex
 
 class Graph:
     """
@@ -12,5 +13,7 @@ class Graph:
         """
         Create a graph instance based on adjacency list
         """
-        self.verList: Dict[id, Vertex] = {}
+        self.vertices: Dict[id, Vertex] = {}
         self.numVertices: int = 0
+
+print(Graph)

@@ -5,12 +5,12 @@
 
 from algo.graphs.graph import Graph
 
+
 class TestGraph:
     """
     A Test Suite for Graph
     """
+
     def test_empty(self):
         g = Graph()
-        assert g != None
-
-    
+        assert g is not None

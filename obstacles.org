@@ -1,6 +1,6 @@
 * Obstacles
 
-  # Obstacles are not negative Understand that obstacles shows
+  # Obstacles are not negative. Understand that obstacles shows
   # (becomes) the way.
 
   #  "The mind adapts and converts to its own purposes the obstacle to
@@ -20,6 +20,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+
+** DONE Linting
+- Updating lint configuration for variable names
+- Allowing simple variable names
 
 ** DONE Visualizing graphs in python
 - Representing graphs in a Domain Specific Language

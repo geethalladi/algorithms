@@ -1,7 +1,7 @@
-init:
-	pip3 install -r requirements.txt
+.PHONY: init test
 
 test:
 	pytest -s -v
 
-.PHONY: init test
+init:
+	pip3 install -r requirements.txt

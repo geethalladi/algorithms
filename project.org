@@ -1,0 +1,10 @@
+#+TODO: TODO(t) PROGRESS(p) WAITING(w) | DONE(d) | CANCELLED(c)
+#+OPTIONS: toc:nil
+* Project Tracking
+** Graph 101
+- Implementing Graph data structure
+- Implement 5 algorithms from python data structure
+*** March 2021
+|------------------+--------|
+| <2021-03-08 Mon> | [x][x] |
+|------------------+--------|

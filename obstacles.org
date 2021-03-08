@@ -8,32 +8,27 @@
 
 The following are the hurdles / obstacles faced while implementing algorithms in python
 
-** DONE Directory Structure
-- Decide how the source files and test files are going to be structured
+** Precondition checks
+- Check pre-conditions in python functions
 
-** DONE Unit testing public functions in python
-- Decide the unit test library
-- Ability to unit test the public functions
-- Do a Test Driven Development
-- Unit tests before writing the implementation
+** Assertion
+- Adding assertions in python code
+- Turning off assertions in Production
 
-** DONE Makefile
-- Learning Makefile and using it as a runner
-- Setting default target
-** DONE Logging
-- Ability to add logs
-- Multiple log levels
-** DONE Package dependencies
-- How to capture package dependencies with requirements.txt
-- Adding newer packages on demand
+** Modules and their imports
+*** Sibling Package
+- As of now, using the full package path
+- Find ways to use relative package paths
 
-** DONE Virtual Environment
-- Setting up a separate environment for this project
-- Integrating with emacs / elpy
+** DONE Visualizing graphs in python
+- Representing graphs in a Domain Specific Language
+- Ability to visualize this representation
 
-** DONE Disabling Lint errors
-- Flyspell check for linting errors
-- How to disable them when required
+** DONE Notes for future usage
+- Taking notes for future usage
+
+** DONE Static types
+- Add support for static type checking with python 3
 
 ** DONE Emacs Integration
 *** inferior mode
@@ -48,17 +43,31 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - How to switch to the corresponding test file
 - Create a snippet for test files
 
-** DONE Static types
-- Add support for static type checking with python 3
+** DONE Disabling Lint errors
+- Flyspell check for linting errors
+- How to disable them when required
 
-** DONE Notes for future usage
-- Taking notes for future usage
+** DONE Virtual Environment
+- Setting up a separate environment for this project
+- Integrating with emacs / elpy
 
-** DONE Visualizing graphs in python
-- Representing graphs in a Domain Specific Language
-- Ability to visualize this representation
+** DONE Package dependencies
+- How to capture package dependencies with requirements.txt
+- Adding newer packages on demand
 
-** Modules and their imports
-*** Sibling Package
-- As of now, using the full package path
-- Find ways to use relative package paths
+** DONE Logging
+- Ability to add logs
+- Multiple log levels
+
+** DONE Makefile
+- Learning Makefile and using it as a runner
+- Setting default target
+
+** DONE Unit testing public functions in python
+- Decide the unit test library
+- Ability to unit test the public functions
+- Do a Test Driven Development
+- Unit tests before writing the implementation
+
+** DONE Directory Structure
+- Decide how the source files and test files are going to be structured

@@ -21,6 +21,9 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - As of now, using the full package path
 - Find ways to use relative package paths
 
+** Emacs flycheck does not work at times
+- Flycheck does not show lint errors
+
 ** DONE Linting
 - Updating lint configuration for variable names
 - Allowing simple variable names

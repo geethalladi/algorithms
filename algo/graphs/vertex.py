@@ -2,7 +2,7 @@
 Vertex abstract data type
 """
 
-from typing import Dict, List
+from typing import Dict, Collection
 
 import logging as log
 log.basicConfig(level=log.INFO)
@@ -13,7 +13,7 @@ class Vertex:
     Vertex using adjacency list representation
     """
     id: str
-    connected_to: Dict[str, int]
+    connected_to: Dict['Vertex', int]
 
     # TODO: How to qualify self here
     def __init__(self, key: str):
@@ -29,13 +29,13 @@ class Vertex:
         """
         return self.id
 
-    def get_connections(self) -> List[str]:
+    def get_connections(self) -> Collection['Vertex']:
         """
         Get all the connected vertices
         """
         return self.connected_to.keys()
 
-    def get_weight(self, other: str) -> int:
+    def get_weight(self, other: 'Vertex') -> int:
         """
         Return edge weight between this and the other vertex
         """
@@ -46,7 +46,15 @@ class Vertex:
         """
         Add an edge between this and the given vertex
         """
-        self.connected_to[other.get_id()] = weight
+        self.connected_to[other] = weight
         if not directed:
             # if undirected, add the other edge as well
             other.add_edge(self, weight, True)
+
+    def __str__(self) -> str:
+        """
+        Return the string representation
+        """
+        return "{} -> {}".format(
+            self.id,
+            str([x.id for x in self.get_connections()]))

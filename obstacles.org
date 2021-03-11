@@ -21,9 +21,20 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - As of now, using the full package path
 - Find ways to use relative package paths
 
-** Emacs flycheck does not work at times
+** DONE Upgrading Python inside virtual environment
+- Deleted the existing venv
+- Reinstalled all the packages
+- Folder renaming does not work
+- Created it fresh again
+** DONE Resolving Collection is unsubscriptable
+- Got a lint error
+- Required Upgrading python
+- Ended up re-creating everything (venv + packages + requirements.txt) from scratch
+** DONE Emacs flycheck does not work at times
 - Flycheck does not show lint errors
-
+- Activate pyvenv at start
+- Switch to test file and it works
+- Activated pyvenv as part of emacs init
 ** DONE Linting
 - Updating lint configuration for variable names
 - Allowing simple variable names

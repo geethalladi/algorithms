@@ -34,7 +34,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Flycheck does not show lint errors
 - Activate pyvenv at start
 - Switch to test file and it works
-- Activated pyvenv as part of emacs init
+# - Activated pyvenv as part of emacs init (later, if required)
 ** DONE Linting
 - Updating lint configuration for variable names
 - Allowing simple variable names

@@ -1,8 +1,6 @@
 * Obstacles
-
   # Obstacles are not negative. Understand that obstacles shows
   # (becomes) the way.
-
   #  "The mind adapts and converts to its own purposes the obstacle to
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
@@ -11,16 +9,16 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 
 ** Precondition and Post-condition checks
 - Check pre-conditions in python functions
-
-** Updating emacs packages
-** Jedi.el + backend is not compatible
-- jedi package and jedi.el is not in sync
-** Auto completion does not work
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
 
+** DONE Updating emacs packages
+** DONE Jedi.el + backend is not compatible
+- jedi package and jedi.el is not in sync
+** DONE Auto completion does not work
+- Updated jedi and its corresponding emacs package
 ** DONE Assertion
 - Adding assertions in python code
 - Turning off assertions in Production

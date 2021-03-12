@@ -3,5 +3,8 @@
 test:
 	pytest; echo $$?
 
-init:
+all:
+	make install && make test
+
+install:
 	pip3 install -r requirements.txt

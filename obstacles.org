@@ -7,12 +7,15 @@
 
 The following are the hurdles / obstacles faced while implementing algorithms in python
 
-** Test Runner does not show log output
-- When ran individually inside emacs
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Test Runner does not show log output
+- When ran individually inside emacs
+- Updated py.test to the latest version
+- Wrote the configuration file in toml
+- The Emacs runner reflects the configuration
 ** DONE Precondition and Post-condition checks
 - Check pre-conditions in python functions
 ** DONE Updating emacs packages

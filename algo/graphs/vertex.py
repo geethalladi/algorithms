@@ -9,6 +9,20 @@ from typing import Dict, Collection
 log.basicConfig(level=log.INFO)
 
 
+def non_empty_colletion(lst):
+    """
+    Assert if the collection is empty
+    """
+    assert len(lst) > 0, "Collection is empty"
+
+
+def positive_number(num):
+    """
+    Assert if the number is positive
+    """
+    assert num > 0, "Number is expected to be positive"
+
+
 class Vertex:
     """
     Vertex using adjacency list representation

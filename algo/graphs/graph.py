@@ -55,6 +55,7 @@ class Graph:
 
         assert source in self.vertices.keys(), "Source Vertex does not exist"
         assert dest in self.vertices.keys(), "Dest Vertex does not exist"
+
         src: Vertex = self.vertices[source]
         dst: Vertex = self.vertices[dest]
         return self.add_edge(src, dst, weight, directed)

@@ -7,13 +7,14 @@
 
 The following are the hurdles / obstacles faced while implementing algorithms in python
 
+** Test Runner does not show log output
+- When ran individually
 ** Precondition and Post-condition checks
 - Check pre-conditions in python functions
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
-
 ** DONE Updating emacs packages
 ** DONE Jedi.el + backend is not compatible
 - jedi package and jedi.el is not in sync

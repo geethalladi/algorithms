@@ -6,6 +6,9 @@ https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions
 import functools
 import logging as log
 
+# For preconditions prefer using individual asserts
+# For postcondition use the decorator
+
 __all__ = ['precondition', 'postcondition', 'condition']
 
 

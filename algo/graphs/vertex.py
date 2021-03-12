@@ -24,6 +24,7 @@ class Vertex:
         # removing isinstance as the type check is
         # done already by the linter
         assert (len(key) > 0), "Invalid Vertex Key"
+        log.debug('Creating vertex with key %s', key)
         self.id = key
         self.connected_to = {}
 
@@ -54,6 +55,8 @@ class Vertex:
         assert weight > 0, "Invalid edge weight"
         assert (other in self.connected_to) is False, "Edge already exists"
 
+        log.debug('Adding edge between %s and %s with weight %d, %s',
+                  self.get_id(), other.get_id(), weight, directed)
         self.connected_to[other] = weight
         if not directed:
             # if undirected, add the other edge as well

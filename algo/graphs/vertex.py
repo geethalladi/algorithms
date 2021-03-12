@@ -14,6 +14,7 @@ def non_empty_colletion(lst):
     """
     Assert if the collection is empty
     """
+    log.info("Checking if the collection is non-empty %s", len(lst))
     assert len(lst) > 0, "Collection is empty"
 
 
@@ -21,6 +22,7 @@ def positive_number(num):
     """
     Assert if the number is positive
     """
+    log.info("Checking if the number is positive %s", num)
     assert num > 0, "Number is expected to be positive"
 
 

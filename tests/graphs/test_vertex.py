@@ -3,13 +3,21 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
+import logging as log
+
 from algo.graphs.vertex import Vertex
+
+log.basicConfig(level=log.INFO)
 
 
 class TestVertex:
     """
     A Test Suite for Vertex
     """
+
+    def test_singleton(self):
+        v1: Vertex = Vertex('a')
+        log.info("Connections count is %s", len(v1.get_connections()))
 
     def test_empty(self):
         v1: Vertex = Vertex('v')

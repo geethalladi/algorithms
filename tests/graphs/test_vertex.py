@@ -7,8 +7,6 @@ import logging as log
 
 from algo.graphs.vertex import Vertex
 
-log.basicConfig(level=log.INFO)
-
 
 class TestVertex:
     """

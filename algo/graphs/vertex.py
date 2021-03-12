@@ -5,6 +5,7 @@ Vertex abstract data type
 import logging as log
 
 from typing import Dict, Collection
+from algo.utils.contracts import precondition, postcondition
 
 log.basicConfig(level=log.INFO)
 
@@ -46,24 +47,26 @@ class Vertex:
         """
         return self.id
 
+    @postcondition(non_empty_colletion)
     def get_connections(self) -> Collection['Vertex']:
         """
         Get all the connected vertices
         """
         return self.connected_to.keys()
 
+    @postcondition(positive_number)
     def get_weight(self, other: 'Vertex') -> int:
         """
         Return edge weight between this and the other vertex
         """
         return self.connected_to[other]
 
+    @precondition(positive_number)
     def add_edge(self, other: 'Vertex', weight: int = 1,
                  directed: bool = False):
         """
         Add an edge between this and the given vertex
         """
-        assert (weight > 0), "Invalid edge weight"
         self.connected_to[other] = weight
         if not directed:
             # if undirected, add the other edge as well

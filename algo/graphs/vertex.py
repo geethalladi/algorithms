@@ -5,7 +5,7 @@ Vertex abstract data type
 import logging as log
 
 from typing import Dict, Collection
-from algo.utils.contracts import precondition, postcondition
+from algo.utils.contracts import postcondition
 
 log.basicConfig(level=log.INFO)
 
@@ -15,15 +15,16 @@ def non_empty_colletion(lst):
     Assert if the collection is empty
     """
     log.info("Checking if the collection is non-empty %s", len(lst))
-    assert len(lst) > 0, "Collection is empty"
+    return (len(lst) > 0)
 
 
-def positive_number(num):
-    """
-    Assert if the number is positive
-    """
-    log.info("Checking if the number is positive %s", num)
-    assert num > 0, "Number is expected to be positive"
+# def positive_number(*args, **kwargs):
+#     """
+#     Assert if the number is positive
+#     """
+#     log.info("Checking if the number is positive %s %s", str(args), str(kwargs))
+#     True
+#     # assert weight > 0, "Number is expected to be positive"
 
 
 class Vertex:
@@ -56,19 +57,18 @@ class Vertex:
         """
         return self.connected_to.keys()
 
-    @postcondition(positive_number)
     def get_weight(self, other: 'Vertex') -> int:
         """
         Return edge weight between this and the other vertex
         """
         return self.connected_to[other]
 
-    @precondition(positive_number)
     def add_edge(self, other: 'Vertex', weight: int = 1,
                  directed: bool = False):
         """
         Add an edge between this and the given vertex
         """
+        assert weight > 0, "Invalid edge weight"
         self.connected_to[other] = weight
         if not directed:
             # if undirected, add the other edge as well

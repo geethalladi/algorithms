@@ -10,23 +10,6 @@ from algo.utils.contracts import postcondition
 log.basicConfig(level=log.INFO)
 
 
-def non_empty_colletion(lst):
-    """
-    Assert if the collection is empty
-    """
-    log.info("Checking if the collection is non-empty %s", len(lst))
-    return (len(lst) > 0)
-
-
-# def positive_number(*args, **kwargs):
-#     """
-#     Assert if the number is positive
-#     """
-#     log.info("Checking if the number is positive %s %s", str(args), str(kwargs))
-#     True
-#     # assert weight > 0, "Number is expected to be positive"
-
-
 class Vertex:
     """
     Vertex using adjacency list representation
@@ -50,7 +33,7 @@ class Vertex:
         """
         return self.id
 
-    @postcondition(non_empty_colletion)
+    @postcondition(lambda result: len(result) >= 0)
     def get_connections(self) -> Collection['Vertex']:
         """
         Get all the connected vertices

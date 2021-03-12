@@ -11,6 +11,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Test Suite with setup and teardown methods
+- Read and used them
 ** DONE Test Runner does not show log output
 - When ran individually inside emacs
 - Updated py.test to the latest version

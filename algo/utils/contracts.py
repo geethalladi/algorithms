@@ -2,17 +2,28 @@
 Definition Imported from
 https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions
 """
+
+import logging as log
+
 __all__ = ['precondition', 'postcondition', 'conditions']
 
 DEFAULT_ON = True
 
 
-def precondition(precondition, use_conditions=DEFAULT_ON):
-    return conditions(precondition, None, use_conditions)
+def precondition(predicate, use_conditions=DEFAULT_ON):
+    """
+    precondition decorator
+    """
+    log.info("Creating a precondition")
+    return conditions(predicate, None, use_conditions)
 
 
-def postcondition(postcondition, use_conditions=DEFAULT_ON):
-    return conditions(None, postcondition, use_conditions)
+def postcondition(predicate, use_conditions=DEFAULT_ON):
+    """
+    Postcondition decorator
+    """
+    log.info("Creating a postcondition")
+    return conditions(None, predicate, use_conditions)
 
 
 class conditions(object):

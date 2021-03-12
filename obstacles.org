@@ -9,18 +9,20 @@
 
 The following are the hurdles / obstacles faced while implementing algorithms in python
 
-** Precondition checks
+** Precondition and Post-condition checks
 - Check pre-conditions in python functions
-
-** Assertion
-- Adding assertions in python code
-- Turning off assertions in Production
 
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
 
+** DONE Assertion
+- Adding assertions in python code
+- Turning off assertions in Production
+** DONE Attribute name should be snake case
+- Update `pylintrc`
+- Changed `attr-name-style` to be any
 ** DONE Upgrading Python inside virtual environment
 - Deleted the existing venv
 - Reinstalled all the packages

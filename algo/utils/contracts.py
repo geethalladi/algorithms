@@ -3,82 +3,49 @@ Definition Imported from
 https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions
 """
 
+import functools
 import logging as log
 
-__all__ = ['precondition', 'postcondition', 'conditions']
-
-DEFAULT_ON = True
+__all__ = ['precondition', 'postcondition', 'condition']
 
 
-def precondition(predicate, use_conditions=DEFAULT_ON):
+def precondition(predicate):
     """
-    precondition decorator
+    PreCondition decorator
     """
-    log.info("Creating a precondition")
-    return conditions(predicate, None, use_conditions)
+    log.debug("Creating a precondition for %s", predicate)
+    return condition(pre_predicate=predicate)
 
 
-def postcondition(predicate, use_conditions=DEFAULT_ON):
+def postcondition(predicate):
     """
-    Postcondition decorator
+    PostCondition decorator
     """
-    log.info("Creating a postcondition")
-    return conditions(None, predicate, use_conditions)
+    log.debug("Creating a postcondition for %s", predicate)
+    return condition(post_predicate=predicate)
 
 
-class conditions(object):
-    __slots__ = ('__precondition', '__postcondition')
+def condition(pre_predicate=None, post_predicate=None):
+    """
+    condition decorator
+    """
+    def decorator(func):
+        # presever name, docstring, etc
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            # NOTE: no self
+            if pre_predicate is not None:
+                log.debug("Calling precondition for %s", str(func))
+                assert pre_predicate(*args, **kwargs)
 
-    def __init__(self, pre, post, use_conditions=DEFAULT_ON):
-        if not use_conditions:
-            pre, post = None, None
+            # call original function or method
+            log.debug("Calling function %s", str(func))
+            result = func(*args, **kwargs)
 
-        self.__precondition = pre
-        self.__postcondition = post
+            if post_predicate is not None:
+                log.debug("Calling postcondition for %s", str(func))
+                assert post_predicate(result)
 
-    def __call__(self, function):
-        # combine recursive wrappers (@precondition + @postcondition == @conditions)
-        pres = set((self.__precondition,))
-        posts = set((self.__postcondition,))
-
-        # unwrap function, collect distinct pre-/post conditions
-        while type(function) is FunctionWrapper:
-            pres.add(function._pre)
-            posts.add(function._post)
-            function = function._func
-
-        # filter out None conditions and build pairs of pre- and postconditions
-        conditions = map(None, filter(None, pres), filter(None, posts))
-
-        # add a wrapper for each pair (note that 'conditions' may be empty)
-        for pre, post in conditions:
-            function = FunctionWrapper(pre, post, function)
-
-        return function
-
-
-class FunctionWrapper(object):
-    def __init__(self, precondition, postcondition, function):
-        self._pre = precondition
-        self._post = postcondition
-        self._func = function
-
-    def __call__(self, *args, **kwargs):
-        precondition = self._pre
-        postcondition = self._post
-
-        if precondition:
-            precondition(*args, **kwargs)
-        result = self._func(*args, **kwargs)
-        if postcondition:
-            postcondition(result, *args, **kwargs)
-        return result
-
-
-def __test():
-    import doctest
-    doctest.testmod()
-
-
-if __name__ == "__main__":
-    __test()
+            return result
+        return wrapper
+    return decorator

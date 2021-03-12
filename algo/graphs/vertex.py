@@ -53,7 +53,7 @@ class Vertex:
         Add an edge between this and the given vertex
         """
         assert weight > 0, "Invalid edge weight"
-        assert (other in self.connected_to) is False, "Edge already exists"
+        assert other not in self.connected_to, "Edge already exists"
 
         log.debug('Adding edge between %s and %s with weight %d, %s',
                   self.get_id(), other.get_id(), weight, directed)

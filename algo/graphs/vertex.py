@@ -52,11 +52,14 @@ class Vertex:
         Add an edge between this and the given vertex
         """
         assert weight > 0, "Invalid edge weight"
+        assert (other in self.connected_to) is False, "Edge already exists"
+
         self.connected_to[other] = weight
         if not directed:
             # if undirected, add the other edge as well
             other.add_edge(self, weight, True)
 
+    @postcondition(lambda x: len(x) > 0)
     def __str__(self) -> str:
         """
         Return the string representation

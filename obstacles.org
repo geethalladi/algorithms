@@ -12,6 +12,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** Precondition and Post-condition checks
 - Check pre-conditions in python functions
 
+** Auto completion does not work
+
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path

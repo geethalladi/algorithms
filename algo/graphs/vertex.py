@@ -2,9 +2,10 @@
 Vertex abstract data type
 """
 
+import logging as log
+
 from typing import Dict, Collection
 
-import logging as log
 log.basicConfig(level=log.INFO)
 
 
@@ -19,7 +20,9 @@ class Vertex:
         """
         Initialize the Vertex instance
         """
-        assert (isinstance(key, str) and len(key) > 0), "Invalid Vertex Key"
+        # removing isinstance as the type check is
+        # done already by the linter
+        assert (len(key) > 0), "Invalid Vertex Key"
         self.id = key
         self.connected_to = {}
 
@@ -46,6 +49,7 @@ class Vertex:
         """
         Add an edge between this and the given vertex
         """
+        assert (weight > 0), "Invalid edge weight"
         self.connected_to[other] = weight
         if not directed:
             # if undirected, add the other edge as well

@@ -52,16 +52,21 @@ class Graph:
         """
         Add Edge between the given vertices
         """
+
+        assert source in self.vertices.keys(), "Source Vertex does not exist"
+        assert dest in self.vertices.keys(), "Dest Vertex does not exist"
         src: Vertex = self.vertices[source]
         dst: Vertex = self.vertices[dest]
         return self.add_edge(src, dst, weight, directed)
 
-    @classmethod
-    def add_edge(cls, source: Vertex, dest: Vertex,
+    def add_edge(self, source: Vertex, dest: Vertex,
                  weight: int = 1, directed: bool = False):
         """
         Add Edge between given vertices
         """
+        assert source in self.vertices.values(), "Source Vertex does not exist"
+        assert dest in self.vertices.values(), "Dest Vertex does not exist"
+
         log.debug("Adding edge between %s and %s with %s, %s",
                   source, dest, weight, directed)
         return source.add_edge(dest, weight, directed)

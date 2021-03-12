@@ -12,8 +12,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** Precondition and Post-condition checks
 - Check pre-conditions in python functions
 
+** Updating emacs packages
+** Jedi.el + backend is not compatible
+- jedi package and jedi.el is not in sync
 ** Auto completion does not work
-
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path

@@ -71,3 +71,15 @@ class TestGraph:
         assert self.C.get_weight(self.B) == 6
         assert self.D.get_weight(self.E) == 5
         assert self.E.get_weight(self.D) == 5
+
+    def test_connected(self):
+        self.G.add_edge(self.A, self.B, 5, True)
+        self.G.add_edge(self.B, self.C, 6, False)
+        assert self.G.is_connected(self.A, self.B)
+        assert not self.G.is_connected(self.B, self.A)
+
+    def test_directed(self):
+        self.G.add_edge(self.A, self.B, 5, True)
+        self.G.add_edge(self.B, self.C, 6, False)
+        assert self.G.is_directed(self.A, self.B)
+        assert not self.G.is_directed(self.C, self.B)

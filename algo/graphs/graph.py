@@ -72,6 +72,28 @@ class Graph:
                   source, dest, weight, directed)
         return source.add_edge(dest, weight, directed)
 
+    @classmethod
+    def is_connected(cls, source: Vertex, dest: Vertex) -> bool:
+        """
+        Predicate to check if the two vertices are connected
+        """
+        assert source is not None, "Source is empty"
+        assert dest is not None, "Dest is empty"
+        try:
+            return source.get_weight(dest) > 0
+        except KeyError:
+            return False
+
+    @classmethod
+    def is_directed(cls, source: Vertex, dest: Vertex) -> bool:
+        """
+        Predicate to check if the edge between the vertices is directed
+        """
+        assert source is not None, "Source is empty"
+        assert dest is not None, "Dest is empty"
+        return cls.is_connected(source, dest) and (
+            not cls.is_connected(dest, source))
+
     def __iter__(self) -> Iterable[Vertex]:
         """
         Iterator for this instance

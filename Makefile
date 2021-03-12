@@ -1,7 +1,7 @@
 .PHONY: init test
 
 test:
-	pytest -s -v
+	pytest -s -v; echo $$?
 
 init:
 	pip3 install -r requirements.txt

@@ -15,11 +15,11 @@ class Vertex:
     id: str
     connected_to: Dict['Vertex', int]
 
-    # TODO: How to qualify self here
     def __init__(self, key: str):
         """
         Initialize the Vertex instance
         """
+        assert (isinstance(key, str) and len(key) > 0), "Invalid Vertex Key"
         self.id = key
         self.connected_to = {}
 

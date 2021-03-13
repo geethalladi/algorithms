@@ -12,7 +12,7 @@ class TestGraph:
     """
     A Test Suite for Graph
     """
-    G: Graph
+    G: IGraph
     A: Vertex
     B: Vertex
     C: Vertex
@@ -98,7 +98,7 @@ class TestDigraph:
     """
     A Test Suite for Graph
     """
-    DG: Graph
+    DG: IGraph
     A: Vertex
     B: Vertex
     C: Vertex

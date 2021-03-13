@@ -1,6 +1,7 @@
 """
 Graph ADT
 """
+
 import logging as log
 
 from typing import Dict, Collection, Iterable
@@ -83,6 +84,22 @@ class Graph:
             return source.get_weight(dest) > 0
         except KeyError:
             return False
+
+    @classmethod
+    def is_undirected(cls, source: Vertex, dest: Vertex) -> bool:
+        """
+        Returns true if the edge is undirected
+        """
+        assert source is not None, "Source is empty"
+        assert dest is not None, "Dest is empty"
+
+        # source and dest should be connected from both directions
+        # their weights should also match
+        # return true if all the conditions are satisfied
+
+        return (cls.is_connected(source, dest) and
+                cls.is_connected(dest, source) and
+                source.get_weight(dest) == dest.get_weight(source))
 
     @classmethod
     def is_directed(cls, source: Vertex, dest: Vertex) -> bool:

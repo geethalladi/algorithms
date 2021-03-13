@@ -90,3 +90,13 @@ class TestGraph:
         # Both of them should be true
         assert self.G.is_directed(self.A, self.B)
         assert self.G.is_directed(self.B, self.A)
+
+    def test_undirected(self):
+        self.G.add_edge(self.A, self.B, 2, False)
+        assert self.G.is_undirected(self.A, self.B)
+        assert self.G.is_undirected(self.B, self.A)
+
+    def test_undirected_2(self):
+        self.G.add_edge(self.A, self.B, 2, True)
+        assert not self.G.is_undirected(self.A, self.B)
+        assert not self.G.is_undirected(self.B, self.A)

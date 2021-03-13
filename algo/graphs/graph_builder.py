@@ -9,13 +9,14 @@ from algo.graphs.edge import Edge
 from algo.graphs.igraph import IGraph
 
 
+# pylint: disable=too-few-public-methods
 class GraphBuilderMixin:
     """
     Graph Builder Mixin
     """
 
     @classmethod
-    def parse_vertices(cls, edges: Collection[Edge]) -> Set[str]:
+    def __vertices(cls, edges: Collection[Edge]) -> Set[str]:
         """
         Return the unique set of vertices from the edge list
         """
@@ -32,7 +33,7 @@ class GraphBuilderMixin:
         assert len(lst) > 0, "Empty Edge list"
 
         edges: List[Edge] = Edge.make(lst)
-        vertices: Set[str] = GraphBuilderMixin.parse_vertices(edges)
+        vertices: Set[str] = GraphBuilderMixin.__vertices(edges)
 
         # Add vertices
         for v in vertices:

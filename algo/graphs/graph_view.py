@@ -5,13 +5,15 @@ GraphViewMixin
 import graphviz
 import logging as log
 
+from algo.graphs.igraph import IGraph
+
 
 class GraphViewMixin:
     """
     Mixin for visualizing Graphs
     """
 
-    def view(self: 'Graph'):
+    def view(self: IGraph):
         """
         Visualize this graph
         """
@@ -32,7 +34,7 @@ class GraphViewMixin:
         # Adding all edges
         log.debug('Adding edges to dot representation')
         for v in self.get_vertices():
-            source = self.vertices[v]
+            source = self.get_vertex(v)
             # Adding edges from vertex v
             log.debug('Adding edges in vertex %s', source.get_id())
             for dest in source.get_connections():

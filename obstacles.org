@@ -16,6 +16,11 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Reimplementing is_directed
+- Found a bug in the existing implementation
+- Wrote unit tests to uncover
+- Updated the implementation (in terms of `is_undirected`)
+- Test cases passed
 ** DONE Python Lint - Ignore flake configurations
 - Difference between pylint and flake
 - Adding separate configurations from them

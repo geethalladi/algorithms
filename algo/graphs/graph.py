@@ -13,7 +13,7 @@ from algo.utils.contracts import postcondition
 from typing import Dict, Collection, Iterable
 
 
-class Graph:
+class AbstractGraph:
     """
     An abstract data type for representing Graphs.
     This implementation uses the adjacency list representation.
@@ -137,7 +137,7 @@ class Graph:
         return iter(self.vertices.values())
 
 
-class ConcreteGraph(Graph, GraphViewMixin, GraphBuilderMixin):
+class Graph(AbstractGraph, GraphViewMixin, GraphBuilderMixin):
     """
     A Concerte Graph Implementation
     """

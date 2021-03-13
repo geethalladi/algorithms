@@ -3,7 +3,7 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
-from algo.graphs.graph import ConcreteGraph
+from algo.graphs.graph import Graph
 from algo.graphs.vertex import Vertex
 
 
@@ -12,7 +12,7 @@ class TestDigraphView:
     A Test Suite for DigraphView
     """
 
-    DG: ConcreteGraph
+    DG: Graph
     A: Vertex
     B: Vertex
     C: Vertex
@@ -20,7 +20,7 @@ class TestDigraphView:
     E: Vertex
 
     def setup_method(self):
-        self.DG = ConcreteGraph('test_digraph', directed=True)
+        self.DG = Graph('test_digraph', directed=True)
         self.A = self.DG.add_vertex('a')
         self.B = self.DG.add_vertex('b')
         self.C = self.DG.add_vertex('c')
@@ -42,7 +42,7 @@ class TestGraphView:
     """
     A Test Suite for GraphView
     """
-    G: ConcreteGraph
+    G: Graph
     A: Vertex
     B: Vertex
     C: Vertex
@@ -50,7 +50,7 @@ class TestGraphView:
     E: Vertex
 
     def setup_method(self):
-        self.G = ConcreteGraph('test_graph')
+        self.G = Graph('test_graph')
         self.A = self.G.add_vertex('a')
         self.B = self.G.add_vertex('b')
         self.C = self.G.add_vertex('c')

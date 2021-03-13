@@ -17,11 +17,12 @@ class Graph:
     This implementation uses the adjacency list representation.
     """
 
+    name: str
+    directed: bool
     vertices: Dict[str, Vertex]
     num_vertices: int
-    name: str
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, directed: bool = False):
         """
         Create a graph instance based on adjacency list
         """
@@ -29,6 +30,7 @@ class Graph:
 
         log.debug("Creating graph %s", name)
         self.name = name
+        self.directed = directed
         self.vertices = {}
         self.num_vertices = 0
 
@@ -62,17 +64,23 @@ class Graph:
         assert source in self.vertices.keys(), "Source Vertex does not exist"
         assert dest in self.vertices.keys(), "Dest Vertex does not exist"
 
+        if directed is None:
+            directed = self.directed
+
         src: Vertex = self.vertices[source]
         dst: Vertex = self.vertices[dest]
         return self.add_edge(src, dst, weight, directed)
 
     def add_edge(self, source: Vertex, dest: Vertex,
-                 weight: int = 1, directed: bool = False):
+                 weight: int = 1, directed: bool = None):
         """
         Add Edge between given vertices
         """
         assert source in self.vertices.values(), "Source Vertex does not exist"
         assert dest in self.vertices.values(), "Dest Vertex does not exist"
+
+        if directed is None:
+            directed = self.directed
 
         log.debug("Adding edge between %s and %s with %s, %s",
                   source, dest, weight, directed)

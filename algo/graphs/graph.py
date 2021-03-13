@@ -143,6 +143,12 @@ class AbstractGraph(abc.ABC):
         Visualize this graph
         """
 
+    @abc.abstractmethod
+    def to_dot(self):
+        """
+        Return the Graphviz#dot representation
+        """
+
 # Order of parents matter
 # The first one always wins
 

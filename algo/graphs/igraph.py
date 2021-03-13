@@ -46,3 +46,9 @@ class IGraph(Protocol):
         Add this edge to the graph
         """
         ...
+
+    def to_dot(self):
+        """
+        Convert the graph to dot representation
+        """
+        ...

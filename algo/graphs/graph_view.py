@@ -33,10 +33,7 @@ class GraphViewMixin:
         for v in vertices:
             dot.node(v, v)
 
-    def view(self: IGraph):
-        """
-        Visualize this graph
-        """
+    def to_dot(self: IGraph):
         dot = GraphViewMixin.__construct_dot_instance(self.name, self.directed)
         # Adding nodes
         GraphViewMixin.__add_nodes(self.get_vertices(), dot)
@@ -49,7 +46,13 @@ class GraphViewMixin:
             log.debug('Adding edges in vertex %s', source.get_id())
             for dest in source.get_connections():
                 GraphViewMixin.__add_edge(source, dest, self.directed, dot)
+        return dot
 
+    def view(self: IGraph):
+        """
+        Visualize this graph
+        """
+        dot = self.to_dot()
         return dot.view()
 
     @classmethod

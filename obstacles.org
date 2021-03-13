@@ -6,6 +6,7 @@
   #  in the way becomes the way" - Marcus Aurelius
 
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Emacs auto import
 ** Unit test coverage
 ** Creating a Graph builder
 - Creating a builder class for ease of constructing Graph

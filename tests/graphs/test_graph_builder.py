@@ -12,18 +12,26 @@ class TestGraphBuilderMixin:
     A Test Suite for GraphBuilderMixin
     """
 
-    G: IGraph
-
-    def setup_method(self):
-        self.G = Graph(name='test_graph_builder', directed=False)
-        self.G.build([
+    def test_graph(self):
+        G: IGraph = Graph(name='test_graph_builder', directed=False)
+        G.build([
             ('a', 'b', 5),
             ('a', 'c', 10),
             ('b', 'e', 20),
             ('b', 'c', 15),
             ('c', 'd', 10)
         ])
-
-    def test_empty(self):
-        assert self.G is not None
+        assert G is not None
         self.G.view()
+
+    def test_digraph(self):
+        DG: IGraph = Graph(name='test_graph_builder', directed=True)
+        DG.build([
+            ('a', 'b', 5),
+            ('a', 'c', 10),
+            ('b', 'e', 20),
+            ('b', 'c', 15),
+            ('c', 'd', 10)
+        ])
+        assert DG is not None
+        DG.view()

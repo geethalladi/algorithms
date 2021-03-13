@@ -3,12 +3,14 @@ GraphViewMixin
 """
 
 import logging as log
-from typing import Collection
+from typing import Collection, Union
 
 import graphviz
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
+
+GraphView = Union[IGraph, 'GraphViewMixin']
 
 
 class GraphViewMixin:
@@ -33,28 +35,6 @@ class GraphViewMixin:
         for v in vertices:
             dot.node(v, v)
 
-    def to_dot(self: IGraph):
-        dot = GraphViewMixin.__construct_dot_instance(self.name, self.directed)
-        # Adding nodes
-        GraphViewMixin.__add_nodes(self.get_vertices(), dot)
-
-        # Adding all edges
-        log.debug('Adding edges to dot representation')
-        for v in self.get_vertices():
-            source = self.get_vertex(v)
-            # Adding edges from vertex v
-            log.debug('Adding edges in vertex %s', source.get_id())
-            for dest in source.get_connections():
-                GraphViewMixin.__add_edge(source, dest, self.directed, dot)
-        return dot
-
-    def view(self: IGraph):
-        """
-        Visualize this graph
-        """
-        dot = self.to_dot()
-        return dot.view()
-
     @classmethod
     def __is_edge_required(cls, source: Vertex, dest: Vertex, directed: bool):
         # Always add if the graph is directed
@@ -75,3 +55,30 @@ class GraphViewMixin:
                   dest.get_id())
         weight = source.get_weight(dest)
         dot.edge(source.get_id(), dest.get_id(), label=str(weight))
+
+    def to_dot(self: GraphView):
+        """
+        Returns the Graphviz#dot representation
+        """
+        if isinstance(self, IGraph) and isinstance(self, GraphViewMixin):
+            dot = self.__construct_dot_instance(self.name, self.directed)
+            # Adding nodes
+            self.__add_nodes(self.get_vertices(), dot)
+            # Adding all edges
+            log.debug('Adding edges to dot representation')
+            for v in self.get_vertices():
+                source = self.get_vertex(v)
+                # Adding edges from vertex v
+                log.debug('Adding edges in vertex %s', source.get_id())
+                for dest in source.get_connections():
+                    self.__add_edge(source, dest, self.directed, dot)
+            return dot
+        msg: str = 'GraphType {} is not compatible'.format(type(self))
+        raise AssertionError(msg)
+
+    def view(self: IGraph):
+        """
+        Visualize this graph
+        """
+        dot = self.to_dot()
+        return dot.view()

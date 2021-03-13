@@ -48,17 +48,27 @@ class GraphViewMixin:
             # Adding edges from vertex v
             log.debug('Adding edges in vertex %s', source.get_id())
             for dest in source.get_connections():
-                # Always add if the graph is directed
-                # If undirected add only once
-                # add only from source to dest
                 GraphViewMixin.__add_edge(source, dest, self.directed, dot)
 
         return dot.view()
 
     @classmethod
+    def __is_edge_required(cls, source: Vertex, dest: Vertex, directed: bool):
+        # Always add if the graph is directed
+        if directed:
+            return True
+        # If undirected add only once
+        # add only from source to dest
+        return source.get_id() <= dest.get_id()
+
+    @classmethod
     def __add_edge(cls, source: Vertex, dest: Vertex, directed: bool, dot: graphviz.Graph):
-        if directed or (source.get_id() <= dest.get_id()):
-            log.debug("Adding edge between %s and %s",
+        if not cls.__is_edge_required(source, dest, directed):
+            log.debug('Ignoring redundant edge %s -> %s',
                       source.get_id(), dest.get_id())
-            weight = source.get_weight(dest)
-            dot.edge(source.get_id(), dest.get_id(), label=str(weight))
+            return
+
+        log.debug("Adding edge between %s and %s", source.get_id(),
+                  dest.get_id())
+        weight = source.get_weight(dest)
+        dot.edge(source.get_id(), dest.get_id(), label=str(weight))

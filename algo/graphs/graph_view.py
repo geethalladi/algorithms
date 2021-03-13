@@ -2,8 +2,10 @@
 GraphViewMixin
 """
 
-import graphviz
 import logging as log
+from typing import Collection
+
+import graphviz
 
 from algo.graphs.igraph import IGraph
 
@@ -13,23 +15,30 @@ class GraphViewMixin:
     Mixin for visualizing Graphs
     """
 
+    @classmethod
+    def __construct_dot_instance(cls, name: str, directed: bool):
+        if directed:
+            log.info('Constructing a digraph instance for %s', name)
+            return graphviz.Digraph(name=name, comment='Graph Visualization')
+        log.info('Constructing a undirected graph instance for %s', name)
+        return graphviz.Graph(name=name, comment='Graph Visualization')
+
+    @classmethod
+    def __add_nodes(cls, vertices: Collection[str], dot: graphviz.Graph):
+        """
+        Add nodes to the dot representation
+        """
+        log.debug('Adding nodes to dot representation')
+        for v in vertices:
+            dot.node(v, v)
+
     def view(self: IGraph):
         """
         Visualize this graph
         """
-
-        if self.directed:
-            log.info('Constructing a digraph instance for %s', self.name)
-            dot = graphviz.Digraph(
-                name=self.name, comment='Graph Visualization')
-        else:
-            log.info('Constructing a undirected graph instance for %s', self.name)
-            dot = graphviz.Graph(name=self.name, comment='Graph Visualization')
-
+        dot = GraphViewMixin.__construct_dot_instance(self.name, self.directed)
         # Adding nodes
-        log.debug('Adding nodes to dot representation')
-        for v in self.get_vertices():
-            dot.node(v, v)
+        GraphViewMixin.__add_nodes(self.get_vertices(), dot)
 
         # Adding all edges
         log.debug('Adding edges to dot representation')

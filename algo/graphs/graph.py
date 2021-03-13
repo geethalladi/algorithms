@@ -7,7 +7,6 @@ import logging as log
 
 # TODO: This should be a sibling package
 from algo.graphs.vertex import Vertex
-from algo.graphs.igraph import IGraph
 from algo.graphs.graph_view import GraphViewMixin
 from algo.graphs.graph_builder import GraphBuilderMixin
 from algo.utils.contracts import postcondition
@@ -139,7 +138,7 @@ class AbstractGraph(abc.ABC):
         return iter(self.vertices.values())
 
     @abc.abstractmethod
-    def view(self: IGraph):
+    def view(self):
         """
         Visualize this graph
         """

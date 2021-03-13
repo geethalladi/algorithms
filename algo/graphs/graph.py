@@ -43,6 +43,12 @@ class Graph:
         """
         return self.vertices.keys()
 
+    def get_vertex(self, key: str) -> Vertex:
+        """
+        Return the vertex instance for this key
+        """
+        return self.vertices[key]
+
     @postcondition(lambda x: x is not None)
     def add_vertex(self, key: str) -> Vertex:
         """

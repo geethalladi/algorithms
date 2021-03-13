@@ -25,6 +25,9 @@ class Graph:
         """
         Create a graph instance based on adjacency list
         """
+        assert len(name) >= 0
+
+        log.debug("Creating graph %s", name)
         self.name = name
         self.vertices = {}
         self.num_vertices = 0

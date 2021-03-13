@@ -10,6 +10,8 @@ from typing import Dict, Collection, Iterable
 from algo.graphs.vertex import Vertex
 from algo.utils.contracts import postcondition
 
+from graphviz import Digraph
+
 
 class Graph:
     """
@@ -56,7 +58,7 @@ class Graph:
         return result
 
     def add_edge_str(self, source: str, dest: str,
-                     weight: int = 1, directed: bool = False):
+                     weight: int = 1, directed: bool = None):
         """
         Add Edge between the given vertices
         """
@@ -128,9 +130,29 @@ class Graph:
         """
         return iter(self.vertices.values())
 
+    def __create_dot_representation(self):
+        dot: Digraph = Digraph(name=self.name,
+                               comment='Graph Visualization')
+        self.__add_nodes(dot)
+        self.__add_edges(dot)
+        return dot
+
+    def __add_nodes(self, dot: Digraph):
+        log.debug('Adding nodes to dot representation')
+        for v in self.get_vertices():
+            dot.node(v, v)
+
+    def __add_edges(self, dot: Digraph):
+        log.debug('Adding edges to dot representation')
+        return None
+
     def view(self):
         """
         Graphically represent the graph
         """
-        # TODO: Update the implementation
-        return None
+        dot: Digraph = self.__create_dot_representation
+        dot.view()
+
+
+# dot.edges(['AB', 'BL'])
+# dot.edge('A', 'L', label='AL')

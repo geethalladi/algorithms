@@ -16,6 +16,11 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Python Lint - Ignore flake configurations
+- Difference between pylint and flake
+- Adding separate configurations from them
+- How to add inline configurations for them
+
 ** DONE Test Suite with setup and teardown methods
 - Read and used them
 ** DONE Test Runner does not show log output

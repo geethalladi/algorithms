@@ -89,12 +89,12 @@ class TestGraph:
         assert self.G.is_undirected(self.A, self.B)
         assert self.G.is_undirected(self.B, self.A)
 
-    # def test_view(self):
-    #     self.G.add_edge(self.A, self.B, 5, True)
-    #     self.G.add_edge(self.B, self.C, 6, False)
-    #     self.G.add_edge(self.D, self.E, 5, False)
-    #     self.G.add_edge(self.E, self.A, 6, False)
-    #     self.G.view()
+    def test_view(self):
+        self.G.add_edge(self.A, self.B, 5)
+        self.G.add_edge(self.B, self.C, 6)
+        self.G.add_edge(self.D, self.E, 5)
+        self.G.add_edge(self.E, self.A, 6)
+        self.G.view()
 
 
 class TestDigraph:
@@ -171,3 +171,10 @@ class TestDigraph:
         # Both of them should be true
         assert self.DG.is_directed(self.A, self.B)
         assert self.DG.is_directed(self.B, self.A)
+
+    def test_view(self):
+        self.DG.add_edge(self.A, self.B, 5)
+        self.DG.add_edge(self.B, self.C, 6)
+        self.DG.add_edge(self.D, self.E, 5)
+        self.DG.add_edge(self.E, self.A, 6)
+        self.DG.view()

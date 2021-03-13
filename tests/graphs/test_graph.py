@@ -84,7 +84,7 @@ class TestGraph:
         assert self.G.is_directed(self.A, self.B)
         assert not self.G.is_directed(self.C, self.B)
 
-    def test_directed_failed(self):
+    def test_directed_2(self):
         self.G.add_edge(self.A, self.B, 5, True)
         self.G.add_edge(self.B, self.A, 6, True)
         # Both of them should be true

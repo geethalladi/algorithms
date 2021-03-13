@@ -106,10 +106,8 @@ class Graph:
         """
         Predicate to check if the edge between the vertices is directed
         """
-        assert source is not None, "Source is empty"
-        assert dest is not None, "Dest is empty"
-        return cls.is_connected(source, dest) and (
-            not cls.is_connected(dest, source))
+        # return true if it's not undirected
+        return not cls.is_undirected(source, dest)
 
     def __iter__(self) -> Iterable[Vertex]:
         """

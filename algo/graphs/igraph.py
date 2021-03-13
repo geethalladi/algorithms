@@ -4,6 +4,7 @@ Graph Protocol
 
 from typing import Collection, Protocol, runtime_checkable
 from algo.graphs.vertex import Vertex
+from algo.graphs.edge import Edge
 
 
 @runtime_checkable
@@ -50,5 +51,11 @@ class IGraph(Protocol):
     def to_dot(self):
         """
         Convert the graph to dot representation
+        """
+        ...
+
+    def build(self, edges: Collection[Edge]) -> 'IGraph':
+        """
+        Build a graph from the edges
         """
         ...

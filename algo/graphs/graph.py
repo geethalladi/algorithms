@@ -4,14 +4,16 @@ Graph ADT
 
 import abc
 import logging as log
+from typing import Dict, Collection, Iterable
 
 # TODO: This should be a sibling package
 from algo.graphs.vertex import Vertex
 from algo.graphs.graph_view import GraphViewMixin
 from algo.graphs.graph_builder import GraphBuilderMixin
-from algo.utils.contracts import postcondition
+from algo.graphs.edge import Edge
+from algo.graphs.igraph import IGraph
 
-from typing import Dict, Collection, Iterable
+from algo.utils.contracts import postcondition
 
 
 class AbstractGraph(abc.ABC):
@@ -149,11 +151,17 @@ class AbstractGraph(abc.ABC):
         Return the Graphviz#dot representation
         """
 
+    @abc.abstractmethod
+    def build(self, edges: Collection[Edge]) -> IGraph:
+        """
+        Construct a graph instance from the edges
+        """
+
 # Order of parents matter
 # The first one always wins
 
 
-class Graph(GraphViewMixin, AbstractGraph, GraphBuilderMixin):
+class Graph(GraphViewMixin, GraphBuilderMixin, AbstractGraph):
     """
     A Concerte Graph Implementation
     """

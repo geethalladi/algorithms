@@ -15,7 +15,7 @@ class GraphBuilderMixin:
     """
 
     @classmethod
-    def get_vertices(cls, edges: Collection[Edge]) -> Set[str]:
+    def parse_vertices(cls, edges: Collection[Edge]) -> Set[str]:
         """
         Return the unique set of vertices from the edge list
         """
@@ -32,7 +32,7 @@ class GraphBuilderMixin:
         assert len(lst) > 0, "Empty Edge list"
 
         edges: List[Edge] = Edge.make(lst)
-        vertices: Set[str] = GraphBuilderMixin.get_vertices(edges)
+        vertices: Set[str] = GraphBuilderMixin.parse_vertices(edges)
 
         # Add vertices
         for v in vertices:

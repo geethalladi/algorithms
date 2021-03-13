@@ -64,8 +64,7 @@ class AbstractGraph(abc.ABC):
         self.vertices[key] = result
         return result
 
-    def add_edge_str(self, source: str, dest: str,
-                     weight: int = 1):
+    def add_edge_str(self, source: str, dest: str, weight: int = 1):
         """
         Add Edge between the given vertices
         """
@@ -77,8 +76,7 @@ class AbstractGraph(abc.ABC):
         dst: Vertex = self.vertices[dest]
         return self.add_edge(src, dst, weight)
 
-    def add_edge(self, source: Vertex, dest: Vertex,
-                 weight: int = 1):
+    def add_edge(self, source: Vertex, dest: Vertex, weight: int = 1):
         """
         Add Edge between given vertices
         """

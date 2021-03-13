@@ -131,6 +131,12 @@ class AbstractGraph(abc.ABC):
         # return true if it's not undirected
         return not cls.is_undirected(source, dest)
 
+    def __contains__(self, key: str) -> bool:
+        """
+        Returns true if the vertex is part of the Graph
+        """
+        return key in self.vertices
+
     def __iter__(self) -> Iterable[Vertex]:
         """
         Iterator for this instance

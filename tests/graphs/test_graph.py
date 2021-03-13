@@ -37,6 +37,8 @@ class TestGraph:
         self.G.add_edge_str('a', 'b')
         assert self.B in self.A.get_connections()
         assert self.A in self.B.get_connections()
+        assert 'a' in self.G
+        assert 'b' in self.G
         assert self.A.get_weight(self.B) == 1
         assert self.B.get_weight(self.A) == 1
 

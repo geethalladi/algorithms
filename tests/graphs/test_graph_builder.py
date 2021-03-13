@@ -22,7 +22,7 @@ class TestGraphBuilderMixin:
             ('c', 'd')
         ])
         assert G is not None
-        G.view()
+        # G.view()
 
     def test_digraph(self):
         DG: IGraph = Graph(name='test_digraph_builder', directed=True)
@@ -34,4 +34,4 @@ class TestGraphBuilderMixin:
             ('c', 'd')
         ])
         assert DG is not None
-        DG.view()
+        # DG.view()

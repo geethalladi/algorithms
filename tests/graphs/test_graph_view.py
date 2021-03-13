@@ -6,6 +6,8 @@
 from algo.graphs.graph import Graph
 from algo.graphs.vertex import Vertex
 
+import pytest
+
 
 class TestDigraphView:
     """
@@ -30,6 +32,7 @@ class TestDigraphView:
     def test_empty(self):
         assert self.DG is not None
 
+    @pytest.mark.skip(reason="generates graph")
     def test_view(self):
         self.DG.add_edge(self.A, self.B, 5)
         self.DG.add_edge(self.B, self.C, 6)
@@ -60,6 +63,7 @@ class TestGraphView:
     def test_empty(self):
         assert self.G is not None
 
+    @pytest.mark.skip(reason="generates graph")
     def test_view(self):
         self.G.add_edge(self.A, self.B, 5)
         self.G.add_edge(self.B, self.C, 6)

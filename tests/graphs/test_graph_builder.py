@@ -31,7 +31,7 @@ class TestGraphBuilderMixin:
             ('a', 'c', 10),
             ('b', 'e', 20),
             ('b', 'c', 15),
-            ('c', 'd', 10)
+            ('c', 'd')
         ])
         assert DG is not None
         DG.view()

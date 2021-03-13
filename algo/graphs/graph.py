@@ -19,11 +19,13 @@ class Graph:
 
     vertices: Dict[str, Vertex]
     num_vertices: int
+    name: str
 
-    def __init__(self):
+    def __init__(self, name: str):
         """
         Create a graph instance based on adjacency list
         """
+        self.name = name
         self.vertices = {}
         self.num_vertices = 0
 

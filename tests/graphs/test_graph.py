@@ -19,7 +19,7 @@ class TestGraph:
     E: Vertex
 
     def setup_method(self):
-        self.G = Graph()
+        self.G = Graph('test_graph')
         self.A = self.G.add_vertex('a')
         self.B = self.G.add_vertex('b')
         self.C = self.G.add_vertex('c')

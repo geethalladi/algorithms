@@ -22,10 +22,10 @@ class TestGraphBuilderMixin:
             ('c', 'd', 10)
         ])
         assert G is not None
-        self.G.view()
+        G.view()
 
     def test_digraph(self):
-        DG: IGraph = Graph(name='test_graph_builder', directed=True)
+        DG: IGraph = Graph(name='test_digraph_builder', directed=True)
         DG.build([
             ('a', 'b', 5),
             ('a', 'c', 10),

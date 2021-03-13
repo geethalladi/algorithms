@@ -34,14 +34,14 @@ class IGraph(Protocol):
         ...
 
     def add_edge_str(self, source: str, dest: str,
-                     weight: int, directed: bool):
+                     weight: int):
         """
         Add this edge to the graph
         """
         ...
 
     def add_edge(self, source: Vertex, dest: Vertex,
-                 weight: int, directed: bool):
+                 weight: int):
         """
         Add this edge to the graph
         """

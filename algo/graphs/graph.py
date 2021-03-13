@@ -65,7 +65,7 @@ class AbstractGraph(abc.ABC):
         return result
 
     def add_edge_str(self, source: str, dest: str,
-                     weight: int = 1, directed: bool = None):
+                     weight: int = 1):
         """
         Add Edge between the given vertices
         """
@@ -73,23 +73,19 @@ class AbstractGraph(abc.ABC):
         assert source in self.vertices.keys(), "Source Vertex does not exist"
         assert dest in self.vertices.keys(), "Dest Vertex does not exist"
 
-        if directed is None:
-            directed = self.directed
-
         src: Vertex = self.vertices[source]
         dst: Vertex = self.vertices[dest]
-        return self.add_edge(src, dst, weight, directed)
+        return self.add_edge(src, dst, weight)
 
     def add_edge(self, source: Vertex, dest: Vertex,
-                 weight: int = 1, directed: bool = None):
+                 weight: int = 1):
         """
         Add Edge between given vertices
         """
         assert source in self.vertices.values(), "Source Vertex does not exist"
         assert dest in self.vertices.values(), "Dest Vertex does not exist"
 
-        if directed is None:
-            directed = self.directed
+        directed = self.directed
 
         log.debug("Adding edge between %s and %s with %s, %s",
                   source, dest, weight, directed)

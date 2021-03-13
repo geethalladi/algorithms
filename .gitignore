@@ -88,3 +88,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Ignore Graphviz generated files
+*.gv
+*.gv.pdf

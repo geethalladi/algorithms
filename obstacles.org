@@ -10,14 +10,15 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Creating a builder class for ease of constructing Graph
 - Edge instance with named tuple
 - Updating tests to use Graph builder
-** Visualizing Graphs with Graphviz
-- Building a graph visualizer
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
-** Abstract Base Class in Python
+** DONE Visualizing Graphs with Graphviz
+- Building a graph visualizer
+** DONE Abstract Base Class in Python
 ** DONE Mixin(s) in python
+- Type / Lint errors in using Mixin
 ** DONE Reimplementing is_directed
 - Found a bug in the existing implementation
 - Wrote unit tests to uncover

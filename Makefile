@@ -8,3 +8,6 @@ all:
 
 install:
 	pip3 install -r requirements.txt
+
+clean:
+	rm -vf *.gv *.gv.pdf

@@ -8,6 +8,7 @@ from typing import Collection
 import graphviz
 
 from algo.graphs.igraph import IGraph
+from algo.graphs.vertex import Vertex
 
 
 class GraphViewMixin:
@@ -50,10 +51,14 @@ class GraphViewMixin:
                 # Always add if the graph is directed
                 # If undirected add only once
                 # add only from source to dest
-                if self.directed or (source.get_id() <= dest.get_id()):
-                    log.debug("Adding edge between %s and %s",
-                              source.get_id(), dest.get_id())
-                    weight = source.get_weight(dest)
-                    dot.edge(source.get_id(), dest.get_id(), label=str(weight))
+                GraphViewMixin.__add_edge(source, dest, self.directed, dot)
 
         return dot.view()
+
+    @classmethod
+    def __add_edge(cls, source: Vertex, dest: Vertex, directed: bool, dot: graphviz.Graph):
+        if directed or (source.get_id() <= dest.get_id()):
+            log.debug("Adding edge between %s and %s",
+                      source.get_id(), dest.get_id())
+            weight = source.get_weight(dest)
+            dot.edge(source.get_id(), dest.get_id(), label=str(weight))

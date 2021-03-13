@@ -11,11 +11,19 @@ class IGraph(Protocol):
     """
     Graph Protocol
     """
+
+    name: str
     directed: bool
 
     def get_vertices(self) -> Collection[str]:
         """
         Return all the vertices of this graph
+        """
+        ...
+
+    def get_vertex(self, key: str) -> Vertex:
+        """
+        Return the vertex for this key
         """
         ...
 

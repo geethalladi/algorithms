@@ -5,6 +5,7 @@
 
 from algo.graphs.graph import Graph
 from algo.graphs.vertex import Vertex
+from algo.graphs.igraph import IGraph
 
 
 class TestGraph:
@@ -28,6 +29,9 @@ class TestGraph:
 
     def test_empty(self):
         assert self.G is not None
+
+    def test_igraph_instance(self):
+        assert isinstance(self.G, IGraph)
 
     def test_two_vertices_default(self):
         self.G.add_edge_str('a', 'b')

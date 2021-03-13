@@ -6,6 +6,8 @@ import logging as log
 
 # TODO: This should be a sibling package
 from algo.graphs.vertex import Vertex
+from algo.graphs.graph_view import GraphViewMixin
+from algo.graphs.graph_builder import GraphBuilderMixin
 from algo.utils.contracts import postcondition
 
 from typing import Dict, Collection, Iterable
@@ -127,3 +129,10 @@ class Graph:
         Iterator for this instance
         """
         return iter(self.vertices.values())
+
+
+class ConcreteGraph(Graph, GraphViewMixin, GraphBuilderMixin):
+    """
+    A Concerte Graph Implementation
+    """
+    pass

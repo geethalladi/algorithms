@@ -6,6 +6,7 @@
 - Implement 5 algorithms from python data structure
 *** March 2021
 |------------------+-----------------------|
+| <2021-03-13 Sat> | [x]                   |
 | <2021-03-12 Fri> | [x][x][x][x][x][x][x] |
 | <2021-03-11 Thu> | [x]                   |
 | <2021-03-10 Wed> | [x]                   |

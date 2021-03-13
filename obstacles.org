@@ -6,7 +6,12 @@
   #  in the way becomes the way" - Marcus Aurelius
 
 The following are the hurdles / obstacles faced while implementing algorithms in python
-
+** Creating a Graph builder
+- Creating a builder class for ease of constructing Graph
+- Edge instance with named tuple
+- Updating tests to use Graph builder
+** Visualizing Graphs with Graphviz
+- Building a graph visualizer
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path

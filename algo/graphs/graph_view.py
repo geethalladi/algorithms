@@ -5,8 +5,6 @@ GraphViewMixin
 import graphviz
 import logging as log
 
-from algo.graphs.vertex import Vertex
-
 
 class GraphViewMixin:
     """

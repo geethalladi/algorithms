@@ -2,10 +2,12 @@
 Graph ADT
 """
 
+import abc
 import logging as log
 
 # TODO: This should be a sibling package
 from algo.graphs.vertex import Vertex
+from algo.graphs.igraph import IGraph
 from algo.graphs.graph_view import GraphViewMixin
 from algo.graphs.graph_builder import GraphBuilderMixin
 from algo.utils.contracts import postcondition
@@ -13,7 +15,7 @@ from algo.utils.contracts import postcondition
 from typing import Dict, Collection, Iterable
 
 
-class AbstractGraph:
+class AbstractGraph(abc.ABC):
     """
     An abstract data type for representing Graphs.
     This implementation uses the adjacency list representation.
@@ -136,9 +138,17 @@ class AbstractGraph:
         """
         return iter(self.vertices.values())
 
+    @abc.abstractmethod
+    def view(self: IGraph):
+        """
+        Visualize this graph
+        """
 
-class Graph(AbstractGraph, GraphViewMixin, GraphBuilderMixin):
+# Order of parents matter
+# The first one always wins
+
+
+class Graph(GraphViewMixin, AbstractGraph, GraphBuilderMixin):
     """
     A Concerte Graph Implementation
     """
-    pass

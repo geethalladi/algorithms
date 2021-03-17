@@ -4,8 +4,9 @@
   #  "The mind adapts and converts to its own purposes the obstacle to
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
-
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Moving build as a static function inside Graph
+** Rewriting tests with Graph.build
 ** Emacs auto import
 ** Unit test coverage
 ** Modules and their imports

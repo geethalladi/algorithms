@@ -5,10 +5,11 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Fix GraphBuilderMixin Instance create lint error
 ** Rewriting tests with Graph.build
-** Emacs auto import
+** Fix GraphBuilderMixin Instance create lint error
+- Refer to https://github.com/python/typing/issues/58 for details
 ** Unit test coverage
+** Emacs auto import
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path

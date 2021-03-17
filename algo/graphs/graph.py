@@ -151,6 +151,15 @@ class AbstractGraph(abc.ABC):
         Return the Graphviz#dot representation
         """
 
+    @classmethod
+    def create(cls, name: str, directed: bool):
+        """
+        Create a simple graph
+        """
+        # Creating a temporary method for solving typing issues
+        # TODO: Later, see  if this can be fixed
+        return cls(name, directed)
+
     @abc.abstractclassmethod
     def build(cls, name: str, edges: Collection[Edge], directed: bool) -> IGraph:
         """

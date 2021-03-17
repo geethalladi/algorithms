@@ -55,6 +55,13 @@ class IGraph(Protocol):
         ...
 
     @classmethod
+    def create(cls, name: str, directed: bool) -> 'IGraph':
+        """
+        Create a single graph
+        """
+        ...
+
+    @classmethod
     def build(cls, name: str, edges: Collection[Edge], directed: bool) -> 'IGraph':
         """
         Build a graph from the edges

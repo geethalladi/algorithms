@@ -151,8 +151,8 @@ class AbstractGraph(abc.ABC):
         Return the Graphviz#dot representation
         """
 
-    @abc.abstractmethod
-    def build(self, edges: Collection[Edge]) -> IGraph:
+    @abc.abstractclassmethod
+    def build(cls, name: str, edges: Collection[Edge], directed: bool) -> IGraph:
         """
         Construct a graph instance from the edges
         """

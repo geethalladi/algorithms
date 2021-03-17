@@ -26,7 +26,8 @@ class GraphBuilderMixin:
             result.add(e.dest.capitalize())
         return result
 
-    def build(self: IGraph, lst: Collection[Edge]) -> IGraph:
+    @classmethod
+    def build(cls, name: str, lst: Collection[Edge], directed=False) -> IGraph:
         """
         Build a graph instance
         """
@@ -34,16 +35,17 @@ class GraphBuilderMixin:
 
         edges: List[Edge] = Edge.make(lst)
         vertices: Set[str] = GraphBuilderMixin.__vertices(edges)
+        result: IGraph = cls(name, directed)
 
         # Add vertices
         for v in vertices:
-            log.debug('Adding %s to Graph %s', v, self.name)
-            self.add_vertex(v)
+            log.debug('Adding %s to Graph %s', v, result.name)
+            result.add_vertex(v)
 
         # add edges
         for e in edges:
             src, dest, wg = e.source.capitalize(), e.dest.capitalize(), e.weight
             log.debug('Adding edge %s, %s with %s, %s',
-                      src, dest, wg, self.directed)
-            self.add_edge_str(src, dest, wg)
-        return self
+                      src, dest, wg, directed)
+            result.add_edge_str(src, dest, wg)
+        return result

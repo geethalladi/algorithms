@@ -54,7 +54,8 @@ class IGraph(Protocol):
         """
         ...
 
-    def build(self, edges: Collection[Edge]) -> 'IGraph':
+    @classmethod
+    def build(cls, name: str, edges: Collection[Edge], directed: bool) -> 'IGraph':
         """
         Build a graph from the edges
         """

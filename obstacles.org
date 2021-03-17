@@ -5,17 +5,17 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Rewriting tests with Graph.build
-** DONE Fix GraphBuilderMixin Instance create lint error
-- Refer to https://github.com/python/typing/issues/58 for details
-- Protocol super was never called
-- Ended up creating a class-method inside Protocol
 ** Unit test coverage
 ** Emacs auto import
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Rewriting tests with Graph.build
+** DONE Fix GraphBuilderMixin Instance create lint error
+- Refer to https://github.com/python/typing/issues/58 for details
+- Protocol super was never called
+- Ended up creating a class-method inside Protocol
 ** DONE Moving build as a static function inside Graph
 ** DONE Creating a Graph builder
 - Creating a builder class for ease of constructing Graph

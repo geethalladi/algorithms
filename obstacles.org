@@ -1,3 +1,4 @@
+#+TODO: TODO(t) PROGRESS(p) WAITING(w) | CANCELLED(c) DONE(d)
 * Obstacles
   # Obstacles are not negative. Understand that obstacles shows
   # (becomes) the way.
@@ -6,7 +7,6 @@
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
 ** Unit test coverage
-** Emacs auto import
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
@@ -125,3 +125,6 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 
 ** DONE Directory Structure
 - Decide how the source files and test files are going to be structured
+** CANCELLED Emacs auto import
+- Auto import causes more damage than it helps
+- Ignored for now

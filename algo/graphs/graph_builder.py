@@ -33,7 +33,7 @@ class GraphBuilderMixin:
         """
         assert len(lst) > 0, "Empty Edge list"
 
-        result: IGraph = cls.create(name, directed)
+        result: IGraph = cls._create(name, directed)
         edges: List[Edge] = Edge.make(lst)
         vertices: Set[str] = GraphBuilderMixin.__vertices(edges)
 

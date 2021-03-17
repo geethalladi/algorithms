@@ -152,7 +152,7 @@ class AbstractGraph(abc.ABC):
         """
 
     @classmethod
-    def create(cls, name: str, directed: bool):
+    def _create(cls, name: str, directed: bool):
         """
         Create a simple graph
         """

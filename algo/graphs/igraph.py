@@ -55,7 +55,7 @@ class IGraph(Protocol):
         ...
 
     @classmethod
-    def create(cls, name: str, directed: bool) -> 'IGraph':
+    def _create(cls, name: str, directed: bool) -> 'IGraph':
         """
         Create a single graph
         """

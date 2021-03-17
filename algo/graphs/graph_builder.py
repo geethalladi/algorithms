@@ -4,7 +4,7 @@ Follows the builder pattern.
 """
 import logging as log
 
-from typing import Collection, Set, List
+from typing import Collection, Set, List, Type
 from algo.graphs.edge import Edge
 from algo.graphs.igraph import IGraph
 
@@ -27,15 +27,15 @@ class GraphBuilderMixin:
         return result
 
     @classmethod
-    def build(cls, name: str, lst: Collection[Edge], directed=False) -> IGraph:
+    def build(cls: Type[IGraph], name: str, lst: Collection[Edge], directed=False) -> IGraph:
         """
         Build a graph instance
         """
         assert len(lst) > 0, "Empty Edge list"
 
+        result: IGraph = cls(name, directed)  # TODO: Fix this lint error
         edges: List[Edge] = Edge.make(lst)
         vertices: Set[str] = GraphBuilderMixin.__vertices(edges)
-        result: IGraph = cls(name, directed)
 
         # Add vertices
         for v in vertices:

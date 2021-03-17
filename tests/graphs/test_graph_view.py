@@ -3,8 +3,11 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
+from typing import Sequence
+
+from algo.graphs.igraph import IGraph
 from algo.graphs.graph import Graph
-from algo.graphs.vertex import Vertex
+from algo.graphs.edge import Edge
 
 import pytest
 
@@ -15,29 +18,22 @@ class TestDigraphView:
     """
 
     DG: Graph
-    A: Vertex
-    B: Vertex
-    C: Vertex
-    D: Vertex
-    E: Vertex
 
     def setup_method(self):
-        self.DG = Graph('test_digraph', directed=True)
-        self.A = self.DG.add_vertex('a')
-        self.B = self.DG.add_vertex('b')
-        self.C = self.DG.add_vertex('c')
-        self.D = self.DG.add_vertex('d')
-        self.E = self.DG.add_vertex('e')
+        edges: Sequence[Edge] = [
+            ('a', 'b', 5),
+            ('b', 'c', 6),
+            ('d', 'e', 5),
+            ('e', 'a', 6)
+        ]
+        self.DG: IGraph = Graph.build('test_digraph_view',
+                                      edges, directed=True)
 
     def test_empty(self):
         assert self.DG is not None
 
     @pytest.mark.skip(reason="generates graph")
     def test_view(self):
-        self.DG.add_edge(self.A, self.B, 5)
-        self.DG.add_edge(self.B, self.C, 6)
-        self.DG.add_edge(self.D, self.E, 5)
-        self.DG.add_edge(self.E, self.A, 6)
         self.DG.view()
 
 
@@ -46,27 +42,20 @@ class TestGraphView:
     A Test Suite for GraphView
     """
     G: Graph
-    A: Vertex
-    B: Vertex
-    C: Vertex
-    D: Vertex
-    E: Vertex
 
     def setup_method(self):
-        self.G = Graph('test_graph')
-        self.A = self.G.add_vertex('a')
-        self.B = self.G.add_vertex('b')
-        self.C = self.G.add_vertex('c')
-        self.D = self.G.add_vertex('d')
-        self.E = self.G.add_vertex('e')
+        edges: Sequence[Edge] = [
+            ('a', 'b', 5),
+            ('b', 'c', 6),
+            ('d', 'e', 5),
+            ('e', 'a', 6)
+        ]
+        self.G: IGraph = Graph.build('test_graph_view',
+                                     edges, directed=False)
 
     def test_empty(self):
         assert self.G is not None
 
     @pytest.mark.skip(reason="generates graph")
     def test_view(self):
-        self.G.add_edge(self.A, self.B, 5)
-        self.G.add_edge(self.B, self.C, 6)
-        self.G.add_edge(self.D, self.E, 5)
-        self.G.add_edge(self.E, self.A, 6)
         self.G.view()

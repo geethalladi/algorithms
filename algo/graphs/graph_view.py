@@ -5,7 +5,7 @@ GraphViewMixin
 import logging as log
 from typing import Collection, Union
 
-import graphviz
+import graphviz  # type: ignore
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex

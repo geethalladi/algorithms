@@ -6,11 +6,18 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Unit test coverage
+** Word ladder Problem
+** Breadth First Search
+** Depth First Search
+** Topological Sorting
+** Strongly Connected Components
+** Dijkstra's Shortest Path (Single Source)
 ** Modules and their imports
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Adjacency List Representation of Graph
+** DONE Unit test coverage
 ** DONE Rewriting tests with Graph.build
 ** DONE Fix GraphBuilderMixin Instance create lint error
 - Refer to https://github.com/python/typing/issues/58 for details

@@ -10,12 +10,13 @@ This repository is a space for me to play around with the algorithms. Most of th
 watching the Algorithm Design Manual Lectures by Steve Skiena. Hopefully, I can implement more
 around the following topics
 
+*** Graph Algorithms
+**** Breadth First Search
+**** Depth First Search
+**** Shortest Path
+**** Spanning Trees
+**** DONE Adjacency List representation
 *** Dynamic Programming
 *** Backtracking
-*** Graph Algorithms
-- Depth First Search
-- Breadth First Search
-- Spanning Trees
-- Shortest Path
-
+*** Others
 For the list of current TODO items grep for TODO in `adm.org` file.

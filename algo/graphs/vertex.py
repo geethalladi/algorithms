@@ -18,7 +18,7 @@ class Vertex:
     color: str
     connected_to: Dict['Vertex', int]
 
-    def __init__(self, key: str, color: str = 'white'):
+    def __init__(self, key: str, color: str = 'black'):
         """
         Initialize the Vertex instance
         """

@@ -27,13 +27,12 @@ class GraphViewMixin:
         return graphviz.Graph(name=name, comment='Graph Visualization')
 
     @classmethod
-    def __add_nodes(cls, vertices: Collection[str], dot: graphviz.Graph):
+    def __add_node(cls, vertex: Vertex, dot: graphviz.Graph):
         """
         Add nodes to the dot representation
         """
         log.debug('Adding nodes to dot representation')
-        for v in vertices:
-            dot.node(v, v)
+        dot.node(vertex.id, vertex.id, color=vertex.color)
 
     @classmethod
     def __is_edge_required(cls, source: Vertex, dest: Vertex, directed: bool):
@@ -63,7 +62,8 @@ class GraphViewMixin:
         if isinstance(self, IGraph) and isinstance(self, GraphViewMixin):
             dot = self.__construct_dot_instance(self.name, self.directed)
             # Adding nodes
-            self.__add_nodes(self.get_vertices(), dot)
+            for v in self.get_vertices():
+                self.__add_node(self.get_vertex(v), dot)
             # Adding all edges
             log.debug('Adding edges to dot representation')
             for v in self.get_vertices():

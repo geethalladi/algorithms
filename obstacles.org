@@ -6,17 +6,17 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Word ladder Problem
-** Breadth First Search
-** Depth First Search
-** Topological Sorting
-** Strongly Connected Components
-** Dijkstra's Shortest Path (Single Source)
-** Modules and their imports
+** Word ladder Problem                                                :algo:
+** Breadth First Search                                               :algo:
+** Depth First Search                                                 :algo:
+** Topological Sorting                                                :algo:
+** Strongly Connected Components                                      :algo:
+** Dijkstra's Shortest Path (Single Source)                           :algo:
+** Modules and their imports                                            :py:
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
-** DONE Adjacency List Representation of Graph
+** DONE Adjacency List Representation of Graph                        :algo:
 ** DONE Unit test coverage
 ** DONE Rewriting tests with Graph.build
 ** DONE Fix GraphBuilderMixin Instance create lint error
@@ -30,15 +30,15 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Updating tests to use Graph builder
 ** DONE Visualizing Graphs with Graphviz
 - Building a graph visualizer
-** DONE Abstract Base Class in Python
-** DONE Mixin(s) in python
+** DONE Abstract Base Class in Python                                   :py:
+** DONE Mixin(s) in python                                              :py:
 - Type / Lint errors in using Mixin
 ** DONE Reimplementing is_directed
 - Found a bug in the existing implementation
 - Wrote unit tests to uncover
 - Updated the implementation (in terms of `is_undirected`)
 - Test cases passed
-** DONE Python Lint - Ignore flake configurations
+** DONE Python Lint - Ignore flake configurations                     :lint:
 - Difference between pylint and flake
 - Adding separate configurations from them
 - How to add inline configurations for them
@@ -52,18 +52,18 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - The Emacs runner reflects the configuration
 ** DONE Precondition and Post-condition checks
 - Check pre-conditions in python functions
-** DONE Updating emacs packages
-** DONE Jedi.el + backend is not compatible
+** DONE Updating emacs packages                                      :emacs:
+** DONE Jedi.el + backend is not compatible                          :emacs:
 - jedi package and jedi.el is not in sync
-** DONE Auto completion does not work
+** DONE Auto completion does not work                                :emacs:
 - Updated jedi and its corresponding emacs package
 ** DONE Assertion
 - Adding assertions in python code
 - Turning off assertions in Production
-** DONE Attribute name should be snake case
+** DONE Attribute name should be snake case                           :lint:
 - Update `pylintrc`
 - Changed `attr-name-style` to be any
-** DONE Upgrading Python inside virtual environment
+** DONE Upgrading Python inside virtual environment                   :venv:
 - Deleted the existing venv
 - Reinstalled all the packages
 - Folder renaming does not work
@@ -72,12 +72,12 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Got a lint error
 - Required Upgrading python
 - Ended up re-creating everything (venv + packages + requirements.txt) from scratch
-** DONE Emacs flycheck does not work at times
+** DONE Emacs flycheck does not work at times                        :emacs:
 - Flycheck does not show lint errors
 - Activate pyvenv at start
 - Switch to test file and it works
 # - Activated pyvenv as part of emacs init (later, if required)
-** DONE Linting
+** DONE Linting                                                       :lint:
 - Updating lint configuration for variable names
 - Allowing simple variable names
 
@@ -88,10 +88,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** DONE Notes for future usage
 - Taking notes for future usage
 
-** DONE Static types
+** DONE Static types                                                    :py:
 - Add support for static type checking with python 3
 
-** DONE Emacs Integration
+** DONE Emacs Integration                                            :emacs:
 *** inferior mode
 - Integration with ipython
 - eval a file
@@ -104,15 +104,15 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - How to switch to the corresponding test file
 - Create a snippet for test files
 
-** DONE Disabling Lint errors
+** DONE Disabling Lint errors                                         :lint:
 - Flyspell check for linting errors
 - How to disable them when required
 
-** DONE Virtual Environment
+** DONE Virtual Environment                                           :venv:
 - Setting up a separate environment for this project
 - Integrating with emacs / elpy
 
-** DONE Package dependencies
+** DONE Package dependencies                                            :py:
 - How to capture package dependencies with requirements.txt
 - Adding newer packages on demand
 
@@ -124,7 +124,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Learning Makefile and using it as a runner
 - Setting default target
 
-** DONE Unit testing public functions in python
+** DONE Unit testing public functions in python                         :py:
 - Decide the unit test library
 - Ability to unit test the public functions
 - Do a Test Driven Development
@@ -132,6 +132,6 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 
 ** DONE Directory Structure
 - Decide how the source files and test files are going to be structured
-** CANCELLED Emacs auto import
+** CANCELLED Emacs auto import                                       :emacs:
 - Auto import causes more damage than it helps
 - Ignored for now

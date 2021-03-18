@@ -11,3 +11,7 @@ install:
 
 clean:
 	rm -vf *.gv *.gv.pdf
+	rm -rf htmlcov/
+
+report:
+	coverage run -m pytest && coverage html && open htmlcov/index.html

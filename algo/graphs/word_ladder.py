@@ -4,7 +4,7 @@ Module for word ladder problem
 
 import logging as log
 
-from typing import Dict, Sequence, List
+from typing import Dict, Sequence, List, Tuple
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.graph import Graph
@@ -75,11 +75,11 @@ def construct_word_ladder(words: Sequence[str]):
     Construct a graph from the given dictionary words
     """
     buckets: Dict[str, List[str]] = to_buckets(words)
-    edges: Sequence[Edge] = []
+    edges: List[Edge] = []
 
     for _, ws in buckets.items():
         # every word should have an edge
-        __add_to_edges(edges, ws)
+        add_to_edges(edges, ws)
 
     return Graph.build('word-ladder', edges, directed=False)
 

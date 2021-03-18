@@ -9,7 +9,7 @@ from algo.graphs.igraph import IGraph
 from algo.graphs.graph import Graph
 from algo.graphs.edge import Edge
 
-import pytest
+import pytest  # type: ignore
 
 
 class TestDigraphView:

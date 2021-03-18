@@ -54,6 +54,12 @@ class IGraph(Protocol):
         """
         ...
 
+    def view(self):
+        """
+        Visualize this graph
+        """
+        ...
+
     @classmethod
     def _create(cls, name: str, directed: bool) -> 'IGraph':
         """

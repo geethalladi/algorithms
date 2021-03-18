@@ -15,9 +15,10 @@ class Vertex:
     Vertex using adjacency list representation
     """
     id: str
+    color: str
     connected_to: Dict['Vertex', int]
 
-    def __init__(self, key: str):
+    def __init__(self, key: str, color: str = 'white'):
         """
         Initialize the Vertex instance
         """
@@ -26,6 +27,7 @@ class Vertex:
         assert (len(key) > 0), "Invalid Vertex Key"
         log.debug('Creating vertex with key %s', key)
         self.id = key
+        self.color = color
         self.connected_to = {}
 
     def get_id(self) -> str:

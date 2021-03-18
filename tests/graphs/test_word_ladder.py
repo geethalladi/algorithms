@@ -3,7 +3,7 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
-from algo.graphs.word_ladder import WordLadder
+from algo.graphs.word_ladder import find_shortest_path, bucket
 
 
 class TestWordLadder:
@@ -11,10 +11,13 @@ class TestWordLadder:
     A Test Suite for WordLadder
     """
 
-    def test_empty(self):
-        wl: WordLadder = WordLadder(4, 'words.txt')
-        assert wl is not None
+    def setup_method(self):
+        self.words = ['FOOL', 'POOL', 'POLL', 'POLE', 'PALE', 'SALE', 'SAGE']
 
     def test_one(self):
-        wl: WordLadder = WordLadder(4)
-        assert wl.solution('FOOL', 'SAGE') == ['FOOL', 'SAGE']
+        find_shortest_path(self.words, 'fool', 'sage')
+
+    def test_bucket(self):
+        assert bucket('FOOL') == ['_OOL', 'F_OL', 'FO_L', 'FOO_']
+        assert bucket('F') == ['_']
+        assert bucket('FO') == ['_O', 'F_']

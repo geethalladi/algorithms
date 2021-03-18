@@ -4,7 +4,7 @@ Module for word ladder problem
 
 import logging as log
 
-from typing import Dict, Sequence, List, Tuple
+from typing import Dict, Sequence, List
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.graph import Graph
@@ -63,11 +63,15 @@ def to_buckets(words: Sequence[str]) -> Dict[str, List[str]]:
     return result
 
 
-def __add_to_edges(edges: Sequence[Edge], ws: Sequence[str]):
+def add_to_edges(edges: List[Edge], words: Sequence[str]):
     """
     Add each pair for words into an edge
     """
-    return None
+    length = len(words)
+    for i in range(0, length):
+        for j in range((i + 1), length):
+            e: Edge = Edge(words[i], words[j])
+            edges.append(e)
 
 
 def construct_word_ladder(words: Sequence[str]):

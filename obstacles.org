@@ -6,7 +6,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Word ladder Problem                                                :algo:
 ** Breadth First Search                                               :algo:
 ** Depth First Search                                                 :algo:
 ** Topological Sorting                                                :algo:
@@ -16,6 +15,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Word ladder Problem                                           :algo:
+** DONE Vertex with visited property
+** DONE Graph vertex with color
+- Visualize the color of the vertex as well
 ** DONE Adjacency List Representation of Graph                        :algo:
 ** DONE Unit test coverage
 ** DONE Rewriting tests with Graph.build

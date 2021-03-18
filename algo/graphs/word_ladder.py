@@ -48,7 +48,7 @@ def bucket(word: str) -> List[str]:
     return result
 
 
-def __to_buckets(words: Sequence[str]) -> Dict[str, List[str]]:
+def to_buckets(words: Sequence[str]) -> Dict[str, List[str]]:
     """
     Identify the buckets for each word
     """
@@ -74,7 +74,7 @@ def construct_word_ladder(words: Sequence[str]):
     """
     Construct a graph from the given dictionary words
     """
-    buckets: Dict[str, List[str]] = __to_buckets(words)
+    buckets: Dict[str, List[str]] = to_buckets(words)
     edges: Sequence[Edge] = []
 
     for _, ws in buckets.items():

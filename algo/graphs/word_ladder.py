@@ -32,6 +32,7 @@ def find_shortest_path(words: Sequence[str], start: str, end: str) -> Sequence[s
                ), "Invalid length found in words"
 
     graph: IGraph = construct_word_ladder(words)
+    graph.view()
     return find_path_bfs(graph, start, end)
 
 

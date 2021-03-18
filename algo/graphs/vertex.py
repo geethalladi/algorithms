@@ -15,10 +15,10 @@ class Vertex:
     Vertex using adjacency list representation
     """
     id: str
-    color: str
+    visited: bool
     connected_to: Dict['Vertex', int]
 
-    def __init__(self, key: str, color: str = 'black'):
+    def __init__(self, key: str):
         """
         Initialize the Vertex instance
         """
@@ -27,7 +27,7 @@ class Vertex:
         assert (len(key) > 0), "Invalid Vertex Key"
         log.debug('Creating vertex with key %s', key)
         self.id = key
-        self.color = color
+        self.visited = False
         self.connected_to = {}
 
     def get_id(self) -> str:
@@ -63,6 +63,26 @@ class Vertex:
         if not directed:
             # if undirected, add the other edge as well
             other.add_edge(self, weight, True)
+
+    def set_visited(self, flag: bool):
+        """
+        Set the node as visited
+        """
+        self.visited = flag
+
+    def is_visited(self) -> bool:
+        """
+        Return True, if the node has been visited
+        """
+        return self.visited
+
+    def get_color(self):
+        """
+        Get the color of the graph
+        """
+        if self.is_visited():
+            return 'red'
+        return 'black'
 
     @postcondition(lambda x: len(x) > 0)
     def __str__(self) -> str:

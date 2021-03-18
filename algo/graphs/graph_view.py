@@ -32,7 +32,7 @@ class GraphViewMixin:
         Add nodes to the dot representation
         """
         log.debug('Adding nodes to dot representation')
-        dot.node(vertex.id, vertex.id, color=vertex.color)
+        dot.node(vertex.id, vertex.id, color=vertex.get_color())
 
     @classmethod
     def __is_edge_required(cls, source: Vertex, dest: Vertex, directed: bool):

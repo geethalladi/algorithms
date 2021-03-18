@@ -31,9 +31,9 @@ def find_shortest_path(words: Sequence[str], start: str, end: str) -> Sequence[s
     assert all([len(x) == length for x in words]
                ), "Invalid length found in words"
 
-    graph: IGraph = construct_word_ladder(words)
+    graph: IGraph = construct_word_ladder([w.capitalize() for w in words])
     graph.view()
-    return find_path_bfs(graph, start, end)
+    return find_path_bfs(graph, start.capitalize(), end.capitalize())
 
 
 def bucket(word: str) -> List[str]:

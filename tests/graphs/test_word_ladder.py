@@ -3,6 +3,8 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
+from typing import List
+
 from algo.graphs.word_ladder import find_shortest_path, bucket, to_buckets
 
 
@@ -11,8 +13,12 @@ class TestWordLadder:
     A Test Suite for WordLadder
     """
 
+    words: List[str]
+
     def setup_method(self):
-        self.words = ['FOOL', 'POOL', 'POLL', 'POLE', 'PALE', 'SALE', 'SAGE']
+        self.words = ['fail', 'fall', 'pall', 'pole', 'poll',
+                      'foil', 'foul', 'fool', 'cool', 'pool',
+                      'pope', 'pale', 'sale', 'sage', 'page']
 
     def test_one(self):
         find_shortest_path(self.words, 'fool', 'sage')

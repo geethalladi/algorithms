@@ -43,8 +43,8 @@ class GraphTraversalMixin:
                     succ.set_state(VState.DISCOVERED)
                     vertices.put(succ)
                     # set the parent
-                    succ.distance = (current.distance + 1)
-                    succ.parent = current.get_id()
+                    succ.set_parent(current, 1)
+
             # Mark it as PROCESSED
             current.set_state(VState.PROCESSED)
 

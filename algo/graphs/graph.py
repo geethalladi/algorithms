@@ -120,7 +120,7 @@ class AbstractGraph(abc.ABC):
                 cls.is_connected(dest, source) and
                 source.get_weight(dest) == dest.get_weight(source))
 
-    def view_and_stop(self):
+    def stop_and_view(self):
         """
         Visualize the graph snapshot and stop the execution
         """

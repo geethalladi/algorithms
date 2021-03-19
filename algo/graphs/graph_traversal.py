@@ -5,6 +5,8 @@ import logging as log
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
+from algo.graphs.vertex import State as VState
+from queue import Queue
 
 
 class GraphTraversalMixin:
@@ -24,6 +26,27 @@ class GraphTraversalMixin:
 
         log.info('Starting BFS from %s', start)
         self.clear()
+
+        # Parent is None and distance = 0 (by default)
+        vertices: Queue[Vertex] = Queue()
+        vertices.put(v)
+        v.set_state(VState.DISCOVERED)
+
+        while not vertices.empty():
+            current: Vertex = vertices.get()
+            log.info('Processing node %s', current.id)
+            for succ in current.get_connections():
+                # If this is a new node
+                if succ.state == VState.UNDISCOVERED:
+                    # Mark it as newly discovered
+                    succ.set_state(VState.DISCOVERED)
+                    vertices.put(succ)
+                    # set the parent
+                    succ.distance = (current.distance + 1)
+                    succ.parent = current.get_id()
+            # Mark it as PROCESSED
+            current.set_state(VState.PROCESSED)
+
         return self
 
     def dfs(self: IGraph, start: str):

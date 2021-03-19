@@ -66,6 +66,12 @@ class IGraph(Protocol):
         """
         ...
 
+    def stop_and_view(self):
+        """
+        Visualize this graph and stop execution
+        """
+        ...
+
     def dfs(self, start: str):
         """
         Do a depth first traversal of the graph

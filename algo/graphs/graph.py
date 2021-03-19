@@ -120,6 +120,14 @@ class AbstractGraph(abc.ABC):
                 cls.is_connected(dest, source) and
                 source.get_weight(dest) == dest.get_weight(source))
 
+    def view_and_stop(self):
+        """
+        Visualize the graph snapshot and stop the execution
+        """
+        self.view()
+        import pdb
+        pdb.set_trace()
+
     def clear(self):
         """
         Clear the vertex state

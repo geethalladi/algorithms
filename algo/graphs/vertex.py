@@ -58,7 +58,7 @@ class Vertex:
         """
         Clear the state of this vertex
         """
-        log.info('Clearing the state of vertex %s', self.id)
+        log.debug('Clearing the state of vertex %s', self.id)
         self.state = State.UNDISCOVERED
         self.distance = 0
         self.parent = None

@@ -66,6 +66,20 @@ class IGraph(Protocol):
         """
         ...
 
+    def dfs(self, start: str):
+        """
+        Do a depth first traversal of the graph
+        from the given start node
+        """
+        ...
+
+    def bfs(self, start: str):
+        """
+        Do a breadth first search based traversal
+        from the given start node
+        """
+        ...
+
     @classmethod
     def _create(cls, name: str, directed: bool) -> 'IGraph':
         """

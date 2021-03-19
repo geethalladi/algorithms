@@ -7,11 +7,12 @@ import logging as log
 from typing import Dict, Collection, Iterable
 
 # TODO: This should be a sibling package
-from algo.graphs.vertex import Vertex
-from algo.graphs.graph_view import GraphViewMixin
-from algo.graphs.graph_builder import GraphBuilderMixin
 from algo.graphs.edge import Edge
+from algo.graphs.graph_builder import GraphBuilderMixin
+from algo.graphs.graph_traversal import GraphTraversalMixin
+from algo.graphs.graph_view import GraphViewMixin
 from algo.graphs.igraph import IGraph
+from algo.graphs.vertex import Vertex
 
 from algo.utils.contracts import postcondition
 
@@ -177,7 +178,7 @@ class AbstractGraph(abc.ABC):
 # The first one always wins
 
 
-class Graph(GraphViewMixin, GraphBuilderMixin, AbstractGraph):
+class Graph(GraphViewMixin, GraphBuilderMixin, GraphTraversalMixin, AbstractGraph):
     """
     A Concerte Graph Implementation
     """

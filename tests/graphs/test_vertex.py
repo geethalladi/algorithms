@@ -66,3 +66,15 @@ class TestVertex:
         assert v1.get_color() == VState.DISCOVERED.get_color()
         v1.set_state(VState.PROCESSED)
         assert v1.get_color() == VState.PROCESSED.get_color()
+
+    def test_clear(self):
+        v1: Vertex = Vertex('a')
+        v1.set_state(VState.DISCOVERED)
+        assert v1.get_color() == VState.DISCOVERED.get_color()
+        assert v1.get_state() == VState.DISCOVERED
+        assert v1.distance == 0
+        assert v1.pred is None
+        v1.clear()
+        assert v1.get_state() == VState.UNDISCOVERED
+        assert v1.distance == 0
+        assert v1.pred is None

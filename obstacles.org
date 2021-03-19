@@ -6,17 +6,17 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Stop and View Graph
-** BFS with set_parent + distance
-** Breadth First Search                                               :algo:
 ** Depth First Search                                                 :algo:
+** Dijkstra's Shortest Path (Single Source)                           :algo:
 ** Topological Sorting                                                :algo:
 ** Strongly Connected Components                                      :algo:
-** Dijkstra's Shortest Path (Single Source)                           :algo:
 ** Modules and their imports                                            :py:
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Stop and View Graph
+** DONE BFS with set_parent + distance
+** DONE Breadth First Search                                          :algo:
 ** DONE Excluding `...` and others from coverage
 ** DONE Adding unit tests for sate + clear state
 ** DONE Clear state in Vertex + Graph

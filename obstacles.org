@@ -15,6 +15,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Vertex - Rewrite visited boolean to state
 ** DONE Word ladder Problem                                           :algo:
 ** DONE Vertex with visited property
 ** DONE Graph vertex with color

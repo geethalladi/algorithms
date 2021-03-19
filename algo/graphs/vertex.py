@@ -39,7 +39,7 @@ class Vertex:
     id: str
     state: State
     distance: int
-    parent: 'Vertex'
+    parent: str
     connected_to: Dict['Vertex', int]
 
     def __init__(self, key: str):

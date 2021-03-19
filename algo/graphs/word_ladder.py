@@ -6,9 +6,10 @@ import logging as log
 
 from typing import Dict, Sequence, List
 
-from algo.graphs.igraph import IGraph
-from algo.graphs.graph import Graph
 from algo.graphs.edge import Edge
+from algo.graphs.graph import Graph
+from algo.graphs.igraph import IGraph
+from algo.graphs.vertex import Vertex
 
 log.basicConfig(level=log.INFO)
 
@@ -32,7 +33,6 @@ def find_shortest_path(words: Sequence[str], start: str, end: str) -> Sequence[s
                ), "Invalid length found in words"
 
     graph: IGraph = construct_word_ladder([w.capitalize() for w in words])
-    graph.view()
     return find_path_bfs(graph, start.capitalize(), end.capitalize())
 
 
@@ -93,4 +93,23 @@ def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[str]:
     """
     Using Breadth First Search, find the path between start and end
     """
+    graph.clear()
+    # traverse the entire graph using BFS
+    graph.bfs(start)
+    graph.view()
+    # return __find_path(graph, start, end)
     return [start, end]
+
+
+def __find_path(graph: IGraph, start: str, end: str) -> List[str]:
+    """
+    After BFS, extract the path from start to end
+    """
+    if start == end:
+        return [start]
+
+    # Traverse till end's parent and then add 'end' node
+    e: Vertex = graph.get_vertex(end)
+    result: List[str] = __find_path(graph, start, e.parent)
+    result.append(end)
+    return result

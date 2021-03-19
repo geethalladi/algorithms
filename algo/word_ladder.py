@@ -1,5 +1,7 @@
 """
-Module for word ladder problem
+Given a list of four letter dictionary words,find the shortest distance
+between the given two four letter words. The only valid operation is replacing
+one letter with another. All the intermediate words should be valid words
 """
 
 import logging as log

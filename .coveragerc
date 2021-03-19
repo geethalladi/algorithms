@@ -1,5 +1,10 @@
 [run]
 omit =
-     # omit anything in venv
-     */venv/*
-     */tests/*
+  # omit anything in venv
+  */venv/*
+  */tests/*
+[report]
+exclude_lines=
+  def __repr__
+  \.\.\.
+  raise AssertionError

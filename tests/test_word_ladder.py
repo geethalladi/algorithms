@@ -5,7 +5,7 @@
 
 from typing import List
 
-from algo.graphs.word_ladder import find_shortest_path, bucket, to_buckets
+from algo.word_ladder import find_shortest_path, bucket, to_buckets
 
 
 class TestWordLadder:

@@ -33,6 +33,7 @@ class GraphTraversalMixin:
         v.set_state(VState.DISCOVERED)
 
         while not vertices.empty():
+            # self.stop_and_view()
             current: Vertex = vertices.get()
             log.info('Processing node %s', current.id)
             for succ in current.get_connections():

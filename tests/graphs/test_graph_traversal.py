@@ -30,5 +30,18 @@ class TestGraphTraversalMixin:
     def test_dfs_single(self):
         assert self.G is not None
 
-    def test_bfs_single(self):
-        assert self.G is not None
+    def test_bfs_parent(self):
+        self.G.bfs('A')
+        assert self.G.get_vertex('A').parent is None
+        assert self.G.get_vertex('B').parent == 'A'
+        assert self.G.get_vertex('E').parent == 'A'
+        assert self.G.get_vertex('C').parent == 'B'
+        assert self.G.get_vertex('D').parent == 'E'
+
+    def test_bfs_distance(self):
+        self.G.bfs('A')
+        assert self.G.get_vertex('A').distance == 0
+        assert self.G.get_vertex('B').distance == 1
+        assert self.G.get_vertex('E').distance == 1
+        assert self.G.get_vertex('C').distance == 2
+        assert self.G.get_vertex('D').distance == 2

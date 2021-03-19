@@ -15,6 +15,9 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Adding unit tests for sate + clear state
+** DONE Clear state in Vertex + Graph
+** DONE Adding Parent + Distance for each vertex
 ** DONE Vertex - Rewrite visited boolean to state
 ** DONE Word ladder Problem                                           :algo:
 ** DONE Vertex with visited property

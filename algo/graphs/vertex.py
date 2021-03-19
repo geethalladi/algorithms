@@ -39,7 +39,7 @@ class Vertex:
     id: str
     state: State
     distance: int
-    pred: 'Vertex'
+    parent: 'Vertex'
     connected_to: Dict['Vertex', int]
 
     def __init__(self, key: str):
@@ -61,7 +61,7 @@ class Vertex:
         log.info('Clearing the state of vertex %s', self.id)
         self.state = State.UNDISCOVERED
         self.distance = 0
-        self.pred = None
+        self.parent = None
 
     def get_id(self) -> str:
         """

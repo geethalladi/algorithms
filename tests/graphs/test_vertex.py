@@ -73,8 +73,8 @@ class TestVertex:
         assert v1.get_color() == VState.DISCOVERED.get_color()
         assert v1.get_state() == VState.DISCOVERED
         assert v1.distance == 0
-        assert v1.pred is None
+        assert v1.parent is None
         v1.clear()
         assert v1.get_state() == VState.UNDISCOVERED
         assert v1.distance == 0
-        assert v1.pred is None
+        assert v1.parent is None

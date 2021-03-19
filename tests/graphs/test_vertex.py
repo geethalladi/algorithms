@@ -6,6 +6,7 @@
 import logging as log
 
 from algo.graphs.vertex import Vertex
+from algo.graphs.vertex import State as VState  # Vertex State
 
 
 class TestVertex:
@@ -49,3 +50,19 @@ class TestVertex:
         v1.add_edge(v3)
         assert v2 in v1.get_connections()
         assert v3 in v1.get_connections()
+
+    def test_state(self):
+        v1: Vertex = Vertex('a')
+        assert v1.get_state() == VState.UNDISCOVERED
+        v1.set_state(VState.DISCOVERED)
+        assert v1.get_state() == VState.DISCOVERED
+        v1.set_state(VState.PROCESSED)
+        assert v1.get_state() == VState.PROCESSED
+
+    def test_color(self):
+        v1: Vertex = Vertex('a')
+        assert v1.get_color() == VState.UNDISCOVERED.get_color()
+        v1.set_state(VState.DISCOVERED)
+        assert v1.get_color() == VState.DISCOVERED.get_color()
+        v1.set_state(VState.PROCESSED)
+        assert v1.get_color() == VState.PROCESSED.get_color()

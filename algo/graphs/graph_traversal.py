@@ -23,6 +23,7 @@ class GraphTraversalMixin:
         assert v is not None, 'Invalid start key {}'.format(start)
 
         log.info('Starting BFS from %s', start)
+        self.clear()
         return self
 
     def dfs(self: IGraph, start: str):
@@ -35,4 +36,5 @@ class GraphTraversalMixin:
         assert v is not None, 'Invalid start key {}'.format(start)
 
         log.info('Starting DFS from %s', start)
+        self.clear()
         return self

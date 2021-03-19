@@ -93,7 +93,6 @@ def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[str]:
     """
     Using Breadth First Search, find the path between start and end
     """
-    graph.clear()
     # traverse the entire graph using BFS
     graph.bfs(start)
     graph.view()

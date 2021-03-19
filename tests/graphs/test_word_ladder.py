@@ -21,7 +21,9 @@ class TestWordLadder:
                       'pope', 'pale', 'sale', 'sage', 'page']
 
     def test_one(self):
-        find_shortest_path(self.words, 'fool', 'sage')
+        assert find_shortest_path(
+            self.words, 'fool', 'sage') == ['Fool', 'Pool', 'Poll',
+                                            'Pall', 'Pale', 'Sale', 'Sage']
 
     def test_bucket(self):
         assert bucket('FOOL') == ['_OOL', 'F_OL', 'FO_L', 'FOO_']

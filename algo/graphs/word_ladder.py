@@ -95,9 +95,8 @@ def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[str]:
     """
     # traverse the entire graph using BFS
     graph.bfs(start)
-    graph.view()
-    # return __find_path(graph, start, end)
-    return [start, end]
+    # graph.view()
+    return __find_path(graph, start, end)
 
 
 def __find_path(graph: IGraph, start: str, end: str) -> List[str]:

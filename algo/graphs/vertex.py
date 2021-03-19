@@ -109,6 +109,13 @@ class Vertex:
         """
         return self.state
 
+    def set_parent(self, parent: str, distance: int):
+        """
+        Set the parent and the distance
+        """
+        self.parent = parent
+        self.distance = distance
+
     def get_color(self):
         """
         Get the color of the graph

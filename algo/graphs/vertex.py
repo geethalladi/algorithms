@@ -38,6 +38,8 @@ class Vertex:
     """
     id: str
     state: State
+    distance: int
+    pred: 'Vertex'
     connected_to: Dict['Vertex', int]
 
     def __init__(self, key: str):
@@ -49,8 +51,17 @@ class Vertex:
         assert (len(key) > 0), "Invalid Vertex Key"
         log.debug('Creating vertex with key %s', key)
         self.id = key
-        self.state = State.UNDISCOVERED
         self.connected_to = {}
+        self.clear()
+
+    def clear(self):
+        """
+        Clear the state of this vertex
+        """
+        log.info('Clearing the state of vertex %s', self.id)
+        self.state = State.UNDISCOVERED
+        self.distance = 0
+        self.pred = None
 
     def get_id(self) -> str:
         """

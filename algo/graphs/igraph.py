@@ -54,6 +54,12 @@ class IGraph(Protocol):
         """
         ...
 
+    def clear(self):
+        """
+        Clear the state of the graph's vertices
+        """
+        ...
+
     def view(self):
         """
         Visualize this graph

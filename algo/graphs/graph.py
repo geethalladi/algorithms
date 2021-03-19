@@ -119,6 +119,13 @@ class AbstractGraph(abc.ABC):
                 cls.is_connected(dest, source) and
                 source.get_weight(dest) == dest.get_weight(source))
 
+    def clear(self):
+        """
+        Clear the vertex state
+        """
+        log.info('Clearing the state of graph %s', self.name)
+        [v.clear for v in self]
+
     @classmethod
     def is_directed(cls, source: Vertex, dest: Vertex) -> bool:
         """

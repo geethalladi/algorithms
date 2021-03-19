@@ -3,7 +3,7 @@ GraphViewMixin
 """
 
 import logging as log
-from typing import Collection, Union
+from typing import Union
 
 import graphviz  # type: ignore
 

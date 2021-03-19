@@ -9,15 +9,17 @@ import logging as log
 # For preconditions prefer using individual asserts
 # For postcondition use the decorator
 
-__all__ = ['precondition', 'postcondition', 'condition']
+__all__ = ['postcondition', 'condition']  # 'precondition',
 
+# Ignoring precondition for now
+# Using assert statements for now
 
-def precondition(predicate):
-    """
-    PreCondition decorator
-    """
-    log.debug("Creating a precondition for %s", predicate)
-    return condition(pre_predicate=predicate)
+# def precondition(predicate):
+#     """
+#     PreCondition decorator
+#     """
+#     log.debug("Creating a precondition for %s", predicate)
+#     return condition(pre_predicate=predicate)
 
 
 def postcondition(predicate):

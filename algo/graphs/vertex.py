@@ -109,12 +109,12 @@ class Vertex:
         """
         return self.state
 
-    def set_parent(self, parent: str, distance: int):
+    def set_parent(self, parent: 'Vertex', cost: int):
         """
         Set the parent and the distance
         """
-        self.parent = parent
-        self.distance = distance
+        self.parent = parent.id
+        self.distance = parent.distance + cost
 
     def get_color(self):
         """

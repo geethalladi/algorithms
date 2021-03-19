@@ -2,11 +2,11 @@
 Graph Traversal Implementation
 """
 import logging as log
+from queue import Queue
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
 from algo.graphs.vertex import State as VState
-from queue import Queue
 
 
 class GraphTraversalMixin:

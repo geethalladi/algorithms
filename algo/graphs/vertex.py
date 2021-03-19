@@ -49,7 +49,7 @@ class Vertex:
         assert (len(key) > 0), "Invalid Vertex Key"
         log.debug('Creating vertex with key %s', key)
         self.id = key
-        self.state = State.DISCOVERED
+        self.state = State.UNDISCOVERED
         self.connected_to = {}
 
     def get_id(self) -> str:

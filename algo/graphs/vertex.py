@@ -4,10 +4,32 @@ Vertex abstract data type
 
 import logging as log
 
+from enum import Enum, auto, unique
 from typing import Dict, Collection
 from algo.utils.contracts import postcondition
 
 log.basicConfig(level=log.INFO)
+
+
+@unique
+class State(Enum):
+    """
+    Vertex State Enum
+    """
+    UNDISCOVERED = auto()
+    DISCOVERED = auto()
+    PROCESSED = auto()
+
+    def get_color(self):
+        """
+        Return the color associate with the State
+        """
+        if self is State.PROCESSED:
+            return 'red'
+        if self is State.DISCOVERED:
+            return 'gray'
+        # default to 'black'
+        return 'black'
 
 
 class Vertex:
@@ -15,7 +37,7 @@ class Vertex:
     Vertex using adjacency list representation
     """
     id: str
-    visited: bool
+    state: State
     connected_to: Dict['Vertex', int]
 
     def __init__(self, key: str):
@@ -27,7 +49,7 @@ class Vertex:
         assert (len(key) > 0), "Invalid Vertex Key"
         log.debug('Creating vertex with key %s', key)
         self.id = key
-        self.visited = False
+        self.state = State.DISCOVERED
         self.connected_to = {}
 
     def get_id(self) -> str:
@@ -64,25 +86,23 @@ class Vertex:
             # if undirected, add the other edge as well
             other.add_edge(self, weight, True)
 
-    def set_visited(self, flag: bool):
+    def set_state(self, state: State):
         """
-        Set the node as visited
+        Set the vertex state
         """
-        self.visited = flag
+        self.state = state
 
-    def is_visited(self) -> bool:
+    def get_state(self) -> State:
         """
-        Return True, if the node has been visited
+        Get the state of the vertex
         """
-        return self.visited
+        return self.state
 
     def get_color(self):
         """
         Get the color of the graph
         """
-        if self.is_visited():
-            return 'red'
-        return 'black'
+        return self.get_state().get_color()
 
     @postcondition(lambda x: len(x) > 0)
     def __str__(self) -> str:

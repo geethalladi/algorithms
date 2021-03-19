@@ -6,6 +6,8 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Stop and View Graph
+** BFS with set_parent + distance
 ** Breadth First Search                                               :algo:
 ** Depth First Search                                                 :algo:
 ** Topological Sorting                                                :algo:

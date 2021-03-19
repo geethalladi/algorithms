@@ -27,9 +27,6 @@ class TestGraphTraversalMixin:
         self.G: IGraph = Graph.build('test_digraph_view',
                                      edges, directed=False)
 
-    def test_dfs_single(self):
-        assert self.G is not None
-
     def test_bfs_parent(self):
         self.G.bfs('A')
         assert self.G.get_vertex('A').parent is None
@@ -45,3 +42,6 @@ class TestGraphTraversalMixin:
         assert self.G.get_vertex('E').distance == 1
         assert self.G.get_vertex('C').distance == 2
         assert self.G.get_vertex('D').distance == 2
+
+    def test_dfs_single(self):
+        assert self.G is not None

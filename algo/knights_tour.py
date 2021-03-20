@@ -113,6 +113,7 @@ def __get_neighbours(pos: Position, size: int) -> List[Neighbour]:
     return result
 
 
+# pylint: disable=unused-argument
 def __start_position(size: int) -> Position:
     return Position(0, 0)
 
@@ -129,6 +130,9 @@ def __generate_a_tour(graph: IGraph, size: int) -> List[Vertex]:
 
 
 class KT:
+    """
+    Data type for Knight's Tour
+    """
     graph: IGraph
     size: int
     path: List[Vertex]
@@ -141,16 +145,19 @@ class KT:
         self.clear()
 
     def clear(self):
+        """
+        Clear all the internal state
+        """
         self.path = []
         self.completed = 0
         self.view_count = 0
 
-    def push_to_path(self, v: Vertex):
+    def push_to_path(self, vertex: Vertex):
         """
         Add it to the top of the Stack
         """
-        v.set_state(State.PROCESSED)
-        self.path.append(v)
+        vertex.set_state(State.PROCESSED)
+        self.path.append(vertex)
         self.completed = len(self.path)
 
     def pop_from_path(self):
@@ -184,18 +191,14 @@ class KT:
         """
         Generate a tour from the given start vertex
         """
-        # log.info('KT from %s of size %s', start.id, size)
-
         assert self.completed + left == self.size
+
+        log.debug('KT from %s of size %s', start.id, left)
 
         if self.is_tour_complete():
             return
 
         self.push_to_path(start)
-
-        # # Looks redundant
-        # if self.is_tour_complete():
-        #     return
 
         # # temporary code for viewing
         # if (self.completed % 5 == 0) and (self.completed > self.view_count):
@@ -209,6 +212,6 @@ class KT:
                 self.__tour(succ, left - 1)
             if self.is_tour_complete():
                 return
-
+        # backtrack - no possible paths found from this node
         self.pop_from_path()
         return

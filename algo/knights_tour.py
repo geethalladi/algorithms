@@ -210,18 +210,20 @@ class KT:
         Generate a tour of all the vertices
         """
         vertex = self.graph.get_vertex(start)
-        self.__tour(vertex, self.size)
+        left: int = self.__tour(vertex, self.size)
 
         if not self.is_tour_complete:
+            assert left != 0
             raise Exception('No Tour of size {} found'.format(self.size))
 
         assert (
             len(self.path) == self.size), 'Invalid tour size {}'.format(self.path)
+        assert left == 0, 'Tour is not complete. Has some left {}'.format(left)
         return self.path
 
     # A variant of DFS, where a node is allowed to
     # be visited only once
-    def __tour(self, start: Vertex, left: int):
+    def __tour(self, start: Vertex, left: int) -> int:
         """
         Generate a tour from the given start vertex
         """
@@ -230,9 +232,11 @@ class KT:
         log.debug('KT from %s of size %s', start.id, left)
 
         if self.is_tour_complete():
-            return
+            assert left == 0
+            return left
 
         self.push_to_path(start)
+        left = left - 1
 
         # # temporary code for viewing
         # if (self.completed % 5 == 0) and (self.completed > self.view_count):
@@ -243,17 +247,23 @@ class KT:
             # A new node available. Try to find a tour from that node
             if succ.get_state() == State.UNDISCOVERED:
                 log.debug('Trying %s %s', succ.id, succ.state)
-                self.__tour(succ, left - 1)
-            if self.is_tour_complete():
-                break
+                left = self.__tour(succ, left)
+
+            # Check if this really required.
+            # Reason: When the tour completes, and returns back
+            # every node will be marked as PROCESSED
+            # and the 'if' condition will become active
+            # if self.is_tour_complete():
+            #     break
 
         # This is required especially when the node
         # does not have any outgoing connections
         if self.is_tour_complete():
-            return
+            assert left == 0
+            return left
 
         # backtrack - no possible paths found from this node
         # reached a dead end here, backtracking is the only
         # available option
         self.pop_from_path()
-        return
+        return (left + 1)

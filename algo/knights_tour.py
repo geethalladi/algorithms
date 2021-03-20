@@ -50,19 +50,18 @@ class Position(NamedTuple):
         return (bottom_left.x <= self.x <= top_right.x) and (
             bottom_left.y <= self.y <= top_right.y)
 
+    def is_neighbour(self, pos: 'Position') -> bool:
+        """
+        Check if the two given positions are neighbouring
+        """
+        dx: int = abs(self.x - pos.y)
+        dy: int = abs(self.y - pos.y)
+
+        return (dx == 2 and dy == 1) or (dx == 1 and dy == 2)
+
 
 # declaring a type for neighbour
 Neighbour = Tuple[Position, Position]
-
-
-def is_neighbour(pos1: Position, pos2: Position) -> bool:
-    """
-    Check if the two given positions are neighbouring
-    """
-    dx: int = abs(pos1.x - pos1.y)
-    dy: int = abs(pos1.y - pos2.y)
-
-    return (dx == 2 and dy == 1) or (dx == 1 and dy == 2)
 
 
 def knights_tour(size: int) -> Sequence[Vertex]:

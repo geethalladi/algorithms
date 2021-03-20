@@ -58,7 +58,7 @@ def is_neighbour(pos1: Position, pos2: Position) -> bool:
     return (dx == 2 and dy == 1) or (dx == 1 and dy == 2)
 
 
-def knights_tour(size: int) -> Sequence[str]:
+def knights_tour(size: int) -> Sequence[Vertex]:
     """
     Generate the knights tour for the n x n
     chess board, starting at (0,0)
@@ -67,8 +67,7 @@ def knights_tour(size: int) -> Sequence[str]:
 
     log.info('Generating knights tour of size, %s', size)
     graph: IGraph = __create_knights_tour_graph(size)
-    vertices: Sequence[Vertex] = __generate_a_tour(graph, size)
-    return [v.id for v in vertices]
+    return __generate_a_tour(graph, size)
 
 
 def __create_knights_tour_graph(size: int) -> IGraph:

@@ -15,4 +15,4 @@ class TestKnightsTour:
         assert 1 == 1
 
     def test_knights_tour(self):
-        knights_tour(5)
+        print(knights_tour(5))

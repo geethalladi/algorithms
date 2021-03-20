@@ -19,7 +19,7 @@ class Position(NamedTuple):
     y: int
 
     def __repr__(self):
-        return str(self)
+        return '({}, {})'.format(self.x, self.y)
 
     def __str__(self):
         return '({}, {})'.format(self.x, self.y)
@@ -171,9 +171,11 @@ class KT:
         """
         Generate a tour of all the vertices
         """
-        status: bool = self.__tour(start, self.size)
-        if not status:
+        self.__tour(start, self.size)
+
+        if not self.is_tour_complete:
             raise Exception('No Tour of size {} found'.format(self.size))
+
         assert (
             len(self.path) == self.size), 'Invalid tour size {}'.format(self.path)
         return self.path
@@ -191,17 +193,20 @@ class KT:
 
         self.push_to_path(start)
 
-        # temporary code for viewing
-        if (self.completed % 5 == 0) and (self.completed > self.view_count):
-            self.graph.stop_and_view()
-            self.view_count = self.completed
+        # # Looks redundant
+        # if self.is_tour_complete():
+        #     return
+
+        # # temporary code for viewing
+        # if (self.completed % 5 == 0) and (self.completed > self.view_count):
+        #     self.graph.stop_and_view()
+        #     self.view_count = self.completed
 
         for succ in start.get_connections():
             # A new node available. Try to find a tour from that node
             if succ.get_state() == State.UNDISCOVERED:
                 log.debug('Trying %s %s', succ.id, succ.state)
                 self.__tour(succ, left - 1)
-
             if self.is_tour_complete():
                 return
 

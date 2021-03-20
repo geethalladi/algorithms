@@ -79,7 +79,7 @@ def __create_knights_tour_graph(size: int) -> IGraph:
 
     log.info('Created edge set of size %s', len(edges))
     log.debug('Edge list %s', edges)
-    return Graph.build('Knights_Tour_{}'.format(size),
+    return Graph.build('Knights_Tour',
                        edges,
                        directed=False)
 

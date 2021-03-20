@@ -6,16 +6,19 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Validating function for tour
+- Eval string as tuple
+- Check the validation conditions
 ** Depth First Search                                                 :algo:
 ** Dijkstra's Shortest Path (Single Source)                           :algo:
 ** Edge coloring in Visualization
 ** Topological Sorting                                                :algo:
 ** Strongly Connected Components                                      :algo:
+** Vertex as a container type
 ** Modules and their imports                                            :py:
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
-** Vertex as a container type
 ** DONE Knight's Tour
 ** DONE Graph accept duplicate edges
 - and politely ignore

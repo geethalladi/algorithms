@@ -233,7 +233,6 @@ class KT:
             return
 
         self.push_to_path(start)
-        self.graph.stop_and_view()
 
         # # temporary code for viewing
         # if (self.completed % 5 == 0) and (self.completed > self.view_count):

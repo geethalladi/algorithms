@@ -41,8 +41,11 @@ def knights_tour(size: int) -> Sequence[Position]:
     Generate the knights tour for the n x n
     chess board, starting at (0,0)
     """
+    assert (size > 0), "Invalid size given"
+
     log.info('Generating knights tour of size, %s', size)
     graph: IGraph = __create_knights_tour_graph(size)
+    graph.view()
     return __generate_a_tour(graph)
 
 
@@ -53,11 +56,14 @@ def __create_knights_tour_graph(size: int) -> IGraph:
     valid knight's move from a position (x, y) should be
     connected via an edge
     """
+    log.info('Creating KT Graph of size %s', size)
+
     edges: Set[Edge] = set()
     for i in range(0, size):
         for j in range(0, size):
             edges.update(__create_edges_for(Position(i, j), size))
 
+    log.info('Created edge set of size %s', len(edges))
     return Graph.build('Knights Tour {}'.format(size),
                        edges,
                        directed=False)
@@ -65,7 +71,21 @@ def __create_knights_tour_graph(size: int) -> IGraph:
 
 def __create_edges_for(pos: Position, size: int) -> Set[Edge]:
     log.info('Creating neighbours for %s inside board of size %s', pos, size)
-    return set()
+    possiblities = {
+        (-2, -1), (-2, 1), (2, -1), (2, 1),
+        (-1, -2), (-1, 2), (1, -2), (1, 2)
+    }
+    result: Set[Edge] = set()
+    for p in possiblities:
+        other = pos.displace(Position(*p))
+        if pos > other:
+            # Always the left end of the edge
+            # should be greater, to avoid
+            # duplicate edges
+            other, pos = pos, other
+
+        result.add(Edge(str(pos), str(other)))
+    return result
 
 
 def __generate_a_tour(graph: IGraph) -> Sequence[Position]:

@@ -3,7 +3,7 @@ Generate a knight's tour for the given n x n chess board
 """
 import logging as log
 
-from typing import NamedTuple, List, Sequence, Set, Tuple
+from typing import NamedTuple, List, Sequence, Tuple
 
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
@@ -69,10 +69,11 @@ def __create_knights_tour_graph(size: int) -> IGraph:
     """
     log.info('Creating KT Graph of size %s', size)
 
-    neighbours: Set[Neighbour] = set()
+    # TODO: Use reduce
+    neighbours: List[Neighbour] = []
     for i in range(0, size):
         for j in range(0, size):
-            neighbours.update(__create_edges_for(Position(i, j), size))
+            neighbours.extend(__get_neighbours(Position(i, j), size))
 
     edges: List[Edge] = [Edge(str(p1), str(p2)) for (p1, p2) in neighbours]
 
@@ -83,31 +84,24 @@ def __create_knights_tour_graph(size: int) -> IGraph:
                        directed=False)
 
 
-def __create_edges_for(pos: Position, size: int) -> Set[Neighbour]:
+def __get_neighbours(pos: Position, size: int) -> List[Neighbour]:
+    """
+    Get the valid neighbours for the given position
+    """
+
     log.info('Creating neighbours for %s inside board of size %s', pos, size)
-    possiblities = {
-        (-2, -1), (-2, 1),
-        (2, -1), (2, 1),
-        (-1, -2), (-1, 2),
-        (1, -2), (1, 2)
-    }
+    possiblities = {(-2, -1), (-2, 1), (2, -1), (2, 1),
+                    (-1, -2), (-1, 2), (1, -2), (1, 2)}
     grid: Position = Position(size - 1, size - 1)
 
-    result: Set[Neighbour] = set()
+    result: List[Neighbour] = []
     for p in possiblities:
         other = pos.displace(Position(*p))
-        if not other.within_grid(grid):
-            # Leave it if it falls outside
-            continue
-        # if pos > other:
-        #     # Always the left end of the edge
-        #     # should be greater, to avoid
-        #     # duplicate edges
-        #     other, pos = pos, other
+        # Leave it if it falls outside
+        if other.within_grid(grid):
+            result.append((pos, other))
 
-        result.add((pos, other))
-
-    log.info('Result is %s', result)
+    log.debug('Result is %s', result)
     return result
 
 

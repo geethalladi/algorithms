@@ -45,7 +45,7 @@ class TestKnightsTour:
     def test_knights_tour_8(self):
         result: Sequence[Vertex] = knights_tour(8)
         result_str: Sequence[str] = [v.id for v in result]
-        assert is_valid_tour(result_str, 8)
+        assert is_valid_tour(result_str, 5)
         assert result_str == self.expected_8
 
     def test_knights_tour_5(self):
@@ -68,4 +68,4 @@ class TestKnightsTour:
                  ('E', 'F'),
                  ('F', 'C')]
         g = Graph.build('test_KT', edges, directed=True)
-        g.view()
+        KT(g)

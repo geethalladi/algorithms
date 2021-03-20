@@ -157,7 +157,7 @@ def __generate_a_tour(graph: IGraph, size: int) -> List[Vertex]:
     log.info('Generating a tour from %s', graph.name)
     graph.clear()
     start: Vertex = graph.get_vertex(str(__start_position(size)))
-    return KT(graph, size * size).tour(start)
+    return KT(graph).tour(start)
 
 
 class KT:
@@ -170,9 +170,9 @@ class KT:
     completed: int
     view_count: int
 
-    def __init__(self, graph: IGraph, size: int):
+    def __init__(self, graph: IGraph):
         self.graph = graph
-        self.size = size
+        self.size = len(graph.get_vertices())
         self.clear()
 
     def clear(self):

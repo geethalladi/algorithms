@@ -20,6 +20,21 @@ class Position(NamedTuple):
     def __str__(self):
         return '({}, {})'.format(self.x, self.y)
 
+    def displace(self, other: 'Position'):
+        """
+        Returns a new displaced Position
+        """
+        return Position(self.x + other.x,
+                        self.y + other.y)
+
+    def within_grid(self, top_right: 'Position',
+                    bottom_left: 'Position' = Position(0, 0)):
+        """
+        Check if this position occurs within the specified grid
+        """
+        return (bottom_left.x <= self.x <= top_right.x) and (
+            bottom_left.y <= self.y <= top_right.y)
+
 
 def knights_tour(size: int) -> Sequence[Position]:
     """

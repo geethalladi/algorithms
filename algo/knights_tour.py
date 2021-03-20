@@ -233,8 +233,8 @@ class KT:
             return
 
         self.push_to_path(start)
-
         self.graph.stop_and_view()
+
         # # temporary code for viewing
         # if (self.completed % 5 == 0) and (self.completed > self.view_count):
         #     self.graph.stop_and_view()
@@ -246,7 +246,12 @@ class KT:
                 log.debug('Trying %s %s', succ.id, succ.state)
                 self.__tour(succ, left - 1)
             if self.is_tour_complete():
-                return
+                break
+
+        # This is required especially when the node
+        # does not have any outgoing connections
+        if self.is_tour_complete():
+            return
 
         # backtrack - no possible paths found from this node
         # reached a dead end here, backtracking is the only

@@ -178,7 +178,7 @@ class KT:
             len(self.path) == self.size), 'Invalid tour size {}'.format(self.path)
         return self.path
 
-    def __tour(self, start: Vertex, left: int) -> bool:
+    def __tour(self, start: Vertex, left: int):
         """
         Generate a tour from the given start vertex
         """
@@ -187,26 +187,23 @@ class KT:
         assert self.completed + left == self.size
 
         if self.is_tour_complete():
-            # Already complete
-            log.info('Size is done. Path is %s', self.path)
-            return self.path
+            return
 
         self.push_to_path(start)
 
+        # temporary code for viewing
         if (self.completed % 5 == 0) and (self.completed > self.view_count):
             self.graph.stop_and_view()
             self.view_count = self.completed
 
-        i, status, nbr = 0, False, list(start.get_connections())
-        while i < len(nbr) and (not status):
-            succ = nbr[i]
+        for succ in start.get_connections():
             # A new node available. Try to find a tour from that node
             if succ.get_state() == State.UNDISCOVERED:
-                log.info('Trying %s %s', succ.id, succ.state)
-                status = self.__tour(succ, left - 1)
-            i = i + 1
+                log.debug('Trying %s %s', succ.id, succ.state)
+                self.__tour(succ, left - 1)
 
-        if not status:
-            self.pop_from_path()
+            if self.is_tour_complete():
+                return
 
-        return status
+        self.pop_from_path()
+        return

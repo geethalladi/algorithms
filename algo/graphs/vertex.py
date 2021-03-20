@@ -146,11 +146,14 @@ class Vertex:
         """
         return self.get_state().get_color()
 
-    @postcondition(lambda x: len(x) > 0)
+    def __repr__(self):
+        """
+        Representation of Vertex instance
+        """
+        return self.id
+
     def __str__(self) -> str:
         """
         Return the string representation
         """
-        return "{} -> {}".format(
-            self.id,
-            str([x.id for x in self.get_connections()]))
+        return self.id

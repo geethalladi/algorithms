@@ -79,7 +79,7 @@ def __create_knights_tour_graph(size: int) -> IGraph:
 
     log.info('Created edge set of size %s', len(edges))
     log.debug('Edge list %s', edges)
-    return Graph.build('Knights Tour {}'.format(size),
+    return Graph.build('Knights_Tour_{}'.format(size),
                        edges,
                        directed=False)
 
@@ -89,7 +89,7 @@ def __get_neighbours(pos: Position, size: int) -> List[Neighbour]:
     Get the valid neighbours for the given position
     """
 
-    log.info('Creating neighbours for %s inside board of size %s', pos, size)
+    log.debug('Creating neighbours for %s inside board of size %s', pos, size)
     possiblities = {(-2, -1), (-2, 1), (2, -1), (2, 1),
                     (-1, -2), (-1, 2), (1, -2), (1, 2)}
     grid: Position = Position(size - 1, size - 1)

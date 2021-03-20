@@ -35,7 +35,7 @@ class GraphTraversalMixin:
         while not vertices.empty():
             # self.stop_and_view()
             current: Vertex = vertices.get()
-            log.info('Processing node %s', current.id)
+            log.debug('Processing node %s', current.id)
             for succ in current.get_connections():
                 # If this is a new node
                 if succ.state == VState.UNDISCOVERED:

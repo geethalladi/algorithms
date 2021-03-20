@@ -4,6 +4,8 @@ Graph ADT
 
 import abc
 import logging as log
+import pdb
+
 from typing import Dict, Collection, Iterable
 
 # TODO: This should be a sibling package
@@ -125,15 +127,15 @@ class AbstractGraph(abc.ABC):
         Visualize the graph snapshot and stop the execution
         """
         self.view()
-        import pdb
         pdb.set_trace()
 
     def clear(self):
         """
         Clear the vertex state
         """
-        log.info('Clearing the state of graph %s', self.name)
-        [v.clear for v in self]
+        log.debug('Clearing the state of graph %s', self.name)
+        for v in self:
+            v.clear()
 
     @classmethod
     def is_directed(cls, source: Vertex, dest: Vertex) -> bool:

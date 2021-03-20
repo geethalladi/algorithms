@@ -218,6 +218,8 @@ class KT:
             len(self.path) == self.size), 'Invalid tour size {}'.format(self.path)
         return self.path
 
+    # A variant of DFS, where a node is allowed to
+    # be visited only once
     def __tour(self, start: Vertex, left: int):
         """
         Generate a tour from the given start vertex
@@ -243,6 +245,9 @@ class KT:
                 self.__tour(succ, left - 1)
             if self.is_tour_complete():
                 return
+
         # backtrack - no possible paths found from this node
+        # reached a dead end here, backtracking is the only
+        # available option
         self.pop_from_path()
         return

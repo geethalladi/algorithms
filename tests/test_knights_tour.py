@@ -3,10 +3,12 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
-from typing import Sequence
+from typing import List, Sequence
 
-from algo.knights_tour import knights_tour, is_valid_tour
+from algo.knights_tour import knights_tour, is_valid_tour, KT
 from algo.graphs.vertex import Vertex
+from algo.graphs.graph import Graph
+from algo.graphs.edge import Edge
 
 import pytest
 
@@ -55,3 +57,15 @@ class TestKnightsTour:
     def test_valid_tour(self):
         assert is_valid_tour(self.expected_5, 5)
         assert is_valid_tour(self.expected_8, 8)
+
+    def test_kt(self):
+        edges = [('A', 'B'),
+                 ('A', 'D'),
+                 ('B', 'C'),
+                 ('B', 'D'),
+                 ('D', 'E'),
+                 ('E', 'B'),
+                 ('E', 'F'),
+                 ('F', 'C')]
+        g = Graph.build('test_KT', edges, directed=True)
+        g.view()

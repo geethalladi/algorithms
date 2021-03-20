@@ -11,7 +11,7 @@ from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex, State
 
 
-def valid_tour(tour: Sequence[Vertex], size: int) -> bool:
+def is_valid_tour(tour: Sequence[Vertex], size: int) -> bool:
     """
     Given the board size, check if the tour is valid
     """

@@ -5,7 +5,7 @@
 
 from typing import Sequence
 
-from algo.knights_tour import knights_tour
+from algo.knights_tour import knights_tour, is_valid_tour
 from algo.graphs.vertex import Vertex
 
 import pytest
@@ -47,3 +47,7 @@ class TestKnightsTour:
     def test_knights_tour_5(self):
         result: Sequence[Vertex] = knights_tour(5)
         assert [v.id for v in result] == self.expected_5
+
+    def test_valid_tour(self):
+        assert is_valid_tour(self.expected_5, 5)
+        assert is_valid_tour(self.expected_8, 8)

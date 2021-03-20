@@ -88,7 +88,9 @@ class Vertex:
         Add an edge between this and the given vertex
         """
         assert weight > 0, "Invalid edge weight"
-        assert other not in self.connected_to, "Edge already exists"
+
+        if not self.__should_add_edge(other, weight):
+            return
 
         log.debug('Adding edge between %s and %s with weight %d, %s',
                   self.get_id(), other.get_id(), weight, directed)
@@ -96,6 +98,28 @@ class Vertex:
         if not directed:
             # if undirected, add the other edge as well
             other.add_edge(self, weight, True)
+
+    def __should_add_edge(self, other: 'Vertex', weight: int = 1):
+        """
+        Should this edge be added
+        """
+        if other not in self.connected_to:
+            # edge does not exist
+            return True
+
+        # If it's already connected
+        existing = (self.get_id(), other.get_id(), self.connected_to[other])
+        given = (self.get_id(), other.get_id(), weight)
+
+        # ASSUMPTION: Graph is either directed or undirected
+        # and not a mixed bag and safely ignoring the other half
+        if self.connected_to[other] == weight:
+            log.info('Ignoring redundant edge %s', existing)
+            return False
+
+        # If contradicting raise AssertionError
+        msg = 'Conflicting Edge {} exists against {}'.format(existing, given)
+        raise AssertionError(msg)
 
     def set_state(self, state: State):
         """

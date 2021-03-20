@@ -173,9 +173,9 @@ class KT:
         """
         status: bool = self.__tour(start, self.size)
         if not status:
-            raise Exception('No Tour of size %s found'.format(self.size))
+            raise Exception('No Tour of size {} found'.format(self.size))
         assert (
-            len(self.path) == self.size), "Invalid tour size %s".format(self.path)
+            len(self.path) == self.size), 'Invalid tour size {}'.format(self.path)
         return self.path
 
     def __tour(self, start: Vertex, left: int) -> bool:

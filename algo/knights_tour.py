@@ -229,12 +229,9 @@ class KT:
         Generate a tour from the given start vertex
         """
         assert self.completed + left == self.size
+        assert start.get_state() != State.PROCESSED
 
         log.debug('KT from %s of size %s', start.id, left)
-
-        if self.is_tour_complete():
-            assert left == 0
-            return left
 
         self.push_to_path(start)
         left = left - 1
@@ -253,7 +250,8 @@ class KT:
             # Check if this really required.
             # Reason: When the tour completes, and returns back
             # every node will be marked as PROCESSED
-            # and the 'if' condition will become active
+            # and the 'if' condition outside of the for
+            # loop will become active, before pop-ing any node
             # if self.is_tour_complete():
             #     break
 

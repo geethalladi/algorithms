@@ -3,19 +3,13 @@ Generate a knight's tour for the given n x n chess board
 """
 import logging as log
 
+from ast import literal_eval
 from typing import NamedTuple, List, Sequence, Tuple
 
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex, State
-
-
-def is_valid_tour(tour: Sequence[Vertex], size: int) -> bool:
-    """
-    Given the board size, check if the tour is valid
-    """
-    return True
 
 
 class Position(NamedTuple):
@@ -39,7 +33,7 @@ class Position(NamedTuple):
                         self.y + other.y)
 
     def within_grid(self, top_right: 'Position',
-                    bottom_left: 'Position' = None):
+                    bottom_left: 'Position' = None) -> bool:
         """
         Check if this position occurs within the specified grid
         """
@@ -54,7 +48,7 @@ class Position(NamedTuple):
         """
         Check if the two given positions are neighbouring
         """
-        dx: int = abs(self.x - pos.y)
+        dx: int = abs(self.x - pos.x)
         dy: int = abs(self.y - pos.y)
 
         return (dx == 2 and dy == 1) or (dx == 1 and dy == 2)
@@ -62,6 +56,38 @@ class Position(NamedTuple):
 
 # declaring a type for neighbour
 Neighbour = Tuple[Position, Position]
+
+
+def is_valid_tour(tour: Sequence[str], size: int) -> bool:
+    """
+    Given the board size, check if the tour is valid
+    """
+    assert len(tour) > 0, 'Empty Tour'
+
+    # Check if all the nodes are covered in the tour
+    if len(tour) != (size * size):
+        log.info('Tour does not cover all the nodes')
+        return False
+
+    positions = [Position(*(literal_eval(v))) for v in tour]
+
+    # Check if every position is a valid one
+    top_right = Position(size - 1, size - 1)
+    for pos in positions:
+        if not pos.within_grid(top_right):
+            log.info('Tour has an invalid position %s', pos)
+            return False
+
+    prev: Position = positions[0]
+    for i in range(1, len(positions)):
+        succ = positions[i]
+        if not prev.is_neighbour(succ):
+            log.info('%s and %s are not neighbours', prev, succ)
+            return False
+        prev = succ
+
+    # When everything matches return True
+    return True
 
 
 def knights_tour(size: int) -> Sequence[Vertex]:

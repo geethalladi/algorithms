@@ -42,11 +42,15 @@ class TestKnightsTour:
     @pytest.mark.skip(reason="Very slow running")
     def test_knights_tour_8(self):
         result: Sequence[Vertex] = knights_tour(8)
-        assert result == self.expected_8
+        result_str: Sequence[str] = [v.id for v in result]
+        assert is_valid_tour(result_str, 8)
+        assert result_str == self.expected_8
 
     def test_knights_tour_5(self):
         result: Sequence[Vertex] = knights_tour(5)
-        assert [v.id for v in result] == self.expected_5
+        result_str: Sequence[str] = [v.id for v in result]
+        assert is_valid_tour(result_str, 5)
+        assert result_str == self.expected_5
 
     def test_valid_tour(self):
         assert is_valid_tour(self.expected_5, 5)

@@ -14,9 +14,9 @@ class Edge(NamedTuple):
     weight: int = 1
 
     def __repr__(self) -> str:
-        return 'Edge({}, {}, {})'.format(self.source,
-                                         self.dest,
-                                         self.weight)
+        return '[{}, {}, {}]'.format(self.source,
+                                     self.dest,
+                                     self.weight)
 
     @classmethod
     def __make_edge(cls, tup: Tuple[str, str, Optional[int]]):

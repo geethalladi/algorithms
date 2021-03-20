@@ -79,9 +79,7 @@ def __create_knights_tour_graph(size: int) -> IGraph:
 
     log.info('Created edge set of size %s', len(edges))
     log.debug('Edge list %s', edges)
-    return Graph.build('Knights_Tour',
-                       edges,
-                       directed=False)
+    return Graph.build('Knights_Tour_{}'.format(size), edges, directed=False)
 
 
 def __get_neighbours(pos: Position, size: int) -> List[Neighbour]:

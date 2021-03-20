@@ -53,7 +53,11 @@ class GraphViewMixin:
         log.debug("Adding edge between %s and %s", source.get_id(),
                   dest.get_id())
         weight = source.get_weight(dest)
-        dot.edge(source.get_id(), dest.get_id(), label=str(weight))
+        if weight == 1:
+            # Ignore unit weights while viewing
+            dot.edge(source.get_id(), dest.get_id())
+        else:
+            dot.edge(source.get_id(), dest.get_id(), label=str(weight))
 
     def to_dot(self: GraphView):
         """

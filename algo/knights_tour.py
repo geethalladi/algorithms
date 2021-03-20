@@ -156,7 +156,7 @@ def __generate_a_tour(graph: IGraph, size: int) -> List[Vertex]:
     """
     log.info('Generating a tour from %s', graph.name)
     graph.clear()
-    start: Vertex = graph.get_vertex(str(__start_position(size)))
+    start: str = str(__start_position(size))
     return KT(graph).tour(start)
 
 
@@ -205,11 +205,12 @@ class KT:
         """
         return self.completed == self.size
 
-    def tour(self, start: Vertex) -> List[Vertex]:
+    def tour(self, start: str) -> List[Vertex]:
         """
         Generate a tour of all the vertices
         """
-        self.__tour(start, self.size)
+        vertex = self.graph.get_vertex(start)
+        self.__tour(vertex, self.size)
 
         if not self.is_tour_complete:
             raise Exception('No Tour of size {} found'.format(self.size))
@@ -233,6 +234,7 @@ class KT:
 
         self.push_to_path(start)
 
+        self.graph.stop_and_view()
         # # temporary code for viewing
         # if (self.completed % 5 == 0) and (self.completed > self.view_count):
         #     self.graph.stop_and_view()

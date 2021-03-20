@@ -16,10 +16,17 @@ class TestKnightsTour:
     A Test Suite for KnightsTour
     """
 
-    @pytest.mark.skip(reason="Very slow running")
-    def test_knights_tour_8(self):
-        result: Sequence[Vertex] = knights_tour(8)
-        expected = [
+    expected_5: Sequence[str]
+    expected_8: Sequence[str]
+
+    def setup_method(self):
+        self.expected_5 = [
+            '(0, 0)', '(1, 2)', '(0, 4)', '(2, 3)', '(0, 2)',
+            '(1, 4)', '(3, 3)', '(4, 1)', '(2, 0)', '(0, 1)',
+            '(1, 3)', '(3, 4)', '(2, 2)', '(1, 0)', '(3, 1)',
+            '(4, 3)', '(2, 4)', '(0, 3)', '(1, 1)', '(3, 0)',
+            '(4, 2)', '(2, 1)', '(4, 0)', '(3, 2)', '(4, 4)']
+        self.expected_8 = [
             '(0, 0)', '(1, 2)', '(0, 4)', '(2, 3)', '(0, 2)', '(2, 1)',
             '(1, 3)', '(0, 1)', '(2, 0)', '(3, 2)', '(1, 1)', '(0, 3)',
             '(2, 2)', '(1, 0)', '(3, 1)', '(5, 0)', '(4, 2)', '(3, 0)',
@@ -31,13 +38,12 @@ class TestKnightsTour:
             '(6, 0)', '(4, 1)', '(3, 3)', '(5, 4)', '(7, 3)', '(6, 5)',
             '(7, 7)', '(5, 6)', '(7, 5)', '(6, 7)', '(5, 5)', '(4, 7)',
             '(6, 6)', '(7, 4)', '(6, 2)', '(7, 0)']
-        assert result == expected
+
+    @pytest.mark.skip(reason="Very slow running")
+    def test_knights_tour_8(self):
+        result: Sequence[Vertex] = knights_tour(8)
+        assert result == self.expected_8
 
     def test_knights_tour_5(self):
         result: Sequence[Vertex] = knights_tour(5)
-        expected = ['(0, 0)', '(1, 2)', '(0, 4)', '(2, 3)', '(0, 2)',
-                    '(1, 4)', '(3, 3)', '(4, 1)', '(2, 0)', '(0, 1)',
-                    '(1, 3)', '(3, 4)', '(2, 2)', '(1, 0)', '(3, 1)',
-                    '(4, 3)', '(2, 4)', '(0, 3)', '(1, 1)', '(3, 0)',
-                    '(4, 2)', '(2, 1)', '(4, 0)', '(3, 2)', '(4, 4)']
-        assert [v.id for v in result] == expected
+        assert [v.id for v in result] == self.expected_5

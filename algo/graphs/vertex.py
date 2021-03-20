@@ -114,7 +114,7 @@ class Vertex:
         # ASSUMPTION: Graph is either directed or undirected
         # and not a mixed bag and safely ignoring the other half
         if self.connected_to[other] == weight:
-            log.info('Ignoring redundant edge %s', existing)
+            log.debug('Ignoring redundant edge %s', existing)
             return False
 
         # If contradicting raise AssertionError

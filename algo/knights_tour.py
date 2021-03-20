@@ -77,8 +77,8 @@ def __create_knights_tour_graph(size: int) -> IGraph:
 
     edges: List[Edge] = [Edge(str(p1), str(p2)) for (p1, p2) in neighbours]
 
-    log.info('Created edge set of size %s', len(neighbours))
-    log.info('Edge list %s', edges)
+    log.info('Created edge set of size %s', len(edges))
+    log.debug('Edge list %s', edges)
     return Graph.build('Knights Tour {}'.format(size),
                        edges,
                        directed=False)

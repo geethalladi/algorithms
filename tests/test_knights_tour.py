@@ -3,12 +3,11 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
-from typing import List, Sequence
+from typing import Sequence
 
 from algo.knights_tour import knights_tour, is_valid_tour, KT
 from algo.graphs.vertex import Vertex
 from algo.graphs.graph import Graph
-from algo.graphs.edge import Edge
 
 import pytest
 

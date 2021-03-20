@@ -8,6 +8,7 @@ from typing import NamedTuple, List, Sequence, Tuple
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
+from algo.graphs.vertex import Vertex, State
 
 
 class Position(NamedTuple):
@@ -47,7 +48,17 @@ class Position(NamedTuple):
 Neighbour = Tuple[Position, Position]
 
 
-def knights_tour(size: int) -> Sequence[Position]:
+def is_neighbour(pos1: Position, pos2: Position) -> bool:
+    """
+    Check if the two given positions are neighbouring
+    """
+    dx: int = abs(pos1.x - pos1.y)
+    dy: int = abs(pos1.y - pos2.y)
+
+    return (dx == 2 and dy == 1) or (dx == 1 and dy == 2)
+
+
+def knights_tour(size: int) -> Sequence[str]:
     """
     Generate the knights tour for the n x n
     chess board, starting at (0,0)
@@ -56,8 +67,8 @@ def knights_tour(size: int) -> Sequence[Position]:
 
     log.info('Generating knights tour of size, %s', size)
     graph: IGraph = __create_knights_tour_graph(size)
-    graph.view()
-    return __generate_a_tour(graph)
+    vertices: Sequence[Vertex] = __generate_a_tour(graph, size)
+    return [v.id for v in vertices]
 
 
 def __create_knights_tour_graph(size: int) -> IGraph:
@@ -102,10 +113,100 @@ def __get_neighbours(pos: Position, size: int) -> List[Neighbour]:
     return result
 
 
-def __generate_a_tour(graph: IGraph) -> Sequence[Position]:
+def __start_position(size: int) -> Position:
+    return Position(0, 0)
+
+
+def __generate_a_tour(graph: IGraph, size: int) -> List[Vertex]:
     """
     Given a graph with knight's positions as neighbour,
     generate a possible tour starting at (0,0)
     """
     log.info('Generating a tour from %s', graph.name)
-    return []
+    graph.clear()
+    start: Vertex = graph.get_vertex(str(__start_position(size)))
+    return KT(graph, size * size).tour(start)
+
+
+class KT:
+    graph: IGraph
+    size: int
+    path: List[Vertex]
+    completed: int
+    view_count: int
+
+    def __init__(self, graph: IGraph, size: int):
+        self.graph = graph
+        self.size = size
+        self.clear()
+
+    def clear(self):
+        self.path = []
+        self.completed = 0
+        self.view_count = 0
+
+    def push_to_path(self, v: Vertex):
+        """
+        Add it to the top of the Stack
+        """
+        v.set_state(State.PROCESSED)
+        self.path.append(v)
+        self.completed = len(self.path)
+
+    def pop_from_path(self):
+        """
+        Pop the vertex at the top of the Stack
+        """
+        v: Vertex = self.path.pop()
+        self.completed = len(self.path)
+        v.set_state(State.UNDISCOVERED)
+
+    def is_tour_complete(self):
+        """
+        Predicate to check if the tour is already complete
+        """
+        return self.completed == self.size
+
+    def tour(self, start: Vertex) -> List[Vertex]:
+        """
+        Generate a tour of all the vertices
+        """
+        status: bool = self.__tour(start, self.size)
+        if not status:
+            raise Exception('No Tour of size %s found'.format(self.size))
+        assert (
+            len(self.path) == self.size), "Invalid tour size %s".format(self.path)
+        return self.path
+
+    def __tour(self, start: Vertex, left: int) -> bool:
+        """
+        Generate a tour from the given start vertex
+        """
+        # log.info('KT from %s of size %s', start.id, size)
+
+        assert self.completed + left == self.size
+
+        if self.is_tour_complete():
+            # Already complete
+            log.info('Size is done. Path is %s', self.path)
+            return self.path
+
+        self.push_to_path(start)
+
+        if (self.completed % 5 == 0) and (self.completed > self.view_count):
+            self.graph.stop_and_view()
+            self.view_count = self.completed
+
+        i, status, nbr = 0, False, list(start.get_connections())
+        while i < len(nbr) and (not status):
+            succ = nbr[i]
+            # A new node available. Try to find a tour from that node
+            if succ.get_state() == State.UNDISCOVERED:
+                log.info('Trying %s %s', succ.id, succ.state)
+                status = self.__tour(succ, left - 1)
+            i = i + 1
+
+        if not status:
+            self.pop_from_path()
+
+        return status

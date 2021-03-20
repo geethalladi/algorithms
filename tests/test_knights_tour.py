@@ -70,3 +70,10 @@ class TestKnightsTour:
                  ('F', 'C')]
         g = Graph.build('test_KT', edges, directed=True)
         KT(g).tour('A')
+
+    def test_kt_no_tour(self):
+        edges = [('A', 'B'),
+                 ('A', 'D')]
+        g = Graph.build('test_KT', edges, directed=True)
+        # No valid tour found
+        assert KT(g).tour('A') == []

@@ -212,9 +212,10 @@ class KT:
         vertex = self.graph.get_vertex(start)
         left: int = self.__tour(vertex, self.size)
 
-        if not self.is_tour_complete:
+        if not self.is_tour_complete():
             assert left != 0
-            raise Exception('No Tour of size {} found'.format(self.size))
+            log.error('No Tour of size %s found', self.size)
+            return []
 
         assert (
             len(self.path) == self.size), 'Invalid tour size {}'.format(self.path)

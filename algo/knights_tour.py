@@ -69,7 +69,6 @@ def __create_knights_tour_graph(size: int) -> IGraph:
     """
     log.info('Creating KT Graph of size %s', size)
 
-    # TODO: Use reduce
     neighbours: List[Neighbour] = []
     for i in range(0, size):
         for j in range(0, size):

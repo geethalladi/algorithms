@@ -9,7 +9,7 @@ from algo.knights_tour import knights_tour, is_valid_tour, KT
 from algo.graphs.vertex import Vertex
 from algo.graphs.graph import Graph
 
-import pytest
+import pytest  # type: ignore
 
 
 class TestKnightsTour:
@@ -68,7 +68,9 @@ class TestKnightsTour:
                  ('E', 'F'),
                  ('F', 'C')]
         g = Graph.build('test_KT', edges, directed=True)
-        KT(g).tour('A')
+        result: Sequence[Vertex] = KT(g).tour('A')
+        result_str: Sequence[str] = [v.id for v in result]
+        assert result_str == ['A', 'B', 'D', 'E', 'F', 'C']
 
     def test_kt_no_tour(self):
         edges = [('A', 'B'),

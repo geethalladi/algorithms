@@ -11,10 +11,10 @@ watching the Algorithm Design Manual Lectures by Steve Skiena. Hopefully, I can 
 around the following topics
 
 *** Graph Algorithms
-**** Breadth First Search
-**** Depth First Search
 **** Shortest Path
 **** Spanning Trees
+**** DONE Breadth First Search
+**** DONE Depth First Search
 **** DONE Adjacency List representation
 *** Dynamic Programming
 *** Backtracking

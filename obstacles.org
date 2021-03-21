@@ -6,7 +6,10 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Edge coloring in Visualization
+** For undirected graph, edge should be a single instance
+- Complicates while setting the state of the edge
+- As this needs to be done in both directions
+- Better have a single container instance in both directions
 ** Vertex's parent should be vertex
 - Currently it's a string
 ** Topological Sorting                                                :algo:
@@ -18,6 +21,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Edge coloring in Visualization
 ** DONE EdgeContainer state cannot be updated
 - NamedTuples are immutable
 - Changing it to dataclass to unblock

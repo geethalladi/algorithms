@@ -15,6 +15,19 @@ from algo.graphs.vertex import Vertex
 
 log.basicConfig(level=log.INFO)
 
+"""
+Construct an unweighted graph with the given dictionary words. The words
+which differ by only one character are connected by edge (of weight 1). The
+edge signifies the relation.
+
+In an unweighted graph, Breadth First Search (BFS) from vertex 'A', gives the
+shortest distance between 'A' and any given vertex. Do the BFS.
+
+Once complete, every vertex connected from 'A' would have a valid parent. From
+the destination 'D' walk backwards, using its parent, to reach node 'A'. Don't
+forget to reverse, before sending the results
+"""
+
 
 def find_shortest_path(words: Sequence[str], start: str, end: str) -> Sequence[str]:
     """

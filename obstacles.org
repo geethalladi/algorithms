@@ -18,6 +18,12 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE EdgeContainer state cannot be updated
+- NamedTuples are immutable
+- Changing it to dataclass to unblock
+** DONE num_components member issue in GraphTraversalMixin
+- Added a member in the inherited class
+- Need to fix it later
 ** DONE Refactoring State for Edge
 - State for use with both Vertex and Edge
 ** DONE Bug in viewing discover / finish timings

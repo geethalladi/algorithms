@@ -18,6 +18,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Refactoring State for Edge
+- State for use with both Vertex and Edge
 ** DONE Bug in viewing discover / finish timings
 ** DONE IGraph with num_components
 ** DONE Confusion between single source DFS and Forest DFS

@@ -83,38 +83,38 @@ class GraphTraversalMixin:
         assert isinstance(self, GraphTraversalMixin), 'Untraversible Graph'
 
         self.clear()
+        time: int = 0
 
-        counter: int = 0
         for v in self:
             if v.get_state() == VState.UNDISCOVERED:
-                counter = self.__dfs_visit(v, counter)
+                time = self.__dfs_visit(v, time)
 
-        return counter
+        return time
 
-    def __dfs_visit(self, vertex: Vertex, counter: int = 0) -> int:
+    def __dfs_visit(self, vertex: Vertex, time: int = 0) -> int:
         """
         Visit the given node during DFS Traversal
         """
         assert vertex.get_state() == VState.UNDISCOVERED
 
-        counter = counter + 1
-        log.info('Vertex %s is %s at %s', vertex, VState.DISCOVERED, counter)
+        log.info('Vertex %s is %s at %s', vertex, VState.DISCOVERED, time)
 
         # Set it as discovered
         vertex.set_state(VState.DISCOVERED)
-        vertex.discovery = counter
+        vertex.discovery = time
+        time += 1
 
         for nbr in vertex.get_connections():
             # Found a new vertex
             if nbr.get_state() == VState.UNDISCOVERED:
                 nbr.parent = vertex.id
-                counter = self.__dfs_visit(nbr, counter)
+                time = self.__dfs_visit(nbr, time)
 
-        counter = counter + 1
-        log.info('Vertex %s is %s at %s', vertex, VState.PROCESSED, counter)
+        log.info('Vertex %s is %s at %s', vertex, VState.PROCESSED, time)
 
         # Fully Processed
         vertex.set_state(VState.PROCESSED)
-        vertex.finish = counter
+        vertex.finish = time
+        time += 1
 
-        return counter
+        return time

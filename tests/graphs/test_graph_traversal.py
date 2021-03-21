@@ -52,3 +52,24 @@ class TestGraphTraversalMixin:
         assert graph.get_vertex('E').parent == 'A'
         assert graph.get_vertex('C').parent == 'B'
         assert graph.get_vertex('D').parent == 'E'
+
+    def test_dfs_parent_directed(self):
+        edges: Sequence[Edge] = [
+            ('a', 'b'),
+            ('b', 'c'),
+            ('d', 'e'),
+            ('e', 'f'),
+            ('a', 'd'),
+            ('f', 'c'),
+            ('b', 'd')
+        ]
+
+        graph: IGraph = Graph.build('test_dfs_parent_directed',
+                                    edges, directed=True)
+        graph.dfs('A')
+        assert graph.get_vertex('A').parent is None
+        assert graph.get_vertex('B').parent == 'A'
+        assert graph.get_vertex('C').parent == 'B'
+        assert graph.get_vertex('D').parent == 'B'
+        assert graph.get_vertex('E').parent == 'D'
+        assert graph.get_vertex('F').parent == 'E'

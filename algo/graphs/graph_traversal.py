@@ -32,6 +32,7 @@ class GraphTraversalMixin:
         # Parent is None and distance = 0 (by default)
         vertices: Queue[Vertex] = Queue()
         vertices.put(v)
+        # TODO: process_early(vertex)
         v.set_state(State.DISCOVERED)
 
         while not vertices.empty():
@@ -43,12 +44,15 @@ class GraphTraversalMixin:
                 if succ.state == State.UNDISCOVERED:
                     # Mark it as newly discovered
                     succ.set_state(State.DISCOVERED)
+                    # TODO: process_early(vertex)
                     vertices.put(succ)
                     # set the parent
                     succ.set_parent(current, 1)
+                    # TODO: process_edge(edge)
 
             # Mark it as PROCESSED
             current.set_state(State.PROCESSED)
+            # TODO: process_late(vertex)
 
         return self
 

@@ -59,6 +59,7 @@ class TestGraphTraversalMixin:
             ('b', 'c'),
             ('d', 'e'),
             ('e', 'f'),
+            ('e', 'b'),
             ('a', 'd'),
             ('f', 'c'),
             ('b', 'd')

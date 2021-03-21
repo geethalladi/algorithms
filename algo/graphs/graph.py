@@ -29,6 +29,7 @@ class AbstractGraph(abc.ABC):
     directed: bool
     vertices: Dict[str, Vertex]
     num_vertices: int
+    num_connect_components: int
 
     def __init__(self, name: str, directed: bool = False):
         """
@@ -41,6 +42,7 @@ class AbstractGraph(abc.ABC):
         self.directed = directed
         self.vertices = {}
         self.num_vertices = 0
+        self.num_connect_components = 0
 
     @postcondition(lambda x: len(x) >= 0)
     def get_vertices(self) -> Collection[str]:

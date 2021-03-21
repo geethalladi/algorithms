@@ -8,9 +8,11 @@
 The following are the hurdles / obstacles faced while implementing algorithms in python
 ** Depth First Search                                                 :algo:
 ** Dijkstra's Shortest Path (Single Source)                           :algo:
-** Edge coloring in Visualization
 ** Topological Sorting                                                :algo:
 ** Strongly Connected Components                                      :algo:
+** Warnsdroff algorithm
+- for knight's tour
+** Edge coloring in Visualization
 ** Modules and their imports                                            :py:
 *** Sibling Package
 - As of now, using the full package path

@@ -32,7 +32,7 @@ class Vertex:
     parent: str
     discovery: int
     finish: int
-    connected_to: Dict['Vertex', int]
+    connected_to: Dict['Vertex', EdgeContainer]
 
     def __init__(self, key: str):
         """
@@ -86,7 +86,7 @@ class Vertex:
         """
         Return edge weight between this and the other vertex
         """
-        return self.connected_to[other]
+        return self.connected_to[other].weight
 
     def add_edge(self, other: 'Vertex', weight: int = 1,
                  directed: bool = False):
@@ -100,7 +100,8 @@ class Vertex:
 
         log.debug('Adding edge between %s and %s with weight %d, %s',
                   self.get_id(), other.get_id(), weight, directed)
-        self.connected_to[other] = weight
+        self.connected_to[other] = EdgeContainer(weight)
+
         if not directed:
             # if undirected, add the other edge as well
             other.add_edge(self, weight, True)
@@ -119,7 +120,7 @@ class Vertex:
 
         # ASSUMPTION: Graph is either directed or undirected
         # and not a mixed bag and safely ignoring the other half
-        if self.connected_to[other] == weight:
+        if self.connected_to[other].weight == weight:
             log.debug('Ignoring redundant edge %s', existing)
             return False
 

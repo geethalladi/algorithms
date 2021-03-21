@@ -14,6 +14,9 @@ class GraphTraversalMixin:
     Mixin providing Graph Traversal Implementation
     """
 
+    # TODO: dirty hack to make num_connect_components work
+    num_connect_components: int = 0
+
     def bfs(self: IGraph, start: str):
         """
         Breadth First Search based traversal

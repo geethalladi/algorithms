@@ -62,24 +62,38 @@ class GraphTraversalMixin:
         log.info('Starting DFS from %s', start)
         self.clear()
 
-        if (not isinstance(self, GraphTraversalMixin))):
-            msg='Self {} does not know traversal'.format(type(self))
+        if not isinstance(self, GraphTraversalMixin):
+            msg = 'Graph of type {} not traversalable'.format(type(self))
             raise AssertionError(msg)
 
+        # Counter for the number of distinct
+        # event changes that happened
+        counter: int = 0
         for v in self:
-            # Every new node becomes part of a depth first forest
             if v.get_state() == VState.UNDISCOVERED:
-                # If the graph has multiple (dis)connected components
-                # Can be used to find the number of (dis)connected components
+                counter = self.__dfs_visit(v, counter)
 
         return self
 
-    def __dfs_visit(self: 'GraphTraversalMixin', vertex: Vertex, count: int):
+    def __dfs_visit(self, vertex: Vertex, counter: int) -> int:
+        assert vertex.get_state() == VState.UNDISCOVERED
+
+        log.info('DFS Visit vertex %s after time %s', vertex.id, counter)
+
+        # Set it as discovered
+        counter = counter + 1
         vertex.set_state(VState.DISCOVERED)
-        vertex.discovery(count)
+        vertex.discovery = counter
 
         for nbr in vertex.get_connections():
+            # Found a new vertex
             if nbr.get_state() == VState.UNDISCOVERED:
-                pass
+                nbr.parent = vertex
+                counter = self.__dfs_visit(vertex, counter)
 
-        return count
+        # Fully Processed
+        counter = counter + 1
+        vertex.set_state(VState.PROCESSED)
+        vertex.finish = counter
+
+        return counter

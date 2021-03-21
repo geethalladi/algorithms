@@ -9,7 +9,8 @@ from typing import NamedTuple, List, Sequence, Tuple
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
-from algo.graphs.vertex import Vertex, State
+from algo.graphs.state import State
+from algo.graphs.vertex import Vertex
 
 
 class Position(NamedTuple):

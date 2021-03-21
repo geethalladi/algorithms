@@ -6,7 +6,7 @@ from queue import Queue
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
-from algo.graphs.vertex import State as VState
+from algo.graphs.state import State
 
 
 class GraphTraversalMixin:
@@ -29,7 +29,7 @@ class GraphTraversalMixin:
         # Parent is None and distance = 0 (by default)
         vertices: Queue[Vertex] = Queue()
         vertices.put(v)
-        v.set_state(VState.DISCOVERED)
+        v.set_state(State.DISCOVERED)
 
         while not vertices.empty():
             # self.stop_and_view()
@@ -37,15 +37,15 @@ class GraphTraversalMixin:
             log.debug('Processing node %s', current.id)
             for succ in current.get_connections():
                 # If this is a new node
-                if succ.state == VState.UNDISCOVERED:
+                if succ.state == State.UNDISCOVERED:
                     # Mark it as newly discovered
-                    succ.set_state(VState.DISCOVERED)
+                    succ.set_state(State.DISCOVERED)
                     vertices.put(succ)
                     # set the parent
                     succ.set_parent(current, 1)
 
             # Mark it as PROCESSED
-            current.set_state(VState.PROCESSED)
+            current.set_state(State.PROCESSED)
 
         return self
 
@@ -86,7 +86,7 @@ class GraphTraversalMixin:
         time: int = 1  # start from 1 to avoid confusion
 
         for v in self:
-            if v.get_state() == VState.UNDISCOVERED:
+            if v.get_state() == State.UNDISCOVERED:
                 self.num_connect_components += 1
                 time = self.__dfs_visit(v, time)
 
@@ -96,22 +96,22 @@ class GraphTraversalMixin:
         """
         Visit the given node during DFS Traversal
         """
-        assert vertex.get_state() == VState.UNDISCOVERED
+        assert vertex.get_state() == State.UNDISCOVERED
 
         # Set it as discovered
-        log.info('Vertex %s is %s at %s', vertex, VState.DISCOVERED, time)
-        vertex.set_state(VState.DISCOVERED)
+        log.info('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
+        vertex.set_state(State.DISCOVERED)
         vertex.discovery, time = time, (time + 1)
 
         for nbr in vertex.get_connections():
             # Found a new vertex
-            if nbr.get_state() == VState.UNDISCOVERED:
+            if nbr.get_state() == State.UNDISCOVERED:
                 nbr.parent = vertex.id
                 time = self.__dfs_visit(nbr, time)
 
         # Fully Processed
-        log.info('Vertex %s is %s at %s', vertex, VState.PROCESSED, time)
-        vertex.set_state(VState.PROCESSED)
+        log.info('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
+        vertex.set_state(State.PROCESSED)
         vertex.finish, time = time, (time + 1)
 
         return time

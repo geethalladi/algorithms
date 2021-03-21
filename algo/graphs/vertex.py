@@ -4,32 +4,11 @@ Vertex abstract data type
 
 import logging as log
 
-from enum import Enum, auto, unique
 from typing import Dict, Collection
+from algo.graphs.state import State
 from algo.utils.contracts import postcondition
 
 log.basicConfig(level=log.INFO)
-
-
-@unique
-class State(Enum):
-    """
-    Vertex State Enum
-    """
-    UNDISCOVERED = auto()
-    DISCOVERED = auto()
-    PROCESSED = auto()
-
-    def get_color(self):
-        """
-        Return the color associate with the State
-        """
-        if self is State.PROCESSED:
-            return 'red'
-        if self is State.DISCOVERED:
-            return 'gray'
-        # default to 'black'
-        return 'black'
 
 
 class Vertex:

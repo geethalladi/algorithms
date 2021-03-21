@@ -48,7 +48,10 @@ class GraphTraversalMixin:
                     vertices.put(succ)
                     # set the parent
                     succ.set_parent(current, 1)
-                    # TODO: process_edge(edge)
+                    # process_edge
+                    log.info('Processing edge between (%s, %s)',
+                             current.id, succ.id)
+                    current.get_edge(succ).state = State.PROCESSED
 
             # Mark it as PROCESSED
             current.set_state(State.PROCESSED)

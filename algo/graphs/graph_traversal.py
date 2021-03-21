@@ -109,6 +109,8 @@ class GraphTraversalMixin:
         for nbr in vertex.get_connections():
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
+                # processing edge here
+                vertex.get_edge(nbr).state = State.PROCESSED
                 nbr.parent = vertex.id
                 time = self.__dfs_visit(nbr, time)
 

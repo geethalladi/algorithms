@@ -17,6 +17,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Issues with spaces around `=`
+- Auto formatter removed space around `=`
+- Deleted the troublesome code and it worked
+- Most likely because of an extra '(' somewhere
 ** DONE Vertex with discovery / finish time
 ** DONE Iterable IGraph
 - IGraph with `__iter__`

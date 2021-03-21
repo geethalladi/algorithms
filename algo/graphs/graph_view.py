@@ -7,6 +7,7 @@ from typing import Union
 
 import graphviz  # type: ignore
 
+from algo.graphs.vertex import EdgeContainer
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
 
@@ -53,12 +54,13 @@ class GraphViewMixin:
 
         log.debug("Adding edge between %s and %s", source.get_id(),
                   dest.get_id())
-        weight = source.get_weight(dest)
-        if weight == 1:
+
+        edge: EdgeContainer = source.get_edge(dest)
+        if edge.weight == 1:
             # Ignore unit weights while viewing
             dot.edge(source.get_id(), dest.get_id())
         else:
-            dot.edge(source.get_id(), dest.get_id(), label=str(weight))
+            dot.edge(source.get_id(), dest.get_id(), label=str(edge.weight))
 
     def to_dot(self: GraphView):
         """

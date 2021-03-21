@@ -15,33 +15,40 @@ class TestGraphTraversalMixin:
     A Test Suite for GraphTraversalMixin
     """
 
-    G: IGraph
-
     def setup_method(self):
-        edges: Sequence[Edge] = [
+        self.edges: Sequence[Edge] = [
             ('a', 'b'),
             ('b', 'c'),
             ('d', 'e'),
             ('e', 'a')
         ]
-        self.G: IGraph = Graph.build('test_digraph_view',
-                                     edges, directed=False)
 
     def test_bfs_parent(self):
-        self.G.bfs('A')
-        assert self.G.get_vertex('A').parent is None
-        assert self.G.get_vertex('B').parent == 'A'
-        assert self.G.get_vertex('E').parent == 'A'
-        assert self.G.get_vertex('C').parent == 'B'
-        assert self.G.get_vertex('D').parent == 'E'
+        graph: IGraph = Graph.build('test_bfs',
+                                    self.edges, directed=False)
+        graph.bfs('A')
+        assert graph.get_vertex('A').parent is None
+        assert graph.get_vertex('B').parent == 'A'
+        assert graph.get_vertex('E').parent == 'A'
+        assert graph.get_vertex('C').parent == 'B'
+        assert graph.get_vertex('D').parent == 'E'
 
     def test_bfs_distance(self):
-        self.G.bfs('A')
-        assert self.G.get_vertex('A').distance == 0
-        assert self.G.get_vertex('B').distance == 1
-        assert self.G.get_vertex('E').distance == 1
-        assert self.G.get_vertex('C').distance == 2
-        assert self.G.get_vertex('D').distance == 2
+        graph: IGraph = Graph.build('test_bfs_distance',
+                                    self.edges, directed=False)
+        graph.bfs('A')
+        assert graph.get_vertex('A').distance == 0
+        assert graph.get_vertex('B').distance == 1
+        assert graph.get_vertex('E').distance == 1
+        assert graph.get_vertex('C').distance == 2
+        assert graph.get_vertex('D').distance == 2
 
-    def test_dfs_single(self):
-        assert self.G is not None
+    def test_dfs_parent(self):
+        graph: IGraph = Graph.build('test_dfs',
+                                    self.edges, directed=False)
+        graph.dfs('A')
+        assert graph.get_vertex('A').parent is None
+        assert graph.get_vertex('B').parent == 'A'
+        assert graph.get_vertex('E').parent == 'A'
+        assert graph.get_vertex('C').parent == 'B'
+        assert graph.get_vertex('D').parent == 'E'

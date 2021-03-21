@@ -69,30 +69,39 @@ class GraphTraversalMixin:
         # Counter for the number of distinct
         # event changes that happened
         counter: int = 0
-        for v in self:
-            if v.get_state() == VState.UNDISCOVERED:
-                counter = self.__dfs_visit(v, counter)
+
+        # DFS from the given start node
+        counter = self.__dfs_visit(self.get_vertex(start), counter)
+
+        # In case, we want to find all the nodes not connected to 'start'
+        # do the following. This will generate a breadth first forest
+        # for v in self:
+        #     if v.get_state() == VState.UNDISCOVERED:
+        #         counter = self.__dfs_visit(v, counter)
 
         return self
 
     def __dfs_visit(self, vertex: Vertex, counter: int) -> int:
+
         assert vertex.get_state() == VState.UNDISCOVERED
 
-        log.info('DFS Visit vertex %s after time %s', vertex.id, counter)
+        counter = counter + 1
+        log.info('Vertex %s is %s at %s', vertex, VState.DISCOVERED, counter)
 
         # Set it as discovered
-        counter = counter + 1
         vertex.set_state(VState.DISCOVERED)
         vertex.discovery = counter
 
         for nbr in vertex.get_connections():
             # Found a new vertex
             if nbr.get_state() == VState.UNDISCOVERED:
-                nbr.parent = vertex
-                counter = self.__dfs_visit(vertex, counter)
+                nbr.parent = vertex.id
+                counter = self.__dfs_visit(nbr, counter)
+
+        counter = counter + 1
+        log.info('Vertex %s is %s at %s', vertex, VState.PROCESSED, counter)
 
         # Fully Processed
-        counter = counter + 1
         vertex.set_state(VState.PROCESSED)
         vertex.finish = counter
 

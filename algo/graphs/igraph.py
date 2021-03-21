@@ -66,6 +66,12 @@ class IGraph(Protocol):
         """
         ...
 
+    def __iter__(self):
+        """
+        Iterable for IGraph
+        """
+        ...
+
     def stop_and_view(self):
         """
         Visualize this graph and stop execution

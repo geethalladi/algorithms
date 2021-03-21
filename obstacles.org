@@ -17,6 +17,9 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Vertex with discovery / finish time
+** DONE Iterable IGraph
+- IGraph with `__iter__`
 ** DONE Validating function for tour
 - Eval string as tuple
 - Check the validation conditions

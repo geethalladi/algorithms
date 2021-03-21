@@ -50,39 +50,53 @@ class GraphTraversalMixin:
 
         return self
 
-    def dfs(self: IGraph, start: str):
+    def dfs(self: IGraph, start: str = None) -> int:
         """
         Depth First Search based traversal
-        from the given start node
         """
+        assert isinstance(self, GraphTraversalMixin), 'Untraversible Graph'
+
+        if start is None:
+            return self.__dfs_forest()
+
+        return self.__dfs_single_node(start)
+
+    def __dfs_single_node(self: IGraph, start: str) -> int:
+        """
+        Depth First Search starting from the given node
+        """
+        assert isinstance(self, GraphTraversalMixin), 'Untraversible Graph'
         assert len(start) > 0, 'Empty start key {}'.format(start)
+
         v: Vertex = self.get_vertex(start)
         assert v is not None, 'Invalid start key {}'.format(start)
 
-        log.info('Starting DFS from %s', start)
-        self.clear()
-
-        if not isinstance(self, GraphTraversalMixin):
-            msg = 'Graph of type {} not traversalable'.format(type(self))
-            raise AssertionError(msg)
-
-        # Counter for the number of distinct
-        # event changes that happened
-        counter: int = 0
-
         # DFS from the given start node
-        counter = self.__dfs_visit(self.get_vertex(start), counter)
+        log.info('Starting DFS from %s', start)
+        return self.__dfs_visit(self.get_vertex(start))
 
+    def __dfs_forest(self: IGraph) -> int:
+        """
+        Depth First Forest Traversal
+        """
         # In case, we want to find all the nodes not connected to 'start'
         # do the following. This will generate a breadth first forest
-        # for v in self:
-        #     if v.get_state() == VState.UNDISCOVERED:
-        #         counter = self.__dfs_visit(v, counter)
 
-        return self
+        assert isinstance(self, GraphTraversalMixin), 'Untraversible Graph'
 
-    def __dfs_visit(self, vertex: Vertex, counter: int) -> int:
+        self.clear()
+        counter: int = 0
 
+        for v in self:
+            if v.get_state() == VState.UNDISCOVERED:
+                counter = self.__dfs_visit(v, counter)
+
+        return counter
+
+    def __dfs_visit(self, vertex: Vertex, counter: int = 0) -> int:
+        """
+        Visit the given node during DFS Traversal
+        """
         assert vertex.get_state() == VState.UNDISCOVERED
 
         counter = counter + 1

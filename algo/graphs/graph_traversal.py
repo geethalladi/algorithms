@@ -105,18 +105,20 @@ class GraphTraversalMixin:
         log.info('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
         vertex.set_state(State.DISCOVERED)
         vertex.discovery, time = time, (time + 1)
+        # TODO: process_early(vertex)
 
         for nbr in vertex.get_connections():
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
-                # processing edge here
-                vertex.get_edge(nbr).state = State.PROCESSED
                 nbr.parent = vertex.id
                 time = self.__dfs_visit(nbr, time)
+                # processing edge here
+                vertex.get_edge(nbr).state = State.PROCESSED
 
         # Fully Processed
         log.info('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
         vertex.set_state(State.PROCESSED)
         vertex.finish, time = time, (time + 1)
+        # process_late(vertex)
 
         return time

@@ -56,11 +56,14 @@ class GraphViewMixin:
                   dest.get_id())
 
         edge: EdgeContainer = source.get_edge(dest)
+        color: str = edge.state.get_color()
+
         if edge.weight == 1:
             # Ignore unit weights while viewing
-            dot.edge(source.get_id(), dest.get_id())
+            dot.edge(source.get_id(), dest.get_id(), color=color)
         else:
-            dot.edge(source.get_id(), dest.get_id(), label=str(edge.weight))
+            dot.edge(source.get_id(), dest.get_id(),
+                     label=str(edge.weight), color=color)
 
     def to_dot(self: GraphView):
         """

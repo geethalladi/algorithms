@@ -40,6 +40,8 @@ class Vertex:
     state: State
     distance: int
     parent: str
+    discovery: int
+    finish: int
     connected_to: Dict['Vertex', int]
 
     def __init__(self, key: str):
@@ -62,6 +64,9 @@ class Vertex:
         self.state = State.UNDISCOVERED
         self.distance = 0
         self.parent = None
+        # Setting the discovery / finish time to 0
+        self.discovery = 0
+        self.finish = 0
 
     def get_id(self) -> str:
         """

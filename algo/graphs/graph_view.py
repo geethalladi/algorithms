@@ -34,8 +34,8 @@ class GraphViewMixin:
         log.debug('Adding nodes to dot representation')
         desc: str = vertex.id
         if vertex.discovery != 0 or vertex.finish != 0:
-            desc = '({}, {}, {})'.format(vertex.id, vertex.discovery,
-                                         vertex.finish)
+            desc = '{} ({}, {})'.format(vertex.id, vertex.discovery,
+                                        vertex.finish)
         dot.node(vertex.id, desc, color=vertex.get_color())
 
     @classmethod

@@ -19,7 +19,6 @@ class GraphTraversalMixin:
         Breadth First Search based traversal
         from the given start node
         """
-
         assert len(start) > 0, 'Empty start key {}'.format(start)
         v: Vertex = self.get_vertex(start)
         assert v is not None, 'Invalid start key {}'.format(start)
@@ -81,12 +80,11 @@ class GraphTraversalMixin:
         """
         # In case, we want to find all the nodes not connected to 'start'
         # do the following. This will generate a breadth first forest
-
         assert isinstance(self, GraphTraversalMixin), 'Untraversible Graph'
 
         self.clear()
-        counter: int = 0
 
+        counter: int = 0
         for v in self:
             if v.get_state() == VState.UNDISCOVERED:
                 counter = self.__dfs_visit(v, counter)

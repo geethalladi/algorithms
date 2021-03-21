@@ -81,6 +81,17 @@ class Vertex:
         """
         return self.connected_to.keys()
 
+    def get_description(self) -> str:
+        """
+        Get the vertex description
+        """
+        if self.discovery == 0 and self.finish == 0:
+            return self.id
+
+        return '{} ({}, {})'.format(self.id,
+                                    self.discovery,
+                                    self.finish)
+
     def get_weight(self, other: 'Vertex') -> int:
         """
         Return edge weight between this and the other vertex

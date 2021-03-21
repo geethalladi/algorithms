@@ -14,9 +14,9 @@ class IGraph(Protocol):
     """
 
     name: str
-    directed: bool
-    num_vertices: int
-    num_connect_components: int
+    directed: bool = False
+    num_vertices: int = 0
+    num_connect_components: int = 0
 
     def get_vertices(self) -> Collection[str]:
         """

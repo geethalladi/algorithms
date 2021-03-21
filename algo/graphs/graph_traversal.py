@@ -87,6 +87,7 @@ class GraphTraversalMixin:
 
         for v in self:
             if v.get_state() == VState.UNDISCOVERED:
+                self.num_connect_components += 1
                 time = self.__dfs_visit(v, time)
 
         return time

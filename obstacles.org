@@ -6,9 +6,10 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Depth First Search                                                 :algo:
-** Dijkstra's Shortest Path (Single Source)                           :algo:
+** IGraph with num_components
+** Bug in viewing discover / finish timings
 ** Topological Sorting                                                :algo:
+** Dijkstra's Shortest Path (Single Source)                           :algo:
 ** Strongly Connected Components                                      :algo:
 ** Warnsdroff algorithm
 - for knight's tour
@@ -17,6 +18,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Confusion between single source DFS and Forest DFS
+** DONE Depth First Search                                            :algo:
 ** DONE Issues with spaces around `=`
 - Auto formatter removed space around `=`
 - Deleted the troublesome code and it worked

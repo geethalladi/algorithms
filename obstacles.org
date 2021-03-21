@@ -6,7 +6,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Bug in viewing discover / finish timings
 ** Edge coloring in Visualization
 ** Vertex's parent should be vertex
 - Currently it's a string
@@ -19,6 +18,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Bug in viewing discover / finish timings
 ** DONE IGraph with num_components
 ** DONE Confusion between single source DFS and Forest DFS
 ** DONE Depth First Search                                            :algo:

@@ -48,7 +48,12 @@ def find_shortest_path(words: Sequence[str], start: str, end: str) -> Sequence[s
                ), "Invalid length found in words"
 
     graph: IGraph = construct_word_ladder([w.capitalize() for w in words])
-    return find_path_bfs(graph, start.capitalize(), end.capitalize())
+    result: Sequence[Vertex] = find_path_bfs(graph,
+                                             start.capitalize(),
+                                             end.capitalize())
+
+    # extract only the identifiers to send them as result
+    return [v.id for v in result]
 
 
 def bucket(word: str) -> List[str]:
@@ -104,7 +109,7 @@ def construct_word_ladder(words: Sequence[str]):
     return Graph.build('word-ladder', edges, directed=False)
 
 
-def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[str]:
+def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[Vertex]:
     """
     Using Breadth First Search, find the path between start and end
     """
@@ -113,15 +118,14 @@ def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[str]:
     return __find_path(graph, graph.get_vertex(start), graph.get_vertex(end))
 
 
-def __find_path(graph: IGraph, start: Vertex, end: Vertex) -> List[str]:
+def __find_path(graph: IGraph, start: Vertex, end: Vertex) -> List[Vertex]:
     """
     After BFS, extract the path from start to end
     """
     if start == end:
-        return [start.id]
+        return [start]
 
     # Traverse till end's parent and then add 'end' node
-    # TODO: Looks convoluted
-    result: List[str] = __find_path(graph, start, end.parent)
-    result.append(end.id)
+    result: List[Vertex] = __find_path(graph, start, end.parent)
+    result.append(end)
     return result

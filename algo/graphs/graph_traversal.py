@@ -122,21 +122,33 @@ class GraphTraversalMixin:
             self.helper.process_vertex_early(vertex)
 
         for nbr in vertex.get_connections():
-            # TODO: There are more conditions here
+            # # processing edge here
+            # # can process edge twice
+            # if self.helper.process_edge:
+            #     self.helper.process_edge(vertex, nbr, edge)
+
+            # Ideal Condition
+            # To make sure edge is processed only once
             edge: EdgeContainer = vertex.get_edge(nbr)
-            edge.state = State.DISCOVERED
+            if ((nbr.get_state() == State.DISCOVERED) or self.directed):
+                # only process edge (leave the vertex)
+                edge.state = State.DISCOVERED
+                if self.helper.process_edge:
+                    self.helper.process_edge(vertex, nbr, edge)
 
-            # processing edge here
-            if self.helper.process_edge:
-                self.helper.process_edge(vertex, nbr, edge)
-
-            # Found a new vertex
+            # found new vertex: process both edge and vertex
             if nbr.get_state() == State.UNDISCOVERED:
+                # setting the parent
+                nbr.set_parent(vertex, edge)
+
+                edge.state = State.DISCOVERED
+                if self.helper.process_edge:
+                    self.helper.process_edge(vertex, nbr, edge)
+
                 # Only these are the real edges
                 # that are walked through in DFS
                 edge.state = State.PROCESSED
-                # setting the parent
-                nbr.set_parent(vertex, edge)
+
                 # recurse with the new edge
                 time = self.__dfs_visit(nbr, time)
 

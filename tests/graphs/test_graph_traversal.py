@@ -9,6 +9,8 @@ from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 
+import pytest
+
 
 class TestGraphTraversalMixin:
     """
@@ -138,4 +140,5 @@ class TestGraphTraversalMixin:
         ]
         graph: IGraph = Graph.build('test_dfs_distance_directed',
                                     edges, directed=True)
-        print(graph.topological_sort())
+        with pytest.raises(Exception):
+            print(graph.topological_sort())

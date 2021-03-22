@@ -169,12 +169,17 @@ class Vertex:
         """
         return self.state
 
-    def set_parent(self, parent: 'Vertex', cost: int):
+    def set_parent(self, parent: 'Vertex', edge: EdgeContainer = None):
         """
         Set the parent and the distance
         """
         self.parent = parent.id
-        self.distance = parent.distance + cost
+
+        if edge is None:
+            log.info('Ignoring distance computation as edge is empty')
+            return
+
+        self.distance = parent.distance + edge.weight
 
     def get_color(self):
         """

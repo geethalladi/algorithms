@@ -48,13 +48,13 @@ class GraphTraversalMixin:
                     # TODO: process_early(vertex)
                     vertices.put(succ)
 
+                    edge: EdgeContainer = current.get_edge(succ)
                     # process_edge
                     log.info('Processing edge between (%s, %s)',
                              current.id, succ.id)
-                    edge: EdgeContainer = current.get_edge(succ)
                     edge.state = State.PROCESSED
-                    # set the parent and the distance
-                    succ.set_parent(current, edge.weight)
+                    # set the parent
+                    succ.set_parent(current, edge)
 
             # Mark it as PROCESSED
             current.set_state(State.PROCESSED)
@@ -120,11 +120,12 @@ class GraphTraversalMixin:
         for nbr in vertex.get_connections():
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
-                # processing edge here
                 edge: EdgeContainer = vertex.get_edge(nbr)
+                # processing edge here
                 edge.state = State.PROCESSED
-                # setting the parent and distance
-                nbr.set_parent(vertex, edge.weight)
+                # setting the parent
+                nbr.set_parent(vertex, edge)
+                # recurse with the new edge
                 time = self.__dfs_visit(nbr, time)
 
         # Fully Processed

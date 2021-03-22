@@ -3,8 +3,10 @@ Graph Protocol
 """
 
 from typing import Callable, Collection, Protocol, runtime_checkable
-from algo.graphs.vertex import Vertex, EdgeContainer
+
 from algo.graphs.edge import Edge
+from algo.graphs.traversal_helper import TraversalHelper
+from algo.graphs.vertex import Vertex, EdgeContainer
 
 
 @runtime_checkable
@@ -17,6 +19,7 @@ class IGraph(Protocol):
     directed: bool = False
     num_vertices: int = 0
     num_connect_components: int = 0
+    helper: TraversalHelper
 
     def get_vertices(self) -> Collection[str]:
         """

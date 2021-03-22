@@ -111,11 +111,29 @@ class Vertex:
 
         log.debug('Adding edge between %s and %s with weight %d, %s',
                   self.get_id(), other.get_id(), weight, directed)
-        self.connected_to[other] = EdgeContainer(weight)
 
+        edge: EdgeContainer = EdgeContainer(weight)
+        self.connected_to[other] = edge
+
+        # if undirected, use the same edge container
         if not directed:
-            # if undirected, add the other edge as well
-            other.add_edge(self, weight, True)
+            # the other is also an instance of vertex
+            # and this is fine
+            # pylint: disable=protected-access
+            other.__add_edge(self, edge, directed)
+
+    def __add_edge(self, other: 'Vertex', edge: EdgeContainer, directed: bool):
+        """
+        Private function for adding EdgeContainer
+        """
+        assert not directed, 'Adding edge container instance for a directed graph'
+
+        if not self.__should_add_edge(other, edge.weight):
+            return
+
+        # Sharing the same edge instance in case of
+        # an undirected graph
+        self.connected_to[other] = edge
 
     def __should_add_edge(self, other: 'Vertex', weight: int = 1):
         """

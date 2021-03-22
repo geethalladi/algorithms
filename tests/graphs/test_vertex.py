@@ -5,8 +5,8 @@
 
 import logging as log
 
+from algo.graphs.state import State
 from algo.graphs.vertex import Vertex
-from algo.graphs.vertex import State as VState  # Vertex State
 
 
 class TestVertex:
@@ -53,28 +53,28 @@ class TestVertex:
 
     def test_state(self):
         v1: Vertex = Vertex('a')
-        assert v1.get_state() == VState.UNDISCOVERED
-        v1.set_state(VState.DISCOVERED)
-        assert v1.get_state() == VState.DISCOVERED
-        v1.set_state(VState.PROCESSED)
-        assert v1.get_state() == VState.PROCESSED
+        assert v1.get_state() == State.UNDISCOVERED
+        v1.set_state(State.DISCOVERED)
+        assert v1.get_state() == State.DISCOVERED
+        v1.set_state(State.PROCESSED)
+        assert v1.get_state() == State.PROCESSED
 
     def test_color(self):
         v1: Vertex = Vertex('a')
-        assert v1.get_color() == VState.UNDISCOVERED.get_color()
-        v1.set_state(VState.DISCOVERED)
-        assert v1.get_color() == VState.DISCOVERED.get_color()
-        v1.set_state(VState.PROCESSED)
-        assert v1.get_color() == VState.PROCESSED.get_color()
+        assert v1.get_color() == State.UNDISCOVERED.get_color()
+        v1.set_state(State.DISCOVERED)
+        assert v1.get_color() == State.DISCOVERED.get_color()
+        v1.set_state(State.PROCESSED)
+        assert v1.get_color() == State.PROCESSED.get_color()
 
     def test_clear(self):
         v1: Vertex = Vertex('a')
-        v1.set_state(VState.DISCOVERED)
-        assert v1.get_color() == VState.DISCOVERED.get_color()
-        assert v1.get_state() == VState.DISCOVERED
+        v1.set_state(State.DISCOVERED)
+        assert v1.get_color() == State.DISCOVERED.get_color()
+        assert v1.get_state() == State.DISCOVERED
         assert v1.distance == 0
         assert v1.parent is None
         v1.clear()
-        assert v1.get_state() == VState.UNDISCOVERED
+        assert v1.get_state() == State.UNDISCOVERED
         assert v1.distance == 0
         assert v1.parent is None

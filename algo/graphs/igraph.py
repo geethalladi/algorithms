@@ -2,8 +2,8 @@
 Graph Protocol
 """
 
-from typing import Collection, Protocol, runtime_checkable
-from algo.graphs.vertex import Vertex
+from typing import Callable, Collection, Protocol, runtime_checkable
+from algo.graphs.vertex import Vertex, EdgeContainer
 from algo.graphs.edge import Edge
 
 
@@ -80,7 +80,8 @@ class IGraph(Protocol):
         """
         ...
 
-    def dfs(self, start: str):
+    def dfs(self, start: str = None,
+            process_edge: Callable[[Vertex, Vertex, EdgeContainer], None] = None):
         """
         Do a depth first traversal of the graph
         from the given start node

@@ -3,7 +3,7 @@ Graph Traversal Implementation
 """
 import logging as log
 from queue import Queue
-from typing import Sequence
+from typing import Callable, Sequence
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex, EdgeContainer
@@ -62,7 +62,8 @@ class GraphTraversalMixin:
 
         return self
 
-    def dfs(self: IGraph, start: str = None, process_edge=None) -> int:
+    def dfs(self: IGraph, start: str = None,
+            process_edge: Callable[[Vertex, Vertex, EdgeContainer], None] = None) -> int:
         """
         Depth First Search based traversal
         """
@@ -85,7 +86,7 @@ class GraphTraversalMixin:
 
         # DFS from the given start node
         log.info('Starting DFS from %s', start)
-        return self.__dfs_visit(self.get_vertex(start), process_edge=process_edge)
+        return self.__dfs_visit(self.get_vertex(start), 1, process_edge)
 
     def __dfs_forest(self: IGraph, process_edge) -> int:
         """
@@ -105,7 +106,7 @@ class GraphTraversalMixin:
 
         return time
 
-    def __dfs_visit(self, vertex: Vertex, time: int = 1, process_edge=None) -> int:
+    def __dfs_visit(self, vertex: Vertex, time: int, process_edge) -> int:
         """
         Visit the given node during DFS Traversal
         """

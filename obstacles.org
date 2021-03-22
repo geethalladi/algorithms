@@ -6,10 +6,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** NamedSet with all three callable functions
-- process_edge
-- process_vertex_early
-- process_vertex_late
 ** Dijkstra's Shortest Path (Single Source)                           :algo:
 ** Strongly Connected Components                                      :algo:
 ** Domain Specific Language in hy
@@ -20,6 +16,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE NamedSet with all three callable functions
+- process_edge
+- process_vertex_early
+- process_vertex_late
 ** DONE Topological Sorting                                           :algo:
 ** DONE Vertex's parent should be vertex
 - Currently it's a string

@@ -122,7 +122,7 @@ class GraphTraversalMixin:
             self.helper.process_vertex_early(vertex)
 
         for nbr in vertex.get_connections():
-            # There are more conditions here
+            # TODO: There are more conditions here
             edge: EdgeContainer = vertex.get_edge(nbr)
             edge.state = State.DISCOVERED
 

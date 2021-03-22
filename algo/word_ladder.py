@@ -115,10 +115,10 @@ def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[Vertex]:
     """
     # traverse the entire graph using BFS
     graph.bfs(start)
-    return __find_path(graph, graph.get_vertex(start), graph.get_vertex(end))
+    return __find_path(graph.get_vertex(start), graph.get_vertex(end))
 
 
-def __find_path(graph: IGraph, start: Vertex, end: Vertex) -> List[Vertex]:
+def __find_path(start: Vertex, end: Vertex) -> List[Vertex]:
     """
     After BFS, extract the path from start to end
     """
@@ -126,6 +126,6 @@ def __find_path(graph: IGraph, start: Vertex, end: Vertex) -> List[Vertex]:
         return [start]
 
     # Traverse till end's parent and then add 'end' node
-    result: List[Vertex] = __find_path(graph, start, end.parent)
+    result: List[Vertex] = __find_path(start, end.parent)
     result.append(end)
     return result

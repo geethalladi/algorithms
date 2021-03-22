@@ -3,7 +3,7 @@ Graph Traversal Implementation
 """
 import logging as log
 from queue import Queue
-
+from typing import Sequence
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex, EdgeContainer
@@ -135,3 +135,11 @@ class GraphTraversalMixin:
         # process_late(vertex)
 
         return time
+
+    def topological_sort(self: IGraph) -> Sequence[Vertex]:
+        """
+        Topological sorting of the graph
+        """
+        # do a Depth First Search (Forest style)
+        self.dfs()
+        return sorted(self, key=lambda v: v.finish, reverse=True)

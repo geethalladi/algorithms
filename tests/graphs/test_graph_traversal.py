@@ -95,3 +95,36 @@ class TestGraphTraversalMixin:
         assert graph.get_vertex('C').distance == 2
         assert graph.get_vertex('D').distance == 2
         assert graph.get_vertex('E').distance == 3
+
+    def test_topological_sorting(self):
+        edges: Sequence[Edge] = [
+            ('3/4 cup milk', '1 cup mix'),
+            ('1 egg', '1 cup mix'),
+            ('1 Tbl Oil', '1 cup mix'),
+            ('1 cup mix', 'pour 1/4 cup'),
+            ('1 cup mix', 'heat syrup'),
+            ('head griddle', 'pour 1/4 cup'),
+            ('pour 1/4 cup', 'turn when bubbly'),
+            ('turn when bubbly', 'eat'),
+            ('heat syrup', 'eat')
+        ]
+        graph: IGraph = Graph.build('test_dfs_distance_directed',
+                                    edges, directed=True)
+        graph.topological_sort()
+
+    def test_topological_sorting_2(self):
+        edges: Sequence[Edge] = [
+            ('A', 'B'),
+            ('A', 'C'),
+            ('B', 'C'),
+            ('B', 'D'),
+            ('C', 'E'),
+            ('C', 'F'),
+            ('E', 'D'),
+            ('G', 'A'),
+            ('G', 'F'),
+            ('F', 'E')
+        ]
+        graph: IGraph = Graph.build('test_dfs_distance_directed',
+                                    edges, directed=True)
+        assert [v.id for v in graph.topological_sort()] == list('GABCFED')

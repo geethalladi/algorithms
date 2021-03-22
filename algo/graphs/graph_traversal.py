@@ -50,8 +50,8 @@ class GraphTraversalMixin:
 
                     edge: EdgeContainer = current.get_edge(succ)
                     # process_edge
-                    log.info('Processing edge between (%s, %s)',
-                             current.id, succ.id)
+                    log.debug('Processing edge between (%s, %s)',
+                              current.id, succ.id)
                     edge.state = State.PROCESSED
                     # set the parent
                     succ.set_parent(current, edge)
@@ -112,7 +112,7 @@ class GraphTraversalMixin:
         assert vertex.get_state() == State.UNDISCOVERED
 
         # Set it as discovered
-        log.info('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
+        log.debug('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
         vertex.set_state(State.DISCOVERED)
         vertex.discovery, time = time, (time + 1)
         # TODO: process_early(vertex)
@@ -129,7 +129,7 @@ class GraphTraversalMixin:
                 time = self.__dfs_visit(nbr, time)
 
         # Fully Processed
-        log.info('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
+        log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
         vertex.set_state(State.PROCESSED)
         vertex.finish, time = time, (time + 1)
         # process_late(vertex)

@@ -16,7 +16,7 @@ class TestVertex:
 
     def test_singleton(self):
         v1: Vertex = Vertex('a')
-        log.info("Connections count is %s", len(v1.get_connections()))
+        log.debug("Connections count is %s", len(v1.get_connections()))
 
     def test_empty(self):
         v1: Vertex = Vertex('v')

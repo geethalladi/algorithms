@@ -34,7 +34,7 @@ class Vertex:
     id: str
     state: State
     distance: int
-    parent: str
+    parent: 'Vertex'
     discovery: int
     finish: int
     connected_to: Dict['Vertex', EdgeContainer]
@@ -173,7 +173,7 @@ class Vertex:
         """
         Set the parent and the distance
         """
-        self.parent = parent.id
+        self.parent = parent
 
         if edge is None:
             log.info('Ignoring distance computation as edge is empty')

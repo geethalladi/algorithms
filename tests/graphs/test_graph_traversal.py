@@ -28,10 +28,10 @@ class TestGraphTraversalMixin:
                                     self.edges, directed=False)
         graph.bfs('A')
         assert graph.get_vertex('A').parent is None
-        assert graph.get_vertex('B').parent == 'A'
-        assert graph.get_vertex('E').parent == 'A'
-        assert graph.get_vertex('C').parent == 'B'
-        assert graph.get_vertex('D').parent == 'E'
+        assert graph.get_vertex('B').parent.id == 'A'
+        assert graph.get_vertex('E').parent.id == 'A'
+        assert graph.get_vertex('C').parent.id == 'B'
+        assert graph.get_vertex('D').parent.id == 'E'
 
     def test_bfs_distance(self):
         graph: IGraph = Graph.build('test_bfs_distance',
@@ -48,10 +48,10 @@ class TestGraphTraversalMixin:
                                     self.edges, directed=False)
         graph.dfs('A')
         assert graph.get_vertex('A').parent is None
-        assert graph.get_vertex('B').parent == 'A'
-        assert graph.get_vertex('E').parent == 'A'
-        assert graph.get_vertex('C').parent == 'B'
-        assert graph.get_vertex('D').parent == 'E'
+        assert graph.get_vertex('B').parent.id == 'A'
+        assert graph.get_vertex('E').parent.id == 'A'
+        assert graph.get_vertex('C').parent.id == 'B'
+        assert graph.get_vertex('D').parent.id == 'E'
 
     def test_dfs_parent_directed(self):
         edges: Sequence[Edge] = [
@@ -69,11 +69,11 @@ class TestGraphTraversalMixin:
                                     edges, directed=True)
         graph.dfs('A')
         assert graph.get_vertex('A').parent is None
-        assert graph.get_vertex('B').parent == 'A'
-        assert graph.get_vertex('C').parent == 'B'
-        assert graph.get_vertex('D').parent == 'B'
-        assert graph.get_vertex('E').parent == 'D'
-        assert graph.get_vertex('F').parent == 'E'
+        assert graph.get_vertex('B').parent.id == 'A'
+        assert graph.get_vertex('C').parent.id == 'B'
+        assert graph.get_vertex('D').parent.id == 'B'
+        assert graph.get_vertex('E').parent.id == 'D'
+        assert graph.get_vertex('F').parent.id == 'E'
 
     def test_dfs_distance_directed(self):
         edges: Sequence[Edge] = [

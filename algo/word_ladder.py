@@ -123,6 +123,7 @@ def __find_path(graph: IGraph, start: str, end: str) -> List[str]:
 
     # Traverse till end's parent and then add 'end' node
     e: Vertex = graph.get_vertex(end)
-    result: List[str] = __find_path(graph, start, e.parent)
+    # TODO: Looks convoluted
+    result: List[str] = __find_path(graph, start, e.parent.id)
     result.append(end)
     return result

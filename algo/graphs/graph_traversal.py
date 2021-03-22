@@ -147,7 +147,7 @@ class GraphTraversalMixin:
         def check_cycle(source: Vertex, dest: Vertex, edge: EdgeContainer):
             log.info('Checking cycles in %s, %s, %s', source, dest, edge)
             if dest.get_state() == State.DISCOVERED:
-                msg = 'Cycle exists between %s and %s'.format(source, dest)
+                msg = 'Cycle exists between {} and {}'.format(source, dest)
                 raise Exception(msg)
 
         # do a Depth First Search (Forest style)

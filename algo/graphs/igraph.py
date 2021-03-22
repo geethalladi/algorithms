@@ -33,6 +33,12 @@ class IGraph(Protocol):
         """
         ...
 
+    def set_helper(self, helper: TraversalHelper):
+        """
+        Set the traversal helper instance for this graph
+        """
+        ...
+
     def add_vertex(self, key: str) -> Vertex:
         """
         Add vertex to this graph

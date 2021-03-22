@@ -3,11 +3,12 @@ Graph Traversal Implementation
 """
 import logging as log
 from queue import Queue
-from typing import Callable, Sequence
+from typing import Sequence
 
 from algo.graphs.igraph import IGraph
-from algo.graphs.vertex import Vertex, EdgeContainer
+from algo.graphs.traversal_helper import TraversalHelper
 from algo.graphs.state import State
+from algo.graphs.vertex import Vertex, EdgeContainer
 
 
 class GraphTraversalMixin:
@@ -62,19 +63,18 @@ class GraphTraversalMixin:
 
         return self
 
-    def dfs(self: IGraph, start: str = None,
-            process_edge: Callable[[Vertex, Vertex, EdgeContainer], None] = None) -> int:
+    def dfs(self: IGraph, start: str = None) -> int:
         """
         Depth First Search based traversal
         """
         assert isinstance(self, GraphTraversalMixin), 'Untraversible Graph'
 
         if start is None:
-            return self.__dfs_forest(process_edge)
+            return self.__dfs_forest()
 
-        return self.__dfs_single_node(start, process_edge)
+        return self.__dfs_single_node(start)
 
-    def __dfs_single_node(self: IGraph, start: str, process_edge) -> int:
+    def __dfs_single_node(self: IGraph, start: str) -> int:
         """
         Depth First Search starting from the given node
         """
@@ -86,9 +86,9 @@ class GraphTraversalMixin:
 
         # DFS from the given start node
         log.info('Starting DFS from %s', start)
-        return self.__dfs_visit(self.get_vertex(start), 1, process_edge)
+        return self.__dfs_visit(self.get_vertex(start))
 
-    def __dfs_forest(self: IGraph, process_edge) -> int:
+    def __dfs_forest(self: IGraph) -> int:
         """
         Depth First Forest Traversal
         """
@@ -102,14 +102,15 @@ class GraphTraversalMixin:
         for v in self:
             if v.get_state() == State.UNDISCOVERED:
                 self.num_connect_components += 1
-                time = self.__dfs_visit(v, time, process_edge)
+                time = self.__dfs_visit(v, time)
 
         return time
 
-    def __dfs_visit(self, vertex: Vertex, time: int, process_edge) -> int:
+    def __dfs_visit(self, vertex: Vertex, time: int = 1) -> int:
         """
         Visit the given node during DFS Traversal
         """
+        assert isinstance(self, IGraph),  'Graph not traversible'
         assert vertex.get_state() == State.UNDISCOVERED
 
         # Set it as discovered
@@ -121,8 +122,8 @@ class GraphTraversalMixin:
         for nbr in vertex.get_connections():
             # processing edge here
             edge: EdgeContainer = vertex.get_edge(nbr)
-            if process_edge:
-                process_edge(vertex, nbr, edge)
+            if self.helper and self.helper.process_edge:
+                self.helper.process_edge(vertex, nbr, edge)
 
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
@@ -130,7 +131,7 @@ class GraphTraversalMixin:
                 # setting the parent
                 nbr.set_parent(vertex, edge)
                 # recurse with the new edge
-                time = self.__dfs_visit(nbr, time, process_edge)
+                time = self.__dfs_visit(nbr, time)
 
         # Fully Processed
         log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
@@ -151,6 +152,7 @@ class GraphTraversalMixin:
                 msg = 'Cycle exists between {} and {}'.format(source, dest)
                 raise Exception(msg)
 
+        self.set_helper(TraversalHelper(process_edge=check_cycle))
         # do a Depth First Search (Forest style)
-        self.dfs(process_edge=check_cycle)
+        self.dfs()
         return sorted(self, key=lambda v: v.finish, reverse=True)

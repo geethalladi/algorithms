@@ -128,3 +128,14 @@ class TestGraphTraversalMixin:
         graph: IGraph = Graph.build('test_dfs_distance_directed',
                                     edges, directed=True)
         assert [v.id for v in graph.topological_sort()] == list('GABCFED')
+
+    def test_topo_cycle(self):
+        edges: Sequence[Edge] = [
+            ('A', 'B'),
+            ('B', 'C'),
+            ('C', 'D'),
+            ('D', 'A')
+        ]
+        graph: IGraph = Graph.build('test_dfs_distance_directed',
+                                    edges, directed=True)
+        print(graph.topological_sort())

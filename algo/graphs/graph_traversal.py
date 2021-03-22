@@ -118,17 +118,18 @@ class GraphTraversalMixin:
         # TODO: process_early(vertex)
 
         for nbr in vertex.get_connections():
+            # processing edge here
+            edge: EdgeContainer = vertex.get_edge(nbr)
+            if process_edge:
+                process_edge(vertex, nbr, edge)
+
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
-                edge: EdgeContainer = vertex.get_edge(nbr)
+                edge.state = State.PROCESSED
                 # setting the parent
                 nbr.set_parent(vertex, edge)
-                # processing edge here
-                edge.state = State.PROCESSED
-                if process_edge:
-                    process_edge(vertex, nbr, edge)
                 # recurse with the new edge
-                time = self.__dfs_visit(nbr, time)
+                time = self.__dfs_visit(nbr, time, process_edge)
 
         # Fully Processed
         log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
@@ -145,7 +146,7 @@ class GraphTraversalMixin:
 
         def check_cycle(source: Vertex, dest: Vertex, edge: EdgeContainer):
             log.info('Checking cycles in %s, %s, %s', source, dest, edge)
-            if dest.state == State.DISCOVERED:
+            if dest.get_state() == State.DISCOVERED:
                 msg = 'Cycle exists between %s and %s'.format(source, dest)
                 raise Exception(msg)
 

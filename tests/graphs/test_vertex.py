@@ -93,6 +93,11 @@ class TestVertex:
         assert v1.get_edge(v2) == v2.get_edge(v1)
 
     def test_same_edge_id(self):
+        """
+        This test is not a hard requirement. It's just
+        one of the ways of having the same edge state
+        in an undirected edge
+        """
         v1: Vertex = Vertex('a')
         v2: Vertex = Vertex('b')
         v1.add_edge(v2, 4, directed=False)

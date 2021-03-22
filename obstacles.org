@@ -6,7 +6,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Move the distance implementation inside Vertex
 ** Vertex's parent should be vertex
 - Currently it's a string
 ** Topological Sorting                                                :algo:
@@ -20,6 +19,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Move the distance implementation inside Vertex
 ** DONE While setting distance, use the distance from parent
 - Remove hard coding
 ** DONE For undirected graph, edge should be a single instance

@@ -6,7 +6,7 @@ import abc
 import logging as log
 import pdb
 
-from typing import Dict, Collection, Iterable
+from typing import Dict, Collection, Iterable, Optional
 
 # TODO: This should be a sibling package
 from algo.graphs.edge import Edge
@@ -45,6 +45,7 @@ class AbstractGraph(abc.ABC):
         self.vertices = {}
         self.num_vertices = 0
         self.num_connect_components = 0
+        self.helper = TraversalHelper()
 
     @postcondition(lambda x: len(x) >= 0)
     def get_vertices(self) -> Collection[str]:

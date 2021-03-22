@@ -4,8 +4,9 @@ Graph Traversal Implementation
 import logging as log
 from queue import Queue
 
+
 from algo.graphs.igraph import IGraph
-from algo.graphs.vertex import Vertex
+from algo.graphs.vertex import Vertex, EdgeContainer
 from algo.graphs.state import State
 
 
@@ -46,12 +47,14 @@ class GraphTraversalMixin:
                     succ.set_state(State.DISCOVERED)
                     # TODO: process_early(vertex)
                     vertices.put(succ)
-                    # set the parent
-                    succ.set_parent(current, 1)
+
                     # process_edge
                     log.info('Processing edge between (%s, %s)',
                              current.id, succ.id)
-                    current.get_edge(succ).state = State.PROCESSED
+                    edge: EdgeContainer = current.get_edge(succ)
+                    edge.state = State.PROCESSED
+                    # set the parent and the distance
+                    succ.set_parent(current, edge.weight)
 
             # Mark it as PROCESSED
             current.set_state(State.PROCESSED)
@@ -117,10 +120,12 @@ class GraphTraversalMixin:
         for nbr in vertex.get_connections():
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
-                nbr.parent = vertex.id
                 time = self.__dfs_visit(nbr, time)
                 # processing edge here
-                vertex.get_edge(nbr).state = State.PROCESSED
+                edge: EdgeContainer = vertex.get_edge(nbr)
+                edge.state = State.PROCESSED
+                # setting the parent and distance
+                nbr.set_parent(vertex, edge.weight)
 
         # Fully Processed
         log.info('Vertex %s is %s at %s', vertex, State.PROCESSED, time)

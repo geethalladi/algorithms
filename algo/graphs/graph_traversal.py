@@ -117,16 +117,23 @@ class GraphTraversalMixin:
         log.debug('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
         vertex.set_state(State.DISCOVERED)
         vertex.discovery, time = time, (time + 1)
-        # TODO: process_early(vertex)
+        # process vertex early
+        if self.helper.process_vertex_early:
+            self.helper.process_vertex_early(vertex)
 
         for nbr in vertex.get_connections():
-            # processing edge here
+            # There are more conditions here
             edge: EdgeContainer = vertex.get_edge(nbr)
-            if self.helper and self.helper.process_edge:
+            edge.state = State.DISCOVERED
+
+            # processing edge here
+            if self.helper.process_edge:
                 self.helper.process_edge(vertex, nbr, edge)
 
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
+                # Only these are the real edges
+                # that are walked through in DFS
                 edge.state = State.PROCESSED
                 # setting the parent
                 nbr.set_parent(vertex, edge)
@@ -137,7 +144,8 @@ class GraphTraversalMixin:
         log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
         vertex.set_state(State.PROCESSED)
         vertex.finish, time = time, (time + 1)
-        # process_late(vertex)
+        if self.helper.process_vertex_late:
+            self.helper.process_vertex_late(vertex)
 
         return time
 

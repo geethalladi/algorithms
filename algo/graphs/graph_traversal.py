@@ -120,12 +120,12 @@ class GraphTraversalMixin:
         for nbr in vertex.get_connections():
             # Found a new vertex
             if nbr.get_state() == State.UNDISCOVERED:
-                time = self.__dfs_visit(nbr, time)
                 # processing edge here
                 edge: EdgeContainer = vertex.get_edge(nbr)
                 edge.state = State.PROCESSED
                 # setting the parent and distance
                 nbr.set_parent(vertex, edge.weight)
+                time = self.__dfs_visit(nbr, time)
 
         # Fully Processed
         log.info('Vertex %s is %s at %s', vertex, State.PROCESSED, time)

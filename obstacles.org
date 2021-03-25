@@ -6,7 +6,8 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Dijkstra's Shortest Path (Single Source)                           :algo:
+** Updating Dijkstra's to use min heap
+** Implementing min / max heap
 ** Strongly Connected Components                                      :algo:
 ** Move traversal as a module
 - Out of IGraph
@@ -22,6 +23,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Dijkstra's Shortest Path (Single Source)                      :algo:
 ** DONE NamedSet with all three callable functions
 - process_edge
 - process_vertex_early

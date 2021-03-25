@@ -33,6 +33,7 @@ class IGraph(Protocol):
         """
         ...
 
+    # TODO: not required
     def set_helper(self, helper: TraversalHelper):
         """
         Set the traversal helper instance for this graph
@@ -59,6 +60,7 @@ class IGraph(Protocol):
         """
         ...
 
+    # TODO: not required
     def to_dot(self):
         """
         Convert the graph to dot representation
@@ -71,6 +73,7 @@ class IGraph(Protocol):
         """
         ...
 
+    # TODO: not required
     def view(self):
         """
         Visualize this graph
@@ -83,12 +86,14 @@ class IGraph(Protocol):
         """
         ...
 
+    # TODO: not required
     def stop_and_view(self):
         """
         Visualize this graph and stop execution
         """
         ...
 
+    # TODO: not required
     def dfs(self, start: str = None,
             process_edge: Callable[[Vertex, Vertex, EdgeContainer], None] = None):
         """
@@ -97,6 +102,7 @@ class IGraph(Protocol):
         """
         ...
 
+    # TODO: not required
     def bfs(self, start: str):
         """
         Do a breadth first search based traversal
@@ -111,6 +117,7 @@ class IGraph(Protocol):
         """
         ...
 
+    # TODO: not required
     @classmethod
     def build(cls, name: str, edges: Collection[Edge], directed: bool) -> 'IGraph':
         """

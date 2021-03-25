@@ -41,6 +41,8 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
 
     # Insert all the vertex into a PQ
     # WeightedVertex = Tuple[int, Vertex]
+    # Using a list for now
+    # Switch to a min-heap
     vertices: List[WeightedVertex] = []
     for v in graph:
         vertices.append(WeightedVertex(v.distance, v))
@@ -52,10 +54,13 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
             edge: EdgeContainer = v.get_edge(neighbour)
             distance = v.distance + edge.weight
 
+            # if distance is less than the existing distance
+            # then update
             if distance < neighbour.distance:
                 log.debug('Setting the new weight of %s to %s',
                           neighbour, distance)
                 neighbour.set_parent(v, edge)
+                # update the heap
                 update_vertex(vertices, neighbour, distance)
 
     return graph

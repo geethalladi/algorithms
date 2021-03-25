@@ -1,13 +1,14 @@
 """
 Implementation of Shortest path algorithms
 """
+import sys
 import logging as log
 
 from dataclasses import dataclass, field
-from queue import PriorityQueue, Queue
+from typing import List
 
 from algo.graphs.igraph import IGraph
-from algo.graphs.vertex import Vertex
+from algo.graphs.vertex import Vertex, EdgeContainer
 
 # Only expose these methods
 __all__ = ['dijkstra']
@@ -40,15 +41,57 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
 
     # Insert all the vertex into a PQ
     # WeightedVertex = Tuple[int, Vertex]
-    queue: Queue = PriorityQueue()
+    vertices: List[WeightedVertex] = []
     for v in graph:
-        queue.put(WeightedVertex(v.distance, v))
+        vertices.append(WeightedVertex(v.distance, v))
+
+    while len(vertices) > 0:
+        v = get_smallest(vertices)
+        log.debug('Using vertex %s with distance %s', v, v.distance)
+        for neighbour in v.get_connections():
+            edge: EdgeContainer = v.get_edge(neighbour)
+            distance = v.distance + edge.weight
+
+            if distance < neighbour.distance:
+                log.debug('Setting the new weight of %s to %s',
+                          neighbour, distance)
+                neighbour.set_parent(v, edge)
+                update_vertex(vertices, neighbour, distance)
 
     return graph
+
+
+def update_vertex(vertices: List[WeightedVertex], vertex: Vertex, distance: int):
+    """
+    Update this vertex's new distance
+    """
+    for wv in vertices:
+        if wv.vertex == vertex:
+            wv.distance = distance
+            return
+
+    assert False, 'Vertex Weight not updated'
+
+
+def get_smallest(vertices: List[WeightedVertex]) -> Vertex:
+    """
+    Return the vertex with the smallest distance
+    """
+    assert len(vertices) > 0, 'Empty Vertices'
+    i, result = 0, vertices[0]
+    for j in range(1, len(vertices)):
+        wv = vertices[j]
+        if wv.distance < result.distance:
+            result = wv
+            i = j
+
+    vertices.pop(i)
+    return result.vertex
 
 
 def init_distance(graph: IGraph):
     """
     Initialize distance of every vertex to infinity
     """
-    pass
+    for v in graph:
+        v.distance = sys.maxsize

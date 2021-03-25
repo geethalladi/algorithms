@@ -8,6 +8,12 @@
 The following are the hurdles / obstacles faced while implementing algorithms in python
 ** Dijkstra's Shortest Path (Single Source)                           :algo:
 ** Strongly Connected Components                                      :algo:
+** Move traversal as a module
+- Out of IGraph
+** View can be extracted as a module as well
+- Take IGraph as a argument
+** Builder as a module
+- Returns IGraph as a response
 ** Domain Specific Language in hy
 - Lisp dialect for python
 ** Warnsdroff algorithm

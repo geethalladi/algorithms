@@ -6,17 +6,29 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Updating Dijkstra's to use min heap
-** Implementing min / max heap
-** Strongly Connected Components                                      :algo:
 ** Move traversal as a module
 - Out of IGraph
-** View can be extracted as a module as well
-- Take IGraph as a argument
+** Prim's minimal spanning tree                                       :algo:
+** Implementing min / max heap                                        :algo:
 ** Builder as a module
 - Returns IGraph as a response
+** Strongly Connected Components                                      :algo:
+** Heap Sort                                                          :algo:
+** Edge Classification using DFS
+- Tree
+- Forward
+- Backward
+- Cross
+** Articulation Vertex                                                :algo:
+** View can be extracted as a module as well
+- Take IGraph as a argument
+** Union find                                                         :algo:
 ** Domain Specific Language in hy
 - Lisp dialect for python
+** Kruskal's minimal spanning tree                                    :algo:
+** Priority Queue using heap
+** Updating Dijkstra's to use min heap
+** Basic network flow                                                 :algo:
 ** Warnsdroff algorithm
 - for knight's tour
 ** Modules and their imports                                            :py:

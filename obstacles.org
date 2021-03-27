@@ -6,12 +6,10 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Move traversal as a module
-- Out of IGraph
-** Prim's minimal spanning tree                                       :algo:
-** Implementing min / max heap                                        :algo:
 ** Builder as a module
 - Returns IGraph as a response
+** Prim's minimal spanning tree                                       :algo:
+** Implementing min / max heap                                        :algo:
 ** Graph with transpose method
 ** Strongly Connected Components                                      :algo:
 ** Heap Sort                                                          :algo:
@@ -36,6 +34,11 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Topological Sorting into its own module
+** DONE has_cycle for a graph                                         :algo:
+- extracting this from topological sort
+** DONE Move traversal as a module
+- Out of IGraph
 ** DONE Complete reading pythonds graph chapter
 ** DONE Dijkstra's Shortest Path (Single Source)                      :algo:
 ** DONE NamedSet with all three callable functions

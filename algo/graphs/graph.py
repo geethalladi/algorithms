@@ -11,7 +11,6 @@ from typing import Dict, Collection, Iterable, Optional
 # TODO: This should be a sibling package
 from algo.graphs.edge import Edge
 from algo.graphs.graph_builder import GraphBuilderMixin
-from algo.graphs.graph_traversal import GraphTraversalMixin
 from algo.graphs.graph_view import GraphViewMixin
 from algo.graphs.igraph import IGraph
 from algo.graphs.traversal_helper import TraversalHelper
@@ -199,7 +198,7 @@ class AbstractGraph(abc.ABC):
 # The first one always wins
 
 
-class Graph(GraphViewMixin, GraphBuilderMixin, GraphTraversalMixin, AbstractGraph):
+class Graph(GraphViewMixin, GraphBuilderMixin, AbstractGraph):
     """
     A Concerte Graph Implementation
     """

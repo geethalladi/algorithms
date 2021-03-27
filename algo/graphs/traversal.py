@@ -154,20 +154,3 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
         graph.helper.process_vertex_late(vertex)
 
     return time
-
-
-def topological_sort(graph: IGraph) -> Sequence[Vertex]:
-    """
-    Topological sorting of the graph
-    """
-
-    def check_cycle(source: Vertex, dest: Vertex, edge: EdgeContainer):
-        log.info('Checking cycles in %s, %s, %s', source, dest, edge)
-        if dest.get_state() == State.DISCOVERED:
-            msg = 'Cycle exists between {} and {}'.format(source, dest)
-            raise Exception(msg)
-
-    graph.set_helper(TraversalHelper(process_edge=check_cycle))
-    # do a Depth First Search (Forest style)
-    depth_first_search(graph)
-    return sorted(graph, key=lambda v: v.finish, reverse=True)

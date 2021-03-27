@@ -2,13 +2,26 @@
 Graph Traversal Implementation
 """
 import logging as log
+from dataclasses import dataclass
 from queue import Queue
+from typing import Callable, Optional
 
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
 from algo.graphs.vertex import Vertex, EdgeContainer
 
-__all__ = ['breadth_first_search', 'depth_first_search']
+__all__ = ['breadth_first_search', 'depth_first_search', 'Helper']
+
+
+@dataclass
+class Helper:
+    """
+    Container with helpers during Traversal
+    """
+    process_vertex_early: Optional[Callable[[Vertex], None]] = None
+    process_vertex_late: Optional[Callable[[Vertex], None]] = None
+    process_edge: Optional[Callable[[
+        Vertex, Vertex, EdgeContainer], None]] = None
 
 
 def breadth_first_search(graph: IGraph, start: str):

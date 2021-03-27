@@ -3,11 +3,12 @@ Graph Algorithm Implementations
 """
 import logging as log
 
+from algo.graphs.edge import Edge
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
 from algo.graphs.traversal import depth_first_search as dfs
 from algo.graphs.traversal import Hooks
-from algo.graphs.vertex import Vertex, EdgeContainer
+from algo.graphs.vertex import Vertex
 
 __all__ = ['has_cycle']
 
@@ -31,7 +32,7 @@ def has_cycle(graph: IGraph) -> bool:
         return True
 
 
-def raise_back_edge(source: Vertex, dest: Vertex, edge: EdgeContainer):
+def raise_back_edge(source: Vertex, dest: Vertex, edge: Edge):
     """
     Check if the edge is a back edge
     """

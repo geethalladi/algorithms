@@ -99,7 +99,7 @@ class Vertex:
 
     def __add_edge(self, other: 'Vertex', edge: Edge, directed: bool):
         """
-        Private function for adding EdgeContainer
+        Private function for adding Edge
         """
         assert not directed, 'Adding edge container instance for a directed graph'
 

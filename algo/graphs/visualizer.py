@@ -7,7 +7,7 @@ from typing import Union
 
 import graphviz  # type: ignore
 
-from algo.graphs.vertex import EdgeContainer
+from algo.graphs.edge import Edge
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
 
@@ -55,7 +55,7 @@ class GraphViewMixin:
         log.debug("Adding edge between %s and %s", source.get_id(),
                   dest.get_id())
 
-        edge: EdgeContainer = source.get_edge(dest)
+        edge: Edge = source.get_edge(dest)
         color: str = edge.state.get_color()
 
         if edge.weight == 1:

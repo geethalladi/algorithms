@@ -6,9 +6,11 @@ from dataclasses import dataclass
 from queue import Queue
 from typing import Callable, Optional
 
+
+from algo.graphs.edge import Edge
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
-from algo.graphs.vertex import Vertex, EdgeContainer
+from algo.graphs.vertex import Vertex
 
 __all__ = ['breadth_first_search', 'depth_first_search', 'Hooks']
 
@@ -20,8 +22,7 @@ class Hooks:
     """
     process_vertex_early: Optional[Callable[[Vertex], None]] = None
     process_vertex_late: Optional[Callable[[Vertex], None]] = None
-    process_edge: Optional[Callable[[
-        Vertex, Vertex, EdgeContainer], None]] = None
+    process_edge: Optional[Callable[[Vertex, Vertex, Edge], None]] = None
 
 
 def breadth_first_search(graph: IGraph, start: str):
@@ -55,7 +56,7 @@ def breadth_first_search(graph: IGraph, start: str):
                 # TODO: process_early(vertex)
                 vertices.put(succ)
 
-                edge: EdgeContainer = current.get_edge(succ)
+                edge: Edge = current.get_edge(succ)
                 # process_edge
                 log.debug('Processing edge between (%s, %s)',
                           current.id, succ.id)
@@ -135,7 +136,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
 
         # Ideal Condition
         # To make sure edge is processed only once
-        edge: EdgeContainer = vertex.get_edge(nbr)
+        edge: Edge = vertex.get_edge(nbr)
         if ((nbr.get_state() == State.DISCOVERED) or graph.directed):
             # only process edge (leave the vertex)
             edge.state = State.DISCOVERED

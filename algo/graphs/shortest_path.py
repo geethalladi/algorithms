@@ -7,8 +7,9 @@ import logging as log
 from dataclasses import dataclass, field
 from typing import List
 
+from algo.graphs.edge import Edge
 from algo.graphs.igraph import IGraph
-from algo.graphs.vertex import Vertex, EdgeContainer
+from algo.graphs.vertex import Vertex
 
 # Only expose these methods
 __all__ = ['dijkstra']
@@ -51,7 +52,7 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
         v = get_smallest(vertices)
         log.debug('Using vertex %s with distance %s', v, v.distance)
         for neighbour in v.get_connections():
-            edge: EdgeContainer = v.get_edge(neighbour)
+            edge: Edge = v.get_edge(neighbour)
             distance = v.distance + edge.weight
 
             # if distance is less than the existing distance

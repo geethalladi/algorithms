@@ -10,7 +10,9 @@ from algo.graphs.edge import Edge
 from algo.graphs.state import State
 from algo.utils.contracts import postcondition
 
-log.basicConfig(level=log.INFO)
+# log.basicConfig(level=log.INFO)
+
+__all__ = ['Vertex']
 
 
 class Vertex:

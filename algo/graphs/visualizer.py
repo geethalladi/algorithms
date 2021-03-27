@@ -13,6 +13,8 @@ from algo.graphs.vertex import Vertex
 
 GraphView = Union[IGraph, 'GraphViewMixin']
 
+__all__ = ['GraphViewMixin']
+
 
 class GraphViewMixin:
     """

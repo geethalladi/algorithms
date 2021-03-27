@@ -17,6 +17,8 @@ from algo.graphs.visualizer import GraphViewMixin
 
 from algo.utils.contracts import postcondition
 
+__all__ = ['Graph']
+
 
 class AbstractGraph(abc.ABC):
     """

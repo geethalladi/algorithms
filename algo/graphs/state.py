@@ -4,6 +4,8 @@ State Enumeration for processing Vertex and Edge
 
 from enum import Enum, auto, unique
 
+__all__ = ['State']
+
 
 @unique
 class State(Enum):

@@ -7,6 +7,8 @@ from typing import Collection, Protocol, Sequence, runtime_checkable
 from algo.graphs.edge import EdgeInput
 from algo.graphs.vertex import Vertex
 
+__all__ = ['IGraph']
+
 
 @runtime_checkable
 class IGraph(Protocol):

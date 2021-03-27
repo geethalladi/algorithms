@@ -9,9 +9,10 @@ from typing import List, Sequence, Set, Type
 from algo.graphs.edge import EdgeInput
 from algo.graphs.igraph import IGraph
 
+__all__ = ['GraphBuilderMixin']
 
-# pylint: disable=too-few-public-methods
-class GraphBuilderMixin:
+
+class GraphBuilderMixin:  # pylint: disable=too-few-public-methods
     """
     Graph Builder Mixin
     """

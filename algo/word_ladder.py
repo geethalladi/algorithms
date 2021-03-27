@@ -11,7 +11,7 @@ from typing import Dict, Sequence, List
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
-from algo.graphs.graph_traversal import bfs
+from algo.graphs.traversal import breadth_first_search as bfs
 from algo.graphs.vertex import Vertex
 
 log.basicConfig(level=log.INFO)

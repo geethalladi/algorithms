@@ -11,6 +11,7 @@ from typing import Dict, Sequence, List
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
+from algo.graphs.graph_traversal import bfs
 from algo.graphs.vertex import Vertex
 
 log.basicConfig(level=log.INFO)
@@ -114,7 +115,7 @@ def find_path_bfs(graph: IGraph, start: str, end: str) -> Sequence[Vertex]:
     Using Breadth First Search, find the path between start and end
     """
     # traverse the entire graph using BFS
-    graph.bfs(start)
+    bfs(graph, start)
     return __find_path(graph.get_vertex(start), graph.get_vertex(end))
 
 

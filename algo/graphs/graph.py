@@ -166,6 +166,12 @@ class AbstractGraph(abc.ABC):
         Return the transpose of this graph.
         Does  not change the existing graph
         """
+        assert isinstance(self, IGraph), "Instance not a graph"
+
+        if not self.directed:
+            # For an undirected graph, the
+            # transpose is itself
+            return self
         return self
 
     @abc.abstractmethod

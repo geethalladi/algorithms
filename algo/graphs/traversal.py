@@ -10,8 +10,10 @@ from algo.graphs.traversal_helper import TraversalHelper
 from algo.graphs.state import State
 from algo.graphs.vertex import Vertex, EdgeContainer
 
+__all__ = ['breadth_first_search', 'depth_first_search']
 
-def bfs(graph: IGraph, start: str):
+
+def breadth_first_search(graph: IGraph, start: str):
     """
     Breadth First Search based traversal
     from the given start node
@@ -57,7 +59,17 @@ def bfs(graph: IGraph, start: str):
     return graph
 
 
-def __dfs_single_node(graph: IGraph, start: str) -> int:
+def depth_first_search(graph: IGraph, start: str = None) -> int:
+    """
+    Depth First Search based traversal
+    """
+    if start is None:
+        return dfs_forest(graph)
+
+    return dfs_single_node(graph, start)
+
+
+def dfs_single_node(graph: IGraph, start: str) -> int:
     """
     Depth First Search starting from the given node
     """
@@ -68,37 +80,10 @@ def __dfs_single_node(graph: IGraph, start: str) -> int:
 
     # DFS from the given start node
     log.info('Starting DFS from %s', start)
-    return __dfs_visit(graph, graph.get_vertex(start))
+    return dfs_visit(graph, graph.get_vertex(start))
 
 
-def topological_sort(graph: IGraph) -> Sequence[Vertex]:
-    """
-    Topological sorting of the graph
-    """
-
-    def check_cycle(source: Vertex, dest: Vertex, edge: EdgeContainer):
-        log.info('Checking cycles in %s, %s, %s', source, dest, edge)
-        if dest.get_state() == State.DISCOVERED:
-            msg = 'Cycle exists between {} and {}'.format(source, dest)
-            raise Exception(msg)
-
-    graph.set_helper(TraversalHelper(process_edge=check_cycle))
-    # do a Depth First Search (Forest style)
-    dfs(graph)
-    return sorted(graph, key=lambda v: v.finish, reverse=True)
-
-
-def dfs(graph: IGraph, start: str = None) -> int:
-    """
-    Depth First Search based traversal
-    """
-    if start is None:
-        return __dfs_forest(graph)
-
-    return __dfs_single_node(graph, start)
-
-
-def __dfs_forest(graph: IGraph) -> int:
+def dfs_forest(graph: IGraph) -> int:
     """
     Depth First Forest Traversal
     """
@@ -111,12 +96,12 @@ def __dfs_forest(graph: IGraph) -> int:
     for v in graph:
         if v.get_state() == State.UNDISCOVERED:
             graph.num_connect_components += 1
-            time = __dfs_visit(graph, v, time)
+            time = dfs_visit(graph, v, time)
 
     return time
 
 
-def __dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
+def dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
     """
     Visit the given node during DFS Traversal
     """
@@ -159,7 +144,7 @@ def __dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
             edge.state = State.PROCESSED
 
             # recurse with the new edge
-            time = __dfs_visit(graph, nbr, time)
+            time = dfs_visit(graph, nbr, time)
 
     # Fully Processed
     log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
@@ -169,3 +154,20 @@ def __dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
         graph.helper.process_vertex_late(vertex)
 
     return time
+
+
+def topological_sort(graph: IGraph) -> Sequence[Vertex]:
+    """
+    Topological sorting of the graph
+    """
+
+    def check_cycle(source: Vertex, dest: Vertex, edge: EdgeContainer):
+        log.info('Checking cycles in %s, %s, %s', source, dest, edge)
+        if dest.get_state() == State.DISCOVERED:
+            msg = 'Cycle exists between {} and {}'.format(source, dest)
+            raise Exception(msg)
+
+    graph.set_helper(TraversalHelper(process_edge=check_cycle))
+    # do a Depth First Search (Forest style)
+    depth_first_search(graph)
+    return sorted(graph, key=lambda v: v.finish, reverse=True)

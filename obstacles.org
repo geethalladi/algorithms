@@ -12,6 +12,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** Implementing min / max heap                                        :algo:
 ** Builder as a module
 - Returns IGraph as a response
+** Graph with transpose method
 ** Strongly Connected Components                                      :algo:
 ** Heap Sort                                                          :algo:
 ** Edge Classification using DFS
@@ -35,6 +36,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Complete reading pythonds graph chapter
 ** DONE Dijkstra's Shortest Path (Single Source)                      :algo:
 ** DONE NamedSet with all three callable functions
 - process_edge

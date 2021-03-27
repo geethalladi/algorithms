@@ -34,7 +34,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - As of now, using the full package path
 - Find ways to use relative package paths
 ** DONE Transpose method for edge
-- required for Graph Transponse
+- required for Graph Transpose
 ** DONE Get rid of EdgeContainer
 - Moved all the edge classes to a single module
 - Renamed existing Edge -> EdgeInput (Type for getting input about edge)

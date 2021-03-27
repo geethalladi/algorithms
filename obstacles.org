@@ -30,6 +30,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Get rid of EdgeContainer
+- Moved all the edge classes to a single module
+- Renamed existing Edge -> EdgeInput (Type for getting input about edge)
+- EdgeContainer -> Edge
 ** DONE Removing Traversalhelper from Graph
 ** DONE Topological Sorting into its own module
 ** DONE has_cycle for a graph                                         :algo:

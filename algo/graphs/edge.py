@@ -2,7 +2,24 @@
 Edge ADT
 """
 
+from dataclasses import dataclass
 from typing import NamedTuple, Tuple, Optional, Iterable
+
+from algo.graphs.state import State
+
+__all__ = ['EdgeContainer', 'EdgeInput']
+
+
+@dataclass
+class EdgeContainer:
+    """
+    A Simple Container for holding edge details
+    """
+    # starting really simple
+    # consciously avoiding direction for now
+    # can be added if there is a requirement
+    weight: int = 1
+    state: State = State.UNDISCOVERED
 
 
 class EdgeInput(NamedTuple):

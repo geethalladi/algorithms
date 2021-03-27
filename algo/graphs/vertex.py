@@ -4,27 +4,15 @@ Vertex abstract data type
 
 import logging as log
 
-from dataclasses import dataclass
 from typing import Dict, Collection
 
+from algo.graphs.edge import EdgeContainer
 from algo.graphs.state import State
 from algo.utils.contracts import postcondition
 
 log.basicConfig(level=log.INFO)
 
 # Moving away from NamedTuples as they are immutable
-
-
-@dataclass
-class EdgeContainer:
-    """
-    A Simple Container for holding edge details
-    """
-    # starting really simple
-    # consciously avoiding direction for now
-    # can be added if there is a requirement
-    weight: int = 1
-    state: State = State.UNDISCOVERED
 
 
 class Vertex:

@@ -5,7 +5,6 @@ Graph Protocol
 from typing import Collection, Protocol, runtime_checkable
 
 from algo.graphs.edge import Edge
-from algo.graphs.traversal_helper import TraversalHelper
 from algo.graphs.vertex import Vertex
 
 
@@ -19,7 +18,6 @@ class IGraph(Protocol):
     directed: bool = False
     num_vertices: int = 0
     num_connect_components: int = 0
-    helper: TraversalHelper
 
     def get_vertices(self) -> Collection[str]:
         """
@@ -30,13 +28,6 @@ class IGraph(Protocol):
     def get_vertex(self, key: str) -> Vertex:
         """
         Return the vertex for this key
-        """
-        ...
-
-    # TODO: not required
-    def set_helper(self, helper: TraversalHelper):
-        """
-        Set the traversal helper instance for this graph
         """
         ...
 

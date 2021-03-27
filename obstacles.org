@@ -6,7 +6,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Removing Traversalhelper from Graph
 ** Builder as a module
 - Returns IGraph as a response
 ** Prim's minimal spanning tree                                       :algo:
@@ -35,6 +34,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Removing Traversalhelper from Graph
 ** DONE Topological Sorting into its own module
 ** DONE has_cycle for a graph                                         :algo:
 - extracting this from topological sort

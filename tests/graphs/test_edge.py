@@ -30,3 +30,12 @@ class TestEdge:
         assert edge.weight == 4
         assert edge.directed is True
         assert edge.state is State.DISCOVERED
+
+    def test_transponse(self):
+        edge: Edge = Edge('A', 'B', 4, directed=True, state=State.DISCOVERED)
+        result: Edge = edge.transpose()
+        assert result.source == 'B'
+        assert result.dest == 'A'
+        assert result.weight == 4
+        assert result.directed is True
+        assert result.state is State.UNDISCOVERED

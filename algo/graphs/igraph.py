@@ -2,9 +2,9 @@
 Graph Protocol
 """
 
-from typing import Collection, Protocol, runtime_checkable
+from typing import Collection, Protocol, Sequence, runtime_checkable
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import EdgeInput
 from algo.graphs.vertex import Vertex
 
 
@@ -83,7 +83,7 @@ class IGraph(Protocol):
         ...
 
     @classmethod
-    def build(cls, name: str, edges: Collection[Edge], directed: bool) -> 'IGraph':
+    def build(cls, name: str, edges: Sequence[EdgeInput], directed: bool) -> 'IGraph':
         """
         Build a graph from the edges
         """

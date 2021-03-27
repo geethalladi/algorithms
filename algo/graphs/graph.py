@@ -6,14 +6,14 @@ import abc
 import logging as log
 import pdb
 
-from typing import Dict, Collection, Iterable
+from typing import Collection, Dict, Iterable, Sequence
 
 # TODO: This should be a sibling package
-from algo.graphs.edge import Edge
 from algo.graphs.builder import GraphBuilderMixin
-from algo.graphs.visualizer import GraphViewMixin
+from algo.graphs.edge import EdgeInput
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
+from algo.graphs.visualizer import GraphViewMixin
 
 from algo.utils.contracts import postcondition
 
@@ -181,7 +181,7 @@ class AbstractGraph(abc.ABC):
         return cls(name, directed)
 
     @abc.abstractclassmethod
-    def build(cls, name: str, edges: Collection[Edge], directed: bool) -> IGraph:
+    def build(cls, name: str, edges: Sequence[EdgeInput], directed: bool) -> IGraph:
         """
         Construct a graph instance from the edges
         """

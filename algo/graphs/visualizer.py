@@ -33,7 +33,7 @@ class GraphViewMixin:
         Add nodes to the dot representation
         """
         log.debug('Adding nodes to dot representation')
-        dot.node(vertex.id, vertex.get_description(),
+        dot.node(vertex.id, str(vertex),
                  color=vertex.get_color())
 
     @classmethod

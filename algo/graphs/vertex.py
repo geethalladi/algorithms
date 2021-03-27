@@ -76,17 +76,6 @@ class Vertex:
         """
         return self.connected_to.keys()
 
-    def get_description(self) -> str:
-        """
-        Get the vertex description
-        """
-        if self.discovery == 0 and self.finish == 0:
-            return self.id
-
-        return '{} ({}, {})'.format(self.id,
-                                    self.discovery,
-                                    self.finish)
-
     def get_edge(self, other: 'Vertex') -> EdgeContainer:
         """
         Return the edge instance associated with the given vertex
@@ -197,4 +186,9 @@ class Vertex:
         """
         Return the string representation
         """
-        return self.id
+        if self.discovery == 0 and self.finish == 0:
+            return self.id
+
+        return '{} ({}, {})'.format(self.id,
+                                    self.discovery,
+                                    self.finish)

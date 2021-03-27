@@ -6,8 +6,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Builder as a module
-- Returns IGraph as a response
 ** Prim's minimal spanning tree                                       :algo:
 ** Implementing min / max heap                                        :algo:
 ** Graph with transpose method
@@ -19,8 +17,6 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Backward
 - Cross
 ** Articulation Vertex                                                :algo:
-** View can be extracted as a module as well
-- Take IGraph as a argument
 ** Union find                                                         :algo:
 ** Domain Specific Language in hy
 - Lisp dialect for python
@@ -211,6 +207,13 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 
 ** DONE Directory Structure
 - Decide how the source files and test files are going to be structured
+** CANCELLED View can be extracted as a module as well
+- Take IGraph as a argument
+- It is easy to call view on a graph instance
+- Removed stop_and_view method as it was redundant
+** CANCELLED Builder as a module
+- Returns IGraph as a response
+- Builder with Graph helps build things on top
 ** CANCELLED Vertex as a container type
 - Using literal eval for the time being
 ** CANCELLED Emacs auto import                                       :emacs:

@@ -9,6 +9,8 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Vertex with neighbours and edges abstraction
+- helps to have these abstractions to build on top
 ** Prim's minimal spanning tree                                       :algo:
 ** Implementing min / max heap                                        :algo:
 ** Strongly Connected Components                                      :algo:
@@ -23,10 +25,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** Domain Specific Language in hy
 - Lisp dialect for python
 ** Kruskal's minimal spanning tree                                    :algo:
-** Priority Queue using heap
+** Priority Queue using heap                                          :algo:
 ** Updating Dijkstra's to use min heap
 ** Basic network flow                                                 :algo:
-** Warnsdroff algorithm
+** Warnsdroff algorithm                                               :algo:
 - for knight's tour
 ** Modules and their imports                                            :py:
 *** Sibling Package

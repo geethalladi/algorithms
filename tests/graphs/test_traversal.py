@@ -8,7 +8,9 @@ from typing import Sequence
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
-from algo.graphs.graph_traversal import bfs, dfs, topological_sort
+from algo.graphs.traversal import breadth_first_search as bfs
+from algo.graphs.traversal import depth_first_search as dfs
+from algo.graphs.traversal import topological_sort
 
 import pytest
 

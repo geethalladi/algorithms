@@ -10,8 +10,6 @@ from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.sort import topological_sort
 
-import pytest
-
 
 class TestGraphSort:
     """

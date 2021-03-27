@@ -6,7 +6,7 @@ import logging as log
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
 from algo.graphs.traversal import depth_first_search as dfs
-from algo.graphs.traversal_helper import TraversalHelper
+from algo.graphs.traversal import Hooks
 from algo.graphs.vertex import Vertex, EdgeContainer
 
 __all__ = ['has_cycle']
@@ -22,16 +22,13 @@ def has_cycle(graph: IGraph) -> bool:
     """
     Check if the graph has a cycle
     """
-    graph.set_helper(TraversalHelper(process_edge=raise_back_edge))
     try:
-        dfs(graph)
+        # do a depth first forest search with the given hooks
+        dfs(graph, None, Hooks(process_edge=raise_back_edge))
+        return False
     except CycleError as exp:
         log.info('Cycle found: %s', exp)
         return True
-    finally:
-        # clear the helper
-        graph.set_helper(TraversalHelper())
-    return False
 
 
 def raise_back_edge(source: Vertex, dest: Vertex, edge: EdgeContainer):

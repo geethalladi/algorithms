@@ -4,9 +4,9 @@
 # pylint: disable=no-self-use
 from typing import Sequence
 
+from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
-from algo.graphs.edge import Edge
 
 
 class TestGraphBuilderMixin:
@@ -15,7 +15,7 @@ class TestGraphBuilderMixin:
     """
 
     def setup_method(self):
-        self.edges: Sequence[Edge] = [
+        self.edges: Sequence[EdgeInput] = [
             ('a', 'b', 5),
             ('a', 'c', 10),
             ('b', 'e', 20),

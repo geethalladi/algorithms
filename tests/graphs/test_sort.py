@@ -5,7 +5,7 @@
 
 from typing import Sequence
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.sort import topological_sort
@@ -16,10 +16,10 @@ class TestGraphSort:
     A Test Suite for Sorting Graphs
     """
 
-    edges: Sequence[Edge]
+    edges: Sequence[EdgeInput]
 
     def test_topological_sorting(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('3/4 cup milk', '1 cup mix'),
             ('1 egg', '1 cup mix'),
             ('1 Tbl Oil', '1 cup mix'),
@@ -35,7 +35,7 @@ class TestGraphSort:
         topological_sort(graph)
 
     def test_topological_sorting_2(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('A', 'B'),
             ('A', 'C'),
             ('B', 'C'),
@@ -52,7 +52,7 @@ class TestGraphSort:
         assert [v.id for v in topological_sort(graph)] == list('GABCFED')
 
     def test_topo_cycle(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('A', 'B'),
             ('B', 'C'),
             ('C', 'D'),

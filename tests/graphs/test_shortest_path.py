@@ -5,7 +5,7 @@
 
 from typing import Sequence
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.shortest_path import dijkstra
@@ -18,7 +18,7 @@ class TestDijkstra:
     DG: IGraph
 
     def setup_method(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('u', 'v', 2),
             ('u', 'x', 1),
             ('u', 'w', 5),

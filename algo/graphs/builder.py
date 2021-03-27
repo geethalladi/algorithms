@@ -4,8 +4,9 @@ Follows the builder pattern.
 """
 import logging as log
 
-from typing import Collection, Set, List, Type
-from algo.graphs.edge import Edge
+from typing import List, Sequence, Set, Type
+
+from algo.graphs.edge import EdgeInput
 from algo.graphs.igraph import IGraph
 
 
@@ -16,7 +17,7 @@ class GraphBuilderMixin:
     """
 
     @classmethod
-    def __vertices(cls, edges: Collection[Edge]) -> Set[str]:
+    def __vertices(cls, edges: Sequence[EdgeInput]) -> Set[str]:
         """
         Return the unique set of vertices from the edge list
         """
@@ -27,14 +28,14 @@ class GraphBuilderMixin:
         return result
 
     @classmethod
-    def build(cls: Type[IGraph], name: str, lst: Collection[Edge], directed=False) -> IGraph:
+    def build(cls: Type[IGraph], name: str, lst: Sequence[EdgeInput], directed=False) -> IGraph:
         """
         Build a graph instance
         """
         assert len(lst) > 0, "Empty Edge list"
 
         result: IGraph = cls._create(name, directed)
-        edges: List[Edge] = Edge.make(lst)
+        edges: List[EdgeInput] = EdgeInput.make(lst)
         vertices: Set[str] = GraphBuilderMixin.__vertices(edges)
 
         # Add vertices

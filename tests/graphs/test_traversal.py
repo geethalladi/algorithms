@@ -5,7 +5,7 @@
 
 from typing import Sequence
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.traversal import breadth_first_search as bfs
@@ -17,7 +17,7 @@ class TestGraphTraversal:
     A Test Suite for GraphTraversal
     """
 
-    edges: Sequence[Edge]
+    edges: Sequence[EdgeInput]
 
     def setup_method(self):
         self.edges = [
@@ -58,7 +58,7 @@ class TestGraphTraversal:
         assert graph.get_vertex('D').parent.id == 'E'
 
     def test_dfs_parent_directed(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('a', 'b'),
             ('b', 'c'),
             ('d', 'e'),
@@ -80,7 +80,7 @@ class TestGraphTraversal:
         assert graph.get_vertex('F').parent.id == 'E'
 
     def test_dfs_distance_directed(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('a', 'b'),
             ('b', 'c'),
             ('d', 'e'),

@@ -5,9 +5,9 @@
 
 from typing import Sequence
 
-from algo.graphs.igraph import IGraph
+from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
-from algo.graphs.edge import Edge
+from algo.graphs.igraph import IGraph
 
 import pytest  # type: ignore
 
@@ -20,7 +20,7 @@ class TestDigraphView:
     DG: Graph
 
     def setup_method(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('a', 'b', 5),
             ('b', 'c', 6),
             ('d', 'e', 5),
@@ -44,7 +44,7 @@ class TestGraphView:
     G: Graph
 
     def setup_method(self):
-        edges: Sequence[Edge] = [
+        edges: Sequence[EdgeInput] = [
             ('a', 'b', 5),
             ('b', 'c', 6),
             ('d', 'e', 5),

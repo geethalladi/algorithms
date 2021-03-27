@@ -5,7 +5,7 @@ Edge ADT
 from typing import NamedTuple, Tuple, Optional, Iterable
 
 
-class Edge(NamedTuple):
+class EdgeInput(NamedTuple):
     """
     Edge as a named tuple
     """
@@ -24,11 +24,11 @@ class Edge(NamedTuple):
         Make a single edge instance
         """
         if len(tup) == 3 and tup[2] is not None:
-            return Edge(tup[0], tup[1], tup[2])
-        return Edge(source=tup[0], dest=tup[1], weight=1)
+            return EdgeInput(tup[0], tup[1], tup[2])
+        return EdgeInput(source=tup[0], dest=tup[1], weight=1)
 
     @classmethod
-    def make(cls, iterable: Iterable['Edge']):
+    def make(cls, iterable: Iterable['EdgeInput']):
         """
         Writing make specifically for edges
         """

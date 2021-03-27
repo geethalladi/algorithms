@@ -8,7 +8,7 @@ import logging as log
 
 from typing import Dict, Sequence, List
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.traversal import breadth_first_search as bfs
@@ -85,14 +85,14 @@ def to_buckets(words: Sequence[str]) -> Dict[str, List[str]]:
     return result
 
 
-def add_to_edges(edges: List[Edge], words: Sequence[str]):
+def add_to_edges(edges: List[EdgeInput], words: Sequence[str]):
     """
     Add each pair for words into an edge
     """
     length = len(words)
     for i in range(0, length):
         for j in range((i + 1), length):
-            e: Edge = Edge(words[i], words[j])
+            e: EdgeInput = EdgeInput(words[i], words[j])
             edges.append(e)
 
 
@@ -101,7 +101,7 @@ def construct_word_ladder(words: Sequence[str]):
     Construct a graph from the given dictionary words
     """
     buckets: Dict[str, List[str]] = to_buckets(words)
-    edges: List[Edge] = []
+    edges: List[EdgeInput] = []
 
     for _, ws in buckets.items():
         # every word should have an edge

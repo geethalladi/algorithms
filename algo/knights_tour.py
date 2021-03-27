@@ -6,7 +6,7 @@ import logging as log
 from ast import literal_eval
 from typing import NamedTuple, List, Sequence, Tuple
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
@@ -117,7 +117,8 @@ def __create_knights_tour_graph(size: int) -> IGraph:
         for j in range(0, size):
             neighbours.extend(__get_neighbours(Position(i, j), size))
 
-    edges: List[Edge] = [Edge(str(p1), str(p2)) for (p1, p2) in neighbours]
+    edges: List[EdgeInput] = [EdgeInput(str(p1), str(p2))
+                              for (p1, p2) in neighbours]
 
     log.info('Created edge set of size %s', len(edges))
     log.debug('Edge list %s', edges)

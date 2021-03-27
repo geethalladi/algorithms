@@ -3,10 +3,8 @@ Graph Traversal Implementation
 """
 import logging as log
 from queue import Queue
-from typing import Sequence
 
 from algo.graphs.igraph import IGraph
-from algo.graphs.traversal_helper import TraversalHelper
 from algo.graphs.state import State
 from algo.graphs.vertex import Vertex, EdgeContainer
 

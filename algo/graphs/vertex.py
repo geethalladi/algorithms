@@ -158,16 +158,13 @@ class Vertex:
         """
         return self.state
 
-    def set_parent(self, parent: 'Vertex', edge: EdgeContainer = None):
+    def set_parent(self, parent: 'Vertex', edge: EdgeContainer):
         """
         Set the parent and the distance
         """
+        assert edge, 'Edge Reference is missing while setting parent'
+
         self.parent = parent
-
-        if edge is None:
-            log.info('Ignoring distance computation as edge is empty')
-            return
-
         self.distance = parent.distance + edge.weight
 
     def get_color(self):
@@ -175,12 +172,6 @@ class Vertex:
         Get the color of the graph
         """
         return self.get_state().get_color()
-
-    def __repr__(self):
-        """
-        Representation of Vertex instance
-        """
-        return self.id
 
     def __str__(self) -> str:
         """

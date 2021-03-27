@@ -17,10 +17,12 @@ class Edge:
     """
     A Simple Container for holding edge details
     """
-    # starting really simple
-    # consciously avoiding direction for now
-    # can be added if there is a requirement
+    # adding details for use during transpose
+    # Avoiding Vertex class for now, using string id
+    source: str
+    dest: str
     weight: int = 1
+    directed: bool = False
     state: State = State.UNDISCOVERED
 
 

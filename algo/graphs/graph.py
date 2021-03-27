@@ -6,11 +6,11 @@ import abc
 import logging as log
 import pdb
 
-from typing import Collection, Dict, Iterable, Sequence
+from typing import Collection, Dict, Iterable, List, Sequence
 
 # TODO: This should be a sibling package
 from algo.graphs.builder import GraphBuilderMixin
-from algo.graphs.edge import EdgeInput
+from algo.graphs.edge import EdgeInput, Edge
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
 from algo.graphs.visualizer import GraphViewMixin
@@ -172,7 +172,21 @@ class AbstractGraph(abc.ABC):
             # For an undirected graph, the
             # transpose is itself
             return self
-        return self
+
+        result: IGraph = self._create(
+            'transposed {}'.format(self.name), self.directed)
+
+        # Create vertices
+        for v in self.get_vertices():
+            result.add_vertex(v)
+
+        # Create the edges
+        for v in self.get_vertices():
+            for e in self.get_vertex(v).edges():
+                e = e.transpose()
+                result.add_edge_str(e.source, e.dest, e.weight)
+
+        return result
 
     @abc.abstractmethod
     def visualize(self):

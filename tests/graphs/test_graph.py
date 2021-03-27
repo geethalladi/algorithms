@@ -101,17 +101,25 @@ class TestGraph:
         self.G.add_edge(self.D, self.E, 5)
         self.G.add_edge(self.E, self.A, 6)
 
-        assert self.A.get_weight(self.B) == 5
-        assert self.B.get_weight(self.A) == 5
+        result: IGraph = self.G.transpose()
 
-        assert self.A.get_weight(self.E) == 6
-        assert self.E.get_weight(self.A) == 6
+        (A, B, C, D, E) = (result.get_vertex('a'),
+                           result.get_vertex('b'),
+                           result.get_vertex('c'),
+                           result.get_vertex('d'),
+                           result.get_vertex('e'))
 
-        assert self.D.get_weight(self.E) == 5
-        assert self.E.get_weight(self.D) == 5
+        assert A.get_weight(B) == 5
+        assert B.get_weight(A) == 5
 
-        assert self.B.get_weight(self.C) == 6
-        assert self.C.get_weight(self.B) == 6
+        assert A.get_weight(E) == 6
+        assert E.get_weight(A) == 6
+
+        assert D.get_weight(E) == 5
+        assert E.get_weight(D) == 5
+
+        assert B.get_weight(C) == 6
+        assert C.get_weight(B) == 6
 
 
 class TestDigraph:
@@ -195,10 +203,18 @@ class TestDigraph:
         self.DG.add_edge(self.D, self.E, 5)
         self.DG.add_edge(self.E, self.A, 6)
 
-        assert self.B.get_weight(self.A) == 5
-        assert self.C.get_weight(self.B) == 6
-        assert self.E.get_weight(self.D) == 5
-        assert self.A.get_weight(self.E) == 6
+        result: IGraph = self.DG.transpose()
 
-        assert self.B not in self.A.get_connections()
-        assert self.A not in self.E.get_connections()
+        (A, B, C, D, E) = (result.get_vertex('a'),
+                           result.get_vertex('b'),
+                           result.get_vertex('c'),
+                           result.get_vertex('d'),
+                           result.get_vertex('e'))
+
+        assert B.get_weight(A) == 5
+        assert C.get_weight(B) == 6
+        assert E.get_weight(D) == 5
+        assert A.get_weight(E) == 6
+
+        assert B not in A.get_connections()
+        assert A not in E.get_connections()

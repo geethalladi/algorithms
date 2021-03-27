@@ -2,11 +2,11 @@
 Graph Protocol
 """
 
-from typing import Callable, Collection, Protocol, runtime_checkable
+from typing import Collection, Protocol, runtime_checkable
 
 from algo.graphs.edge import Edge
 from algo.graphs.traversal_helper import TraversalHelper
-from algo.graphs.vertex import Vertex, EdgeContainer
+from algo.graphs.vertex import Vertex
 
 
 @runtime_checkable

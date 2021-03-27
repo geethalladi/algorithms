@@ -6,14 +6,13 @@ import abc
 import logging as log
 import pdb
 
-from typing import Dict, Collection, Iterable, Optional
+from typing import Dict, Collection, Iterable
 
 # TODO: This should be a sibling package
 from algo.graphs.edge import Edge
 from algo.graphs.graph_builder import GraphBuilderMixin
 from algo.graphs.graph_view import GraphViewMixin
 from algo.graphs.igraph import IGraph
-from algo.graphs.traversal_helper import TraversalHelper
 from algo.graphs.vertex import Vertex
 
 from algo.utils.contracts import postcondition
@@ -30,7 +29,6 @@ class AbstractGraph(abc.ABC):
     vertices: Dict[str, Vertex]
     num_vertices: int
     num_connect_components: int
-    helper: TraversalHelper
 
     def __init__(self, name: str, directed: bool = False):
         """
@@ -44,7 +42,6 @@ class AbstractGraph(abc.ABC):
         self.vertices = {}
         self.num_vertices = 0
         self.num_connect_components = 0
-        self.helper = TraversalHelper()
 
     @postcondition(lambda x: len(x) >= 0)
     def get_vertices(self) -> Collection[str]:
@@ -52,12 +49,6 @@ class AbstractGraph(abc.ABC):
         Return the collection of vertices in the given graph
         """
         return self.vertices.keys()
-
-    def set_helper(self, helper: TraversalHelper):
-        """
-        Set the helper for graph traversal
-        """
-        self.helper = helper
 
     def get_vertex(self, key: str) -> Vertex:
         """

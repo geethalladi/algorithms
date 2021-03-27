@@ -123,13 +123,6 @@ class AbstractGraph(abc.ABC):
                 cls.is_connected(dest, source) and
                 source.get_weight(dest) == dest.get_weight(source))
 
-    def stop_and_view(self):
-        """
-        Visualize the graph snapshot and stop the execution
-        """
-        self.view()
-        pdb.set_trace()
-
     def clear(self):
         """
         Clear the vertex state
@@ -158,8 +151,16 @@ class AbstractGraph(abc.ABC):
         """
         return iter(self.vertices.values())
 
+    def view(self, pause: bool = False):
+        """
+        Visualize the graph and pause if required
+        """
+        self.visualize()
+        if pause:
+            pdb.set_trace()
+
     @abc.abstractmethod
-    def view(self):
+    def visualize(self):
         """
         Visualize this graph
         """

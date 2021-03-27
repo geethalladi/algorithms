@@ -51,7 +51,6 @@ class IGraph(Protocol):
         """
         ...
 
-    # TODO: not required
     def to_dot(self):
         """
         Convert the graph to dot representation
@@ -64,8 +63,7 @@ class IGraph(Protocol):
         """
         ...
 
-    # TODO: not required
-    def view(self):
+    def view(self, pause: bool):
         """
         Visualize this graph
         """
@@ -77,13 +75,6 @@ class IGraph(Protocol):
         """
         ...
 
-    # TODO: not required
-    def stop_and_view(self):
-        """
-        Visualize this graph and stop execution
-        """
-        ...
-
     @classmethod
     def _create(cls, name: str, directed: bool) -> 'IGraph':
         """
@@ -91,7 +82,6 @@ class IGraph(Protocol):
         """
         ...
 
-    # TODO: not required
     @classmethod
     def build(cls, name: str, edges: Collection[Edge], directed: bool) -> 'IGraph':
         """

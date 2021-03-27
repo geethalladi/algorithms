@@ -239,7 +239,7 @@ class KT:
 
         # # temporary code for viewing
         # if (self.completed % 5 == 0) and (self.completed > self.view_count):
-        #     self.graph.stop_and_view()
+        #     self.graph.view(pause = True)
         #     self.view_count = self.completed
 
         for succ in start.get_connections():

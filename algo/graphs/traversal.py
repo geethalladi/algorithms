@@ -43,7 +43,7 @@ def breadth_first_search(graph: IGraph, start: str):
     v.set_state(State.DISCOVERED)
 
     while not vertices.empty():
-        # graph.stop_and_view()
+        # graph.view(pause = True)
         current: Vertex = vertices.get()
 
         log.debug('Processing node %s', current.id)

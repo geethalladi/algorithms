@@ -86,7 +86,7 @@ class GraphViewMixin:
         msg: str = 'GraphType {} is not compatible'.format(type(self))
         raise AssertionError(msg)
 
-    def view(self: IGraph):
+    def visualize(self: IGraph):
         """
         Visualize this graph
         """

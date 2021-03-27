@@ -10,13 +10,13 @@ from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
 from algo.graphs.vertex import Vertex, EdgeContainer
 
-__all__ = ['breadth_first_search', 'depth_first_search', 'Helper']
+__all__ = ['breadth_first_search', 'depth_first_search', 'Hooks']
 
 
 @dataclass
-class Helper:
+class Hooks:
     """
-    Container with helpers during Traversal
+    Container Type with hooks for processing
     """
     process_vertex_early: Optional[Callable[[Vertex], None]] = None
     process_vertex_late: Optional[Callable[[Vertex], None]] = None
@@ -70,17 +70,17 @@ def breadth_first_search(graph: IGraph, start: str):
     return graph
 
 
-def depth_first_search(graph: IGraph, start: str = None) -> int:
+def depth_first_search(graph: IGraph, start: str = None, hooks: Hooks = Hooks()) -> int:
     """
     Depth First Search based traversal
     """
     if start is None:
-        return dfs_forest(graph)
+        return dfs_forest(graph, hooks)
 
-    return dfs_single_node(graph, start)
+    return dfs_single_node(graph, start, hooks)
 
 
-def dfs_single_node(graph: IGraph, start: str) -> int:
+def dfs_single_node(graph: IGraph, start: str, hooks: Hooks) -> int:
     """
     Depth First Search starting from the given node
     """
@@ -91,10 +91,10 @@ def dfs_single_node(graph: IGraph, start: str) -> int:
 
     # DFS from the given start node
     log.info('Starting DFS from %s', start)
-    return dfs_visit(graph, graph.get_vertex(start))
+    return dfs_visit(graph, graph.get_vertex(start), 1, hooks)
 
 
-def dfs_forest(graph: IGraph) -> int:
+def dfs_forest(graph: IGraph, hooks: Hooks) -> int:
     """
     Depth First Forest Traversal
     """
@@ -107,12 +107,12 @@ def dfs_forest(graph: IGraph) -> int:
     for v in graph:
         if v.get_state() == State.UNDISCOVERED:
             graph.num_connect_components += 1
-            time = dfs_visit(graph, v, time)
+            time = dfs_visit(graph, v, time, hooks)
 
     return time
 
 
-def dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
+def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
     """
     Visit the given node during DFS Traversal
     """
@@ -122,15 +122,16 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
     log.debug('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
     vertex.set_state(State.DISCOVERED)
     vertex.discovery, time = time, (time + 1)
+
     # process vertex early
-    if graph.helper.process_vertex_early:
-        graph.helper.process_vertex_early(vertex)
+    if hooks.process_vertex_early:
+        hooks.process_vertex_early(vertex)
 
     for nbr in vertex.get_connections():
         # # processing edge here
         # # can process edge twice
-        # if graph.helper.process_edge:
-        #     graph.helper.process_edge(vertex, nbr, edge)
+        # if hooks.process_edge:
+        #     hooks.process_edge(vertex, nbr, edge)
 
         # Ideal Condition
         # To make sure edge is processed only once
@@ -138,8 +139,8 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
         if ((nbr.get_state() == State.DISCOVERED) or graph.directed):
             # only process edge (leave the vertex)
             edge.state = State.DISCOVERED
-            if graph.helper.process_edge:
-                graph.helper.process_edge(vertex, nbr, edge)
+            if hooks.process_edge:
+                hooks.process_edge(vertex, nbr, edge)
 
         # found new vertex: process both edge and vertex
         if nbr.get_state() == State.UNDISCOVERED:
@@ -147,21 +148,21 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int = 1) -> int:
             nbr.set_parent(vertex, edge)
 
             edge.state = State.DISCOVERED
-            if graph.helper.process_edge:
-                graph.helper.process_edge(vertex, nbr, edge)
+            if hooks.process_edge:
+                hooks.process_edge(vertex, nbr, edge)
 
             # Only these are the real edges
             # that are walked through in DFS
             edge.state = State.PROCESSED
 
             # recurse with the new edge
-            time = dfs_visit(graph, nbr, time)
+            time = dfs_visit(graph, nbr, time, hooks)
 
     # Fully Processed
     log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
     vertex.set_state(State.PROCESSED)
     vertex.finish, time = time, (time + 1)
-    if graph.helper.process_vertex_late:
-        graph.helper.process_vertex_late(vertex)
+    if hooks.process_vertex_late:
+        hooks.process_vertex_late(vertex)
 
     return time

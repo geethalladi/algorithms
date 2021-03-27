@@ -8,17 +8,20 @@ from typing import Sequence
 from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
+from algo.graphs.graph_traversal import bfs, dfs, topological_sort
 
 import pytest
 
 
-class TestGraphTraversalMixin:
+class TestGraphTraversal:
     """
-    A Test Suite for GraphTraversalMixin
+    A Test Suite for GraphTraversal
     """
 
+    edges: Sequence[Edge]
+
     def setup_method(self):
-        self.edges: Sequence[Edge] = [
+        self.edges = [
             ('a', 'b'),
             ('b', 'c'),
             ('d', 'e'),
@@ -28,7 +31,7 @@ class TestGraphTraversalMixin:
     def test_bfs_parent(self):
         graph: IGraph = Graph.build('test_bfs',
                                     self.edges, directed=False)
-        graph.bfs('A')
+        bfs(graph, 'A')
         assert graph.get_vertex('A').parent is None
         assert graph.get_vertex('B').parent.id == 'A'
         assert graph.get_vertex('E').parent.id == 'A'
@@ -38,7 +41,7 @@ class TestGraphTraversalMixin:
     def test_bfs_distance(self):
         graph: IGraph = Graph.build('test_bfs_distance',
                                     self.edges, directed=False)
-        graph.bfs('A')
+        bfs(graph, 'A')
         assert graph.get_vertex('A').distance == 0
         assert graph.get_vertex('B').distance == 1
         assert graph.get_vertex('E').distance == 1
@@ -48,7 +51,7 @@ class TestGraphTraversalMixin:
     def test_dfs_parent(self):
         graph: IGraph = Graph.build('test_dfs',
                                     self.edges, directed=False)
-        graph.dfs('A')
+        dfs(graph, 'A')
         assert graph.get_vertex('A').parent is None
         assert graph.get_vertex('B').parent.id == 'A'
         assert graph.get_vertex('E').parent.id == 'A'
@@ -69,7 +72,7 @@ class TestGraphTraversalMixin:
 
         graph: IGraph = Graph.build('test_dfs_parent_directed',
                                     edges, directed=True)
-        graph.dfs('A')
+        dfs(graph, 'A')
         assert graph.get_vertex('A').parent is None
         assert graph.get_vertex('B').parent.id == 'A'
         assert graph.get_vertex('C').parent.id == 'B'
@@ -91,7 +94,7 @@ class TestGraphTraversalMixin:
 
         graph: IGraph = Graph.build('test_dfs_distance_directed',
                                     edges, directed=True)
-        graph.dfs('A')
+        dfs(graph, 'A')
         assert graph.get_vertex('A').distance == 0
         assert graph.get_vertex('B').distance == 1
         assert graph.get_vertex('C').distance == 2
@@ -112,7 +115,7 @@ class TestGraphTraversalMixin:
         ]
         graph: IGraph = Graph.build('test_dfs_distance_directed',
                                     edges, directed=True)
-        graph.topological_sort()
+        topological_sort(graph)
 
     def test_topological_sorting_2(self):
         edges: Sequence[Edge] = [
@@ -129,7 +132,7 @@ class TestGraphTraversalMixin:
         ]
         graph: IGraph = Graph.build('test_dfs_distance_directed',
                                     edges, directed=True)
-        assert [v.id for v in graph.topological_sort()] == list('GABCFED')
+        assert [v.id for v in topological_sort(graph)] == list('GABCFED')
 
     def test_topo_cycle(self):
         edges: Sequence[Edge] = [
@@ -141,4 +144,4 @@ class TestGraphTraversalMixin:
         graph: IGraph = Graph.build('test_dfs_distance_directed',
                                     edges, directed=True)
         with pytest.raises(Exception):
-            print(graph.topological_sort())
+            print(topological_sort(graph))

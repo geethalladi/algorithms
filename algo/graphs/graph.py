@@ -10,8 +10,8 @@ from typing import Dict, Collection, Iterable
 
 # TODO: This should be a sibling package
 from algo.graphs.edge import Edge
-from algo.graphs.graph_builder import GraphBuilderMixin
-from algo.graphs.graph_view import GraphViewMixin
+from algo.graphs.builder import GraphBuilderMixin
+from algo.graphs.visualizer import GraphViewMixin
 from algo.graphs.igraph import IGraph
 from algo.graphs.vertex import Vertex
 

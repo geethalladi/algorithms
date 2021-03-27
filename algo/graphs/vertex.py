@@ -64,6 +64,12 @@ class Vertex:
         """
         return self.connected_to.keys()
 
+    def edges(self) -> Collection[Edge]:
+        """
+        Get all the edges starting from this vertex
+        """
+        return self.connected_to.values()
+
     def get_edge(self, other: 'Vertex') -> Edge:
         """
         Return the edge instance associated with the given vertex

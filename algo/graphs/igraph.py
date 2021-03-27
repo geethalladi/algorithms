@@ -93,23 +93,6 @@ class IGraph(Protocol):
         """
         ...
 
-    # TODO: not required
-    def dfs(self, start: str = None,
-            process_edge: Callable[[Vertex, Vertex, EdgeContainer], None] = None):
-        """
-        Do a depth first traversal of the graph
-        from the given start node
-        """
-        ...
-
-    # TODO: not required
-    def bfs(self, start: str):
-        """
-        Do a breadth first search based traversal
-        from the given start node
-        """
-        ...
-
     @classmethod
     def _create(cls, name: str, directed: bool) -> 'IGraph':
         """

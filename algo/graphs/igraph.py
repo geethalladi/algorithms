@@ -71,6 +71,12 @@ class IGraph(Protocol):
         """
         ...
 
+    def transpose(self) -> 'IGraph':
+        """
+        Transpose this graph and returns a new instance
+        """
+        ...
+
     def __iter__(self):
         """
         Iterable for IGraph

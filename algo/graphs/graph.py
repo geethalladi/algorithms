@@ -161,6 +161,13 @@ class AbstractGraph(abc.ABC):
         if pause:
             pdb.set_trace()
 
+    def transpose(self) -> IGraph:
+        """
+        Return the transpose of this graph.
+        Does  not change the existing graph
+        """
+        return self
+
     @abc.abstractmethod
     def visualize(self):
         """

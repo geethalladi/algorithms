@@ -7,11 +7,13 @@ from typing import NamedTuple, Tuple, Optional, Iterable
 
 from algo.graphs.state import State
 
-__all__ = ['EdgeContainer', 'EdgeInput']
+__all__ = ['Edge', 'EdgeInput']
 
+
+# Moving away from NamedTuples as they are immutable
 
 @dataclass
-class EdgeContainer:
+class Edge:
     """
     A Simple Container for holding edge details
     """

@@ -6,13 +6,11 @@ import logging as log
 
 from typing import Dict, Collection
 
-from algo.graphs.edge import EdgeContainer
+from algo.graphs.edge import Edge
 from algo.graphs.state import State
 from algo.utils.contracts import postcondition
 
 log.basicConfig(level=log.INFO)
-
-# Moving away from NamedTuples as they are immutable
 
 
 class Vertex:
@@ -25,7 +23,7 @@ class Vertex:
     parent: 'Vertex'
     discovery: int
     finish: int
-    connected_to: Dict['Vertex', EdgeContainer]
+    connected_to: Dict['Vertex', Edge]
 
     def __init__(self, key: str):
         """
@@ -64,7 +62,7 @@ class Vertex:
         """
         return self.connected_to.keys()
 
-    def get_edge(self, other: 'Vertex') -> EdgeContainer:
+    def get_edge(self, other: 'Vertex') -> Edge:
         """
         Return the edge instance associated with the given vertex
         """
@@ -89,7 +87,7 @@ class Vertex:
         log.debug('Adding edge between %s and %s with weight %d, %s',
                   self.get_id(), other.get_id(), weight, directed)
 
-        edge: EdgeContainer = EdgeContainer(weight)
+        edge: Edge = Edge(weight)
         self.connected_to[other] = edge
 
         # if undirected, use the same edge container
@@ -99,7 +97,7 @@ class Vertex:
             # pylint: disable=protected-access
             other.__add_edge(self, edge, directed)
 
-    def __add_edge(self, other: 'Vertex', edge: EdgeContainer, directed: bool):
+    def __add_edge(self, other: 'Vertex', edge: Edge, directed: bool):
         """
         Private function for adding EdgeContainer
         """
@@ -146,7 +144,7 @@ class Vertex:
         """
         return self.state
 
-    def set_parent(self, parent: 'Vertex', edge: EdgeContainer):
+    def set_parent(self, parent: 'Vertex', edge: Edge):
         """
         Set the parent and the distance
         """

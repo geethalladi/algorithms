@@ -1,3 +1,6 @@
+#+TAGS: obstacles algorithms todo
+#+OPTIONS: toc:nil
+#+STARTUP: hideblocks
 #+TODO: TODO(t) PROGRESS(p) WAITING(w) | CANCELLED(c) DONE(d)
 * Obstacles
   # Obstacles are not negative. Understand that obstacles shows
@@ -6,9 +9,9 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Graph with transpose method
 ** Prim's minimal spanning tree                                       :algo:
 ** Implementing min / max heap                                        :algo:
-** Graph with transpose method
 ** Strongly Connected Components                                      :algo:
 ** Heap Sort                                                          :algo:
 ** Edge Classification using DFS
@@ -30,6 +33,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Transpose method for edge
+- required for Graph Transponse
 ** DONE Get rid of EdgeContainer
 - Moved all the edge classes to a single module
 - Renamed existing Edge -> EdgeInput (Type for getting input about edge)

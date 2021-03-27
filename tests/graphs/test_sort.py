@@ -62,5 +62,4 @@ class TestGraphSort:
         ]
         graph: IGraph = Graph.build('test_dfs_distance_directed',
                                     edges, directed=True)
-        with pytest.raises(Exception):
-            print(topological_sort(graph))
+        assert topological_sort(graph) == []

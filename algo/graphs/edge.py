@@ -25,6 +25,15 @@ class Edge:
     directed: bool = False
     state: State = State.UNDISCOVERED
 
+    def transpose(self):
+        """
+        Transpose this edge
+        """
+        return Edge(self.dest,
+                    self.source,
+                    self.weight,
+                    self.directed)
+
 
 class EdgeInput(NamedTuple):
     """

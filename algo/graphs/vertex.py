@@ -89,7 +89,7 @@ class Vertex:
         log.debug('Adding edge between %s and %s with weight %d, %s',
                   self.get_id(), other.get_id(), weight, directed)
 
-        edge: Edge = Edge(weight)
+        edge: Edge = Edge(self.id, other.id, weight, directed)
         self.connected_to[other] = edge
 
         # if undirected, use the same edge container

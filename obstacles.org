@@ -1,6 +1,6 @@
 #+TAGS: obstacles algorithms todo
 #+OPTIONS: toc:nil
-#+STARTUP: hideblocks
+#+STARTUP: content
 #+TODO: TODO(t) PROGRESS(p) WAITING(w) | CANCELLED(c) DONE(d)
 * Obstacles
   # Obstacles are not negative. Understand that obstacles shows
@@ -13,8 +13,15 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - helps to have these abstractions to build on top
 ** Prim's minimal spanning tree                                       :algo:
 ** Implementing min / max heap                                        :algo:
-** Strongly Connected Components                                      :algo:
 ** Heap Sort                                                          :algo:
+** Priority Queue using heap                                          :algo:
+** Updating Dijkstra's to use min heap
+
+
+** Fibonacci Numbers using DP                                         :algo:
+** Edit distance using DP                                             :algo:
+** Dropping Egg                                                       :algo:
+** Strongly Connected Components                                      :algo:
 ** Edge Classification using DFS
 - Tree
 - Forward
@@ -25,8 +32,6 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** Domain Specific Language in hy
 - Lisp dialect for python
 ** Kruskal's minimal spanning tree                                    :algo:
-** Priority Queue using heap                                          :algo:
-** Updating Dijkstra's to use min heap
 ** Basic network flow                                                 :algo:
 ** Warnsdroff algorithm                                               :algo:
 - for knight's tour

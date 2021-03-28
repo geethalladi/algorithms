@@ -5,10 +5,11 @@
 
 from typing import Sequence
 
-from algo.graphs.edge import EdgeInput
+from algo.graphs.edge import EdgeInput, Edge
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.spanning_tree import prim
+from algo.graphs.state import State
 
 
 class TestSpanningTree:
@@ -34,8 +35,16 @@ class TestSpanningTree:
 
     def test_prim(self):
         prim(self.G, 'A')
-        # self.G.view(pause=True)
-        # assert edges
+        edges: Sequence[Edge] = filter(
+            lambda e: e.state == State.PROCESSED, self.G.edges())
+        assert set(edges) == {
+            Edge('D', 'E', 1),
+            Edge('A', 'B', 2),
+            Edge('B', 'C', 1),
+            Edge('B', 'D', 1),
+            Edge('E', 'F', 1),
+            Edge('F', 'G', 1)
+        }
 
     def test_parent(self):
         prim(self.G, 'A')

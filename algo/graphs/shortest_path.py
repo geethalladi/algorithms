@@ -86,10 +86,9 @@ def get_smallest(vertices: List[WeightedVertex]) -> Vertex:
     assert len(vertices) > 0, 'Empty Vertices'
     i, result = 0, vertices[0]
     for j in range(1, len(vertices)):
-        wv = vertices[j]
-        if wv.distance < result.distance:
-            result = wv
-            i = j
+        w = vertices[j]
+        if w.distance < result.distance:
+            i, result = j, w
 
     vertices.pop(i)
     return result.vertex

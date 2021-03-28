@@ -30,7 +30,7 @@ class TestDijkstra:
             ('y', 'w', 1),
             ('v', 'w', 3)
         ]
-        self.DG: IGraph = Graph.build('test_digraph_view',
+        self.DG: IGraph = Graph.build('test_shortest_path',
                                       edges, directed=False)
 
     def test_distance(self):

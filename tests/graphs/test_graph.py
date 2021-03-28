@@ -3,9 +3,10 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
+from algo.graphs.edge import Edge
 from algo.graphs.graph import Graph
-from algo.graphs.vertex import Vertex
 from algo.graphs.igraph import IGraph
+from algo.graphs.vertex import Vertex
 
 
 class TestGraph:
@@ -55,6 +56,21 @@ class TestGraph:
         assert self.A in self.B.neighbours()
         assert self.A.weight(self.B) == 5
         assert self.B.weight(self.A) == 5
+
+    def test_edges(self):
+        self.G.add_edge(self.A, self.B, 5)
+        self.G.add_edge(self.B, self.C, 6)
+        self.G.add_edge(self.D, self.E, 5)
+        self.G.add_edge(self.E, self.A, 6)
+
+        assert len(self.G.edges()) == 4
+
+        assert self.G.edges() == {
+            Edge('a', 'b', 5, directed=False),
+            Edge('b', 'c', 6, directed=False),
+            Edge('d', 'e', 5, directed=False),
+            Edge('e', 'a', 6, directed=False)
+        }
 
     def test_many_vertices(self):
         self.G.add_edge(self.A, self.B, 5)
@@ -196,6 +212,21 @@ class TestDigraph:
         # Both of them should be true
         assert self.DG.is_directed(self.A, self.B)
         assert self.DG.is_directed(self.B, self.A)
+
+    def test_edges(self):
+        self.DG.add_edge(self.A, self.B, 5)
+        self.DG.add_edge(self.B, self.C, 6)
+        self.DG.add_edge(self.D, self.E, 5)
+        self.DG.add_edge(self.E, self.A, 6)
+
+        assert len(self.DG.edges()) == 4
+
+        assert self.DG.edges() == {
+            Edge('a', 'b', 5, directed=True),
+            Edge('b', 'c', 6, directed=True),
+            Edge('d', 'e', 5, directed=True),
+            Edge('e', 'a', 6, directed=True)
+        }
 
     def test_transpose(self):
         self.DG.add_edge(self.A, self.B, 5)

@@ -36,9 +36,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE edges() method in Graph
+- added unit tests
 ** DONE Edge Instance as hashable
 - with __hash__ and __eq__ methods
-** DONE edges() method in Graph
 ** DONE Prim's minimal spanning tree                                  :algo:
 ** DONE Removing get_ prefix from weight and color
 ** DONE Vertex removing get_edge and set_state

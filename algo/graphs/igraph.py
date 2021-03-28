@@ -4,7 +4,7 @@ Graph Protocol
 
 from typing import Collection, Protocol, Sequence, runtime_checkable
 
-from algo.graphs.edge import EdgeInput
+from algo.graphs.edge import EdgeInput, Edge
 from algo.graphs.vertex import Vertex
 
 __all__ = ['IGraph']
@@ -30,6 +30,12 @@ class IGraph(Protocol):
     def get_vertex(self, key: str) -> Vertex:
         """
         Return the vertex for this key
+        """
+        ...
+
+    def edges(self) -> Collection[Edge]:
+        """
+        Return all the edges in this graph
         """
         ...
 

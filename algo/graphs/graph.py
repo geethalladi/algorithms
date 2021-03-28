@@ -6,7 +6,7 @@ import abc
 import logging as log
 import pdb
 
-from typing import Collection, Dict, Iterable, List, Sequence
+from typing import Collection, Dict, Iterable, Sequence, Set
 
 # TODO: This should be a sibling package
 from algo.graphs.builder import GraphBuilderMixin
@@ -57,6 +57,16 @@ class AbstractGraph(abc.ABC):
         Return the vertex instance for this key
         """
         return self.vertices[key]
+
+    def edges(self: IGraph) -> Collection[Edge]:
+        """
+        Return all the edges in this graph
+        """
+        result: Set[Edge] = set()
+        for v in self:
+            result.update(v.edges())
+
+        return result
 
     @postcondition(lambda x: x is not None)
     def add_vertex(self, key: str) -> Vertex:

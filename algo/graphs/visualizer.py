@@ -55,7 +55,7 @@ class GraphViewMixin:
 
         log.debug("Adding edge between %s and %s", source.id, dest.id)
 
-        edge: Edge = source.get_edge(dest)
+        edge: Edge = source.edge(dest)
         color: str = edge.state.get_color()
 
         if edge.weight == 1:

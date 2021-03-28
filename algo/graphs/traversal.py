@@ -56,7 +56,7 @@ def breadth_first_search(graph: IGraph, start: str):
                 # TODO: process_early(vertex)
                 vertices.put(succ)
 
-                edge: Edge = current.get_edge(succ)
+                edge: Edge = current.edge(succ)
                 # process_edge
                 log.debug('Processing edge between (%s, %s)',
                           current.id, succ.id)
@@ -136,7 +136,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
 
         # Ideal Condition
         # To make sure edge is processed only once
-        edge: Edge = vertex.get_edge(nbr)
+        edge: Edge = vertex.edge(nbr)
         if ((nbr.get_state() == State.DISCOVERED) or graph.directed):
             # only process edge (leave the vertex)
             edge.state = State.DISCOVERED

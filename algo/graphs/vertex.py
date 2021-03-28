@@ -64,7 +64,7 @@ class Vertex:
         """
         return self.connected_to.values()
 
-    def get_edge(self, other: 'Vertex') -> Edge:
+    def edge(self, other: 'Vertex') -> Edge:
         """
         Return the edge instance associated with the given vertex
         """
@@ -74,7 +74,7 @@ class Vertex:
         """
         Return edge weight between this and the other vertex
         """
-        return self.get_edge(other).weight
+        return self.edge(other).weight
 
     def add_edge(self, other: 'Vertex', weight: int = 1,
                  directed: bool = False):

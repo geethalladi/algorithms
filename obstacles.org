@@ -37,6 +37,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Vertex removing get_edge and set_state
 ** DONE Vertex with neighbours and edges abstraction
 - helps to have these abstractions to build on top
 ** DONE Vertex remove get_id method

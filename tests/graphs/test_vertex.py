@@ -83,14 +83,14 @@ class TestVertex:
         v1: Vertex = Vertex('a')
         v2: Vertex = Vertex('b')
         v1.add_edge(v2, 4, directed=False)
-        assert v1.get_edge(v2) == v2.get_edge(v1)
+        assert v1.edge(v2) == v2.edge(v1)
 
     def test_same_edge_state_change(self):
         v1: Vertex = Vertex('a')
         v2: Vertex = Vertex('b')
         v1.add_edge(v2, 4, directed=False)
-        v1.get_edge(v2).state = State.PROCESSED
-        assert v1.get_edge(v2) == v2.get_edge(v1)
+        v1.edge(v2).state = State.PROCESSED
+        assert v1.edge(v2) == v2.edge(v1)
 
     def test_same_edge_id(self):
         """
@@ -101,5 +101,5 @@ class TestVertex:
         v1: Vertex = Vertex('a')
         v2: Vertex = Vertex('b')
         v1.add_edge(v2, 4, directed=False)
-        assert v1.get_edge(v2) == v2.get_edge(v1)
-        assert id(v1.get_edge(v2)) == id(v2.get_edge(v1))
+        assert v1.edge(v2) == v2.edge(v1)
+        assert id(v1.edge(v2)) == id(v2.edge(v1))

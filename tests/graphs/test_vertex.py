@@ -36,11 +36,11 @@ class TestVertex:
         assert v2 in v1.neighbours()
         assert v1 not in v2.neighbours()
 
-    def test_get_weight(self):
+    def test_weight(self):
         v1: Vertex = Vertex('a')
         v2: Vertex = Vertex('b')
         v1.add_edge(v2, 2, directed=True)
-        assert 2 == v1.get_weight(v2)
+        assert 2 == v1.weight(v2)
 
     def test_multiple_edges(self):
         v1: Vertex = Vertex('a')

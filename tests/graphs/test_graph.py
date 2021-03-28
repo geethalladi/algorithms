@@ -39,22 +39,22 @@ class TestGraph:
         assert self.A in self.B.neighbours()
         assert 'a' in self.G
         assert 'b' in self.G
-        assert self.A.get_weight(self.B) == 1
-        assert self.B.get_weight(self.A) == 1
+        assert self.A.weight(self.B) == 1
+        assert self.B.weight(self.A) == 1
 
     def test_two_vertices(self):
         self.G.add_edge(self.A, self.B)
         assert self.B in self.A.neighbours()
         assert self.A in self.B.neighbours()
-        assert self.A.get_weight(self.B) == 1
-        assert self.B.get_weight(self.A) == 1
+        assert self.A.weight(self.B) == 1
+        assert self.B.weight(self.A) == 1
 
     def test_two_vertices_2(self):
         self.G.add_edge(self.A, self.B, 5)
         assert self.B in self.A.neighbours()
         assert self.A in self.B.neighbours()
-        assert self.A.get_weight(self.B) == 5
-        assert self.B.get_weight(self.A) == 5
+        assert self.A.weight(self.B) == 5
+        assert self.B.weight(self.A) == 5
 
     def test_many_vertices(self):
         self.G.add_edge(self.A, self.B, 5)
@@ -72,17 +72,17 @@ class TestGraph:
         self.G.add_edge(self.D, self.E, 5)
         self.G.add_edge(self.E, self.A, 6)
 
-        assert self.A.get_weight(self.B) == 5
-        assert self.B.get_weight(self.A) == 5
+        assert self.A.weight(self.B) == 5
+        assert self.B.weight(self.A) == 5
 
-        assert self.A.get_weight(self.E) == 6
-        assert self.E.get_weight(self.A) == 6
+        assert self.A.weight(self.E) == 6
+        assert self.E.weight(self.A) == 6
 
-        assert self.D.get_weight(self.E) == 5
-        assert self.E.get_weight(self.D) == 5
+        assert self.D.weight(self.E) == 5
+        assert self.E.weight(self.D) == 5
 
-        assert self.B.get_weight(self.C) == 6
-        assert self.C.get_weight(self.B) == 6
+        assert self.B.weight(self.C) == 6
+        assert self.C.weight(self.B) == 6
 
     def test_connected(self):
         self.G.add_edge(self.A, self.B, 5)
@@ -109,17 +109,17 @@ class TestGraph:
                            result.get_vertex('d'),
                            result.get_vertex('e'))
 
-        assert A.get_weight(B) == 5
-        assert B.get_weight(A) == 5
+        assert A.weight(B) == 5
+        assert B.weight(A) == 5
 
-        assert A.get_weight(E) == 6
-        assert E.get_weight(A) == 6
+        assert A.weight(E) == 6
+        assert E.weight(A) == 6
 
-        assert D.get_weight(E) == 5
-        assert E.get_weight(D) == 5
+        assert D.weight(E) == 5
+        assert E.weight(D) == 5
 
-        assert B.get_weight(C) == 6
-        assert C.get_weight(B) == 6
+        assert B.weight(C) == 6
+        assert C.weight(B) == 6
 
 
 class TestDigraph:
@@ -148,17 +148,17 @@ class TestDigraph:
         self.DG.add_edge_str('a', 'b')
         assert self.B in self.A.neighbours()
         assert self.A not in self.B.neighbours()
-        assert self.A.get_weight(self.B) == 1
+        assert self.A.weight(self.B) == 1
 
     def test_two_vertices(self):
         self.DG.add_edge(self.A, self.B)
         assert self.B in self.A.neighbours()
-        assert self.A.get_weight(self.B) == 1
+        assert self.A.weight(self.B) == 1
 
     def test_two_vertices_2(self):
         self.DG.add_edge(self.A, self.B, 5)
         assert self.B in self.A.neighbours()
-        assert self.A.get_weight(self.B) == 5
+        assert self.A.weight(self.B) == 5
 
     def test_many_vertices(self):
         self.DG.add_edge(self.A, self.B, 5)
@@ -176,10 +176,10 @@ class TestDigraph:
         self.DG.add_edge(self.D, self.E, 5)
         self.DG.add_edge(self.E, self.A, 6)
 
-        assert self.A.get_weight(self.B) == 5
-        assert self.B.get_weight(self.C) == 6
-        assert self.D.get_weight(self.E) == 5
-        assert self.E.get_weight(self.A) == 6
+        assert self.A.weight(self.B) == 5
+        assert self.B.weight(self.C) == 6
+        assert self.D.weight(self.E) == 5
+        assert self.E.weight(self.A) == 6
 
         assert self.A not in self.B.neighbours()
         assert self.E not in self.A.neighbours()
@@ -211,10 +211,10 @@ class TestDigraph:
                            result.get_vertex('d'),
                            result.get_vertex('e'))
 
-        assert B.get_weight(A) == 5
-        assert C.get_weight(B) == 6
-        assert E.get_weight(D) == 5
-        assert A.get_weight(E) == 6
+        assert B.weight(A) == 5
+        assert C.weight(B) == 6
+        assert E.weight(D) == 5
+        assert A.weight(E) == 6
 
         assert B not in A.neighbours()
         assert A not in E.neighbours()

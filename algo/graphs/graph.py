@@ -105,7 +105,7 @@ class AbstractGraph(abc.ABC):
         assert source is not None, "Source is empty"
         assert dest is not None, "Dest is empty"
         try:
-            return source.get_weight(dest) > 0
+            return source.weight(dest) > 0
         except KeyError:
             return False
 
@@ -123,7 +123,7 @@ class AbstractGraph(abc.ABC):
 
         return (cls.is_connected(source, dest) and
                 cls.is_connected(dest, source) and
-                source.get_weight(dest) == dest.get_weight(source))
+                source.weight(dest) == dest.weight(source))
 
     def clear(self):
         """

@@ -70,7 +70,7 @@ class Vertex:
         """
         return self.connected_to[other]
 
-    def get_weight(self, other: 'Vertex') -> int:
+    def weight(self, other: 'Vertex') -> int:
         """
         Return edge weight between this and the other vertex
         """

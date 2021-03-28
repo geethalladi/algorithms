@@ -48,7 +48,7 @@ def breadth_first_search(graph: IGraph, start: str):
         current: Vertex = vertices.get()
 
         log.debug('Processing node %s', current.id)
-        for succ in current.get_connections():
+        for succ in current.neighbours():
             # If this is a new node
             if succ.state == State.UNDISCOVERED:
                 # Mark it as newly discovered
@@ -128,7 +128,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
     if hooks.process_vertex_early:
         hooks.process_vertex_early(vertex)
 
-    for nbr in vertex.get_connections():
+    for nbr in vertex.neighbours():
         # # processing edge here
         # # can process edge twice
         # if hooks.process_edge:

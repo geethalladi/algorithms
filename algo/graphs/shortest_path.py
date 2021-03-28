@@ -51,7 +51,7 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
     while len(vertices) > 0:
         v = get_smallest(vertices)
         log.debug('Using vertex %s with distance %s', v, v.distance)
-        for neighbour in v.get_connections():
+        for neighbour in v.neighbours():
             edge: Edge = v.get_edge(neighbour)
             distance = v.distance + edge.weight
 

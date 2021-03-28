@@ -35,8 +35,8 @@ class TestGraph:
 
     def test_two_vertices_default(self):
         self.G.add_edge_str('a', 'b')
-        assert self.B in self.A.get_connections()
-        assert self.A in self.B.get_connections()
+        assert self.B in self.A.neighbours()
+        assert self.A in self.B.neighbours()
         assert 'a' in self.G
         assert 'b' in self.G
         assert self.A.get_weight(self.B) == 1
@@ -44,15 +44,15 @@ class TestGraph:
 
     def test_two_vertices(self):
         self.G.add_edge(self.A, self.B)
-        assert self.B in self.A.get_connections()
-        assert self.A in self.B.get_connections()
+        assert self.B in self.A.neighbours()
+        assert self.A in self.B.neighbours()
         assert self.A.get_weight(self.B) == 1
         assert self.B.get_weight(self.A) == 1
 
     def test_two_vertices_2(self):
         self.G.add_edge(self.A, self.B, 5)
-        assert self.B in self.A.get_connections()
-        assert self.A in self.B.get_connections()
+        assert self.B in self.A.neighbours()
+        assert self.A in self.B.neighbours()
         assert self.A.get_weight(self.B) == 5
         assert self.B.get_weight(self.A) == 5
 
@@ -146,18 +146,18 @@ class TestDigraph:
 
     def test_two_vertices_default(self):
         self.DG.add_edge_str('a', 'b')
-        assert self.B in self.A.get_connections()
-        assert self.A not in self.B.get_connections()
+        assert self.B in self.A.neighbours()
+        assert self.A not in self.B.neighbours()
         assert self.A.get_weight(self.B) == 1
 
     def test_two_vertices(self):
         self.DG.add_edge(self.A, self.B)
-        assert self.B in self.A.get_connections()
+        assert self.B in self.A.neighbours()
         assert self.A.get_weight(self.B) == 1
 
     def test_two_vertices_2(self):
         self.DG.add_edge(self.A, self.B, 5)
-        assert self.B in self.A.get_connections()
+        assert self.B in self.A.neighbours()
         assert self.A.get_weight(self.B) == 5
 
     def test_many_vertices(self):
@@ -181,8 +181,8 @@ class TestDigraph:
         assert self.D.get_weight(self.E) == 5
         assert self.E.get_weight(self.A) == 6
 
-        assert self.A not in self.B.get_connections()
-        assert self.E not in self.A.get_connections()
+        assert self.A not in self.B.neighbours()
+        assert self.E not in self.A.neighbours()
 
     def test_connected(self):
         self.DG.add_edge(self.A, self.B, 5)
@@ -216,5 +216,5 @@ class TestDigraph:
         assert E.get_weight(D) == 5
         assert A.get_weight(E) == 6
 
-        assert B not in A.get_connections()
-        assert A not in E.get_connections()
+        assert B not in A.neighbours()
+        assert A not in E.neighbours()

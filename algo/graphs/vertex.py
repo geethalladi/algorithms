@@ -52,7 +52,7 @@ class Vertex:
         self.finish = 0
 
     @postcondition(lambda result: len(result) >= 0)
-    def get_connections(self) -> Collection['Vertex']:
+    def neighbours(self) -> Collection['Vertex']:
         """
         Get all the connected vertices
         """

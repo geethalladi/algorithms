@@ -16,7 +16,7 @@ class TestVertex:
 
     def test_singleton(self):
         v1: Vertex = Vertex('a')
-        log.debug("Connections count is %s", len(v1.get_connections()))
+        log.debug("Connections count is %s", len(v1.neighbours()))
 
     def test_empty(self):
         v1: Vertex = Vertex('v')
@@ -26,15 +26,15 @@ class TestVertex:
         v1: Vertex = Vertex('a')
         v2: Vertex = Vertex('b')
         v1.add_edge(v2)
-        assert v2 in v1.get_connections()
-        assert v1 in v2.get_connections()
+        assert v2 in v1.neighbours()
+        assert v1 in v2.neighbours()
 
     def test_add_undirected_edge(self):
         v1: Vertex = Vertex('a')
         v2: Vertex = Vertex('b')
         v1.add_edge(v2, 2, directed=True)
-        assert v2 in v1.get_connections()
-        assert v1 not in v2.get_connections()
+        assert v2 in v1.neighbours()
+        assert v1 not in v2.neighbours()
 
     def test_get_weight(self):
         v1: Vertex = Vertex('a')
@@ -48,8 +48,8 @@ class TestVertex:
         v3: Vertex = Vertex('c')
         v1.add_edge(v2)
         v1.add_edge(v3)
-        assert v2 in v1.get_connections()
-        assert v3 in v1.get_connections()
+        assert v2 in v1.neighbours()
+        assert v3 in v1.neighbours()
 
     def test_state(self):
         v1: Vertex = Vertex('a')

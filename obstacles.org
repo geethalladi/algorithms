@@ -9,8 +9,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Vertex with neighbours and edges abstraction
-- helps to have these abstractions to build on top
 ** Prim's minimal spanning tree                                       :algo:
 ** Implementing min / max heap                                        :algo:
 ** Heap Sort                                                          :algo:
@@ -39,6 +37,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Vertex with neighbours and edges abstraction
+- helps to have these abstractions to build on top
 ** DONE Vertex remove get_id method
 - Avoid getters wherever possible
 ** DONE Graph with transpose method

@@ -243,7 +243,7 @@ class KT:
         #     self.graph.view(pause = True)
         #     self.view_count = self.completed
 
-        for succ in start.get_connections():
+        for succ in start.neighbours():
             # A new node available. Try to find a tour from that node
             if succ.get_state() == State.UNDISCOVERED:
                 log.debug('Trying %s %s', succ.id, succ.state)

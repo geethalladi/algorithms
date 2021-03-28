@@ -79,7 +79,7 @@ class GraphViewMixin:
                 source = self.get_vertex(v)
                 # Adding edges from vertex v
                 log.debug('Adding edges in vertex %s', source.id)
-                for dest in source.get_connections():
+                for dest in source.neighbours():
                     self.__add_edge(source, dest, self.directed, dot)
             return dot
         msg: str = 'GraphType {} is not compatible'.format(type(self))

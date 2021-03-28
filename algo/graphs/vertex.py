@@ -51,12 +51,6 @@ class Vertex:
         self.discovery = 0
         self.finish = 0
 
-    def get_id(self) -> str:
-        """
-        Return the identifier of this vertex
-        """
-        return self.id
-
     @postcondition(lambda result: len(result) >= 0)
     def get_connections(self) -> Collection['Vertex']:
         """
@@ -93,7 +87,7 @@ class Vertex:
             return
 
         log.debug('Adding edge between %s and %s with weight %d, %s',
-                  self.get_id(), other.get_id(), weight, directed)
+                  self.id, other.id, weight, directed)
 
         edge: Edge = Edge(self.id, other.id, weight, directed)
         self.connected_to[other] = edge
@@ -127,8 +121,8 @@ class Vertex:
             return True
 
         # If it's already connected
-        existing = (self.get_id(), other.get_id(), self.connected_to[other])
-        given = (self.get_id(), other.get_id(), weight)
+        existing = (self.id, other.id, self.connected_to[other])
+        given = (self.id, other.id, weight)
 
         # ASSUMPTION: Graph is either directed or undirected
         # and not a mixed bag and safely ignoring the other half

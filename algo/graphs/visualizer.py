@@ -45,27 +45,24 @@ class GraphViewMixin:
             return True
         # If undirected add only once
         # add only from source to dest
-        return source.get_id() <= dest.get_id()
+        return source.id <= dest.id
 
     @classmethod
     def __add_edge(cls, source: Vertex, dest: Vertex, directed: bool, dot: graphviz.Graph):
         if not cls.__is_edge_required(source, dest, directed):
-            log.debug('Ignoring redundant edge %s -> %s',
-                      source.get_id(), dest.get_id())
+            log.debug('Ignoring redundant edge %s -> %s', source.id, dest.id)
             return
 
-        log.debug("Adding edge between %s and %s", source.get_id(),
-                  dest.get_id())
+        log.debug("Adding edge between %s and %s", source.id, dest.id)
 
         edge: Edge = source.get_edge(dest)
         color: str = edge.state.get_color()
 
         if edge.weight == 1:
             # Ignore unit weights while viewing
-            dot.edge(source.get_id(), dest.get_id(), color=color)
+            dot.edge(source.id, dest.id, color=color)
         else:
-            dot.edge(source.get_id(), dest.get_id(),
-                     label=str(edge.weight), color=color)
+            dot.edge(source.id, dest.id, label=str(edge.weight), color=color)
 
     def to_dot(self: GraphView):
         """
@@ -81,7 +78,7 @@ class GraphViewMixin:
             for v in self.get_vertices():
                 source = self.get_vertex(v)
                 # Adding edges from vertex v
-                log.debug('Adding edges in vertex %s', source.get_id())
+                log.debug('Adding edges in vertex %s', source.id)
                 for dest in source.get_connections():
                     self.__add_edge(source, dest, self.directed, dot)
             return dot

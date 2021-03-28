@@ -39,6 +39,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Vertex remove get_id method
+- Avoid getters wherever possible
 ** DONE Graph with transpose method
 ** DONE Transpose method for edge
 - required for Graph Transpose

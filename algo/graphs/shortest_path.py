@@ -4,7 +4,6 @@ Implementation of Shortest path algorithms
 import sys
 import logging as log
 
-from dataclasses import dataclass, field
 from typing import List
 
 from algo.graphs.edge import Edge
@@ -13,15 +12,6 @@ from algo.graphs.vertex import Vertex
 
 # Only expose these methods
 __all__ = ['dijkstra']
-
-
-@dataclass(order=True)
-class WeightedVertex:
-    """
-    Weighted Vertex for use in PriorityQueue
-    """
-    distance: int
-    vertex: Vertex = field(compare=False)
 
 
 def dijkstra(graph: IGraph, source: str) -> IGraph:
@@ -35,21 +25,21 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
     log.info('Implementing dijkstra\'s algorihm on %s from %s',
              graph.name,
              source)
-    # Clear the contents of the graph
+    # Initialize the graph' state
     graph.clear()
-    init_distance(graph)
+    for v in graph:
+        v.distance = sys.maxsize
+
     graph.get_vertex(source).distance = 0
 
     # Insert all the vertex into a PQ
     # WeightedVertex = Tuple[int, Vertex]
     # Using a list for now
     # Switch to a min-heap
-    vertices: List[WeightedVertex] = []
-    for v in graph:
-        vertices.append(WeightedVertex(v.distance, v))
+    queue: List[Vertex] = list(graph)
 
-    while len(vertices) > 0:
-        v = get_smallest(vertices)
+    while len(queue) > 0:
+        v = minimum(queue)
         log.debug('Using vertex %s with distance %s', v, v.distance)
         for neighbour in v.neighbours():
             edge: Edge = v.edge(neighbour)
@@ -61,42 +51,22 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
                 log.debug('Setting the new weight of %s to %s',
                           neighbour, distance)
                 neighbour.set_parent(v, edge)
+                neighbour.distance = distance
                 # update the heap
-                update_vertex(vertices, neighbour, distance)
 
     return graph
 
 
-def update_vertex(vertices: List[WeightedVertex], vertex: Vertex, distance: int):
-    """
-    Update this vertex's new distance
-    """
-    for wv in vertices:
-        if wv.vertex == vertex:
-            wv.distance = distance
-            return
-
-    assert False, 'Vertex Weight not updated'
-
-
-def get_smallest(vertices: List[WeightedVertex]) -> Vertex:
+def minimum(queue: List[Vertex]) -> Vertex:
     """
     Return the vertex with the smallest distance
     """
-    assert len(vertices) > 0, 'Empty Vertices'
-    i, result = 0, vertices[0]
-    for j in range(1, len(vertices)):
-        w = vertices[j]
-        if w.distance < result.distance:
-            i, result = j, w
+    assert len(queue) > 0, 'Empty Vertices'
 
-    vertices.pop(i)
-    return result.vertex
+    i, v = 0, queue[0]
+    for j in range(1, len(queue)):
+        w = queue[j]
+        if w.distance < v.distance:
+            i, v = j, w
 
-
-def init_distance(graph: IGraph):
-    """
-    Initialize distance of every vertex to infinity
-    """
-    for v in graph:
-        v.distance = sys.maxsize
+    return queue.pop(i)

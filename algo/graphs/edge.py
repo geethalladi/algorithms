@@ -40,6 +40,24 @@ class Edge:
                     self.weight,
                     self.directed)
 
+    def __key(self):
+        """
+        Unique key for this instance
+        """
+        x, y = self.source, self.dest
+        if (not self.directed) and (self.source > self.dest):
+            # for undirected use the smallest vertex at the left
+            x, y = self.dest, self.source
+        return (x, y, self.weight, self.directed)
+
+    def __hash__(self):
+        return hash(self.__key())
+
+    def __eq__(self, other):
+        if isinstance(other, Edge):
+            return self.__key() == other.__key()  # pylint: disable=protected-access
+        return NotImplemented
+
 
 class EdgeInput(NamedTuple):
     """

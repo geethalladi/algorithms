@@ -231,7 +231,7 @@ class KT:
         Generate a tour from the given start vertex
         """
         assert self.completed + left == self.size
-        assert start.get_state() != State.PROCESSED
+        assert start.state != State.PROCESSED
 
         log.debug('KT from %s of size %s', start.id, left)
 
@@ -245,7 +245,7 @@ class KT:
 
         for succ in start.neighbours():
             # A new node available. Try to find a tour from that node
-            if succ.get_state() == State.UNDISCOVERED:
+            if succ.state == State.UNDISCOVERED:
                 log.debug('Trying %s %s', succ.id, succ.state)
                 left = self.__tour(succ, left)
 

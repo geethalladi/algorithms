@@ -106,7 +106,7 @@ def dfs_forest(graph: IGraph, hooks: Hooks) -> int:
     time: int = 1  # start from 1 to avoid confusion
 
     for v in graph:
-        if v.get_state() == State.UNDISCOVERED:
+        if v.state == State.UNDISCOVERED:
             graph.num_connect_components += 1
             time = dfs_visit(graph, v, time, hooks)
 
@@ -117,7 +117,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
     """
     Visit the given node during DFS Traversal
     """
-    assert vertex.get_state() == State.UNDISCOVERED
+    assert vertex.state == State.UNDISCOVERED
 
     # Set it as discovered
     log.debug('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
@@ -137,14 +137,14 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
         # Ideal Condition
         # To make sure edge is processed only once
         edge: Edge = vertex.edge(nbr)
-        if ((nbr.get_state() == State.DISCOVERED) or graph.directed):
+        if ((nbr.state == State.DISCOVERED) or graph.directed):
             # only process edge (leave the vertex)
             edge.state = State.DISCOVERED
             if hooks.process_edge:
                 hooks.process_edge(vertex, nbr, edge)
 
         # found new vertex: process both edge and vertex
-        if nbr.get_state() == State.UNDISCOVERED:
+        if nbr.state == State.UNDISCOVERED:
             # setting the parent
             nbr.set_parent(vertex, edge)
 

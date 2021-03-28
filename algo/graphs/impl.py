@@ -46,4 +46,4 @@ def is_back_edge(_: Vertex, dest: Vertex) -> bool:
     """
     Check if the given edge is a backedge
     """
-    return dest.get_state() == State.DISCOVERED
+    return dest.state == State.DISCOVERED

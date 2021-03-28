@@ -134,12 +134,6 @@ class Vertex:
         msg = 'Conflicting Edge {} exists against {}'.format(existing, given)
         raise AssertionError(msg)
 
-    def get_state(self) -> State:
-        """
-        Get the state of the vertex
-        """
-        return self.state
-
     def set_parent(self, parent: 'Vertex', edge: Edge):
         """
         Set the parent and the distance
@@ -153,7 +147,7 @@ class Vertex:
         """
         Get the color of the graph
         """
-        return self.get_state().get_color()
+        return self.state.get_color()
 
     def __str__(self) -> str:
         """

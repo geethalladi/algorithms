@@ -50,6 +50,9 @@ class Vertex:
         # Setting the discovery / finish time to 0
         self.discovery = 0
         self.finish = 0
+        # clear the contents of the edge
+        for e in self.edges():
+            e.clear()
 
     @postcondition(lambda result: len(result) >= 0)
     def neighbours(self) -> Collection['Vertex']:

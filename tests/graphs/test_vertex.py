@@ -53,23 +53,23 @@ class TestVertex:
 
     def test_state(self):
         v1: Vertex = Vertex('a')
-        assert v1.get_state() == State.UNDISCOVERED
-        v1.set_state(State.DISCOVERED)
+        assert v1.state == State.UNDISCOVERED
+        v1.state = State.DISCOVERED
         assert v1.get_state() == State.DISCOVERED
-        v1.set_state(State.PROCESSED)
+        v1.state = State.PROCESSED
         assert v1.get_state() == State.PROCESSED
 
     def test_color(self):
         v1: Vertex = Vertex('a')
         assert v1.get_color() == State.UNDISCOVERED.get_color()
-        v1.set_state(State.DISCOVERED)
+        v1.state = State.DISCOVERED
         assert v1.get_color() == State.DISCOVERED.get_color()
-        v1.set_state(State.PROCESSED)
+        v1.state = State.PROCESSED
         assert v1.get_color() == State.PROCESSED.get_color()
 
     def test_clear(self):
         v1: Vertex = Vertex('a')
-        v1.set_state(State.DISCOVERED)
+        v1.state = State.DISCOVERED
         assert v1.get_color() == State.DISCOVERED.get_color()
         assert v1.get_state() == State.DISCOVERED
         assert v1.distance == 0

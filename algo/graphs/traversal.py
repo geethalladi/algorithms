@@ -41,7 +41,7 @@ def breadth_first_search(graph: IGraph, start: str):
     vertices: Queue = Queue()
     vertices.put(v)
     # TODO: process_early(vertex)
-    v.set_state(State.DISCOVERED)
+    v.state = State.DISCOVERED
 
     while not vertices.empty():
         # graph.view(pause = True)
@@ -52,7 +52,7 @@ def breadth_first_search(graph: IGraph, start: str):
             # If this is a new node
             if succ.state == State.UNDISCOVERED:
                 # Mark it as newly discovered
-                succ.set_state(State.DISCOVERED)
+                succ.state = State.DISCOVERED
                 # TODO: process_early(vertex)
                 vertices.put(succ)
 
@@ -65,7 +65,7 @@ def breadth_first_search(graph: IGraph, start: str):
                 succ.set_parent(current, edge)
 
         # Mark it as PROCESSED
-        current.set_state(State.PROCESSED)
+        current.state = State.PROCESSED
         # TODO: process_late(vertex)
 
     return graph
@@ -121,7 +121,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
 
     # Set it as discovered
     log.debug('Vertex %s is %s at %s', vertex, State.DISCOVERED, time)
-    vertex.set_state(State.DISCOVERED)
+    vertex.state = State.DISCOVERED
     vertex.discovery, time = time, (time + 1)
 
     # process vertex early
@@ -161,7 +161,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
 
     # Fully Processed
     log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)
-    vertex.set_state(State.PROCESSED)
+    vertex.state = State.PROCESSED
     vertex.finish, time = time, (time + 1)
     if hooks.process_vertex_late:
         hooks.process_vertex_late(vertex)

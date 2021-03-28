@@ -189,7 +189,7 @@ class KT:
         """
         Add it to the top of the Stack
         """
-        vertex.set_state(State.PROCESSED)
+        vertex.state = State.PROCESSED
         self.path.append(vertex)
         self.completed = len(self.path)
 
@@ -199,7 +199,7 @@ class KT:
         """
         v: Vertex = self.path.pop()
         self.completed = len(self.path)
-        v.set_state(State.UNDISCOVERED)
+        v.state = State.UNDISCOVERED
 
     def is_tour_complete(self):
         """

@@ -134,12 +134,6 @@ class Vertex:
         msg = 'Conflicting Edge {} exists against {}'.format(existing, given)
         raise AssertionError(msg)
 
-    def set_state(self, state: State):
-        """
-        Set the vertex state
-        """
-        self.state = state
-
     def get_state(self) -> State:
         """
         Get the state of the vertex

@@ -36,10 +36,12 @@ def prim(graph: IGraph, start: str):
             edge.state = State.PROCESSED
 
         for neigh in vertex.neighbours():
-            cost = vertex.weight(neigh)
             if neigh not in queue:
                 # this avoids circular edges in MST
                 continue
+            # in shortest path we use the full distance
+            # in mst we just use the edge weight alone
+            cost = vertex.weight(neigh)
             if cost < neigh.distance:
                 neigh.parent = vertex
                 neigh.distance = cost

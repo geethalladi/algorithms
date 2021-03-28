@@ -39,10 +39,14 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
     queue: List[Vertex] = list(graph)
 
     while len(queue) > 0:
+        # Choosing the vertex with shortest
+        # distance in this round
         v = minimum(queue)
         log.debug('Using vertex %s with distance %s', v, v.distance)
         for neighbour in v.neighbours():
             edge: Edge = v.edge(neighbour)
+            # in shortest path we use the full distance
+            # in mst we just use the edge weight alone
             distance = v.distance + edge.weight
 
             # if distance is less than the existing distance

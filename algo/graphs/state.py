@@ -16,7 +16,7 @@ class State(Enum):
     DISCOVERED = auto()
     PROCESSED = auto()
 
-    def get_color(self):
+    def color(self):
         """
         Return the color associate with the State
         """

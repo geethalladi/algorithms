@@ -143,11 +143,11 @@ class Vertex:
         self.parent = parent
         self.distance = parent.distance + edge.weight
 
-    def get_color(self):
+    def color(self):
         """
         Get the color of the graph
         """
-        return self.state.get_color()
+        return self.state.color()
 
     def __str__(self) -> str:
         """

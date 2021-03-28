@@ -36,7 +36,7 @@ class GraphViewMixin:
         """
         log.debug('Adding nodes to dot representation')
         dot.node(vertex.id, str(vertex),
-                 color=vertex.get_color())
+                 color=vertex.color())
 
     @classmethod
     def __is_edge_required(cls, source: Vertex, dest: Vertex, directed: bool):
@@ -56,7 +56,7 @@ class GraphViewMixin:
         log.debug("Adding edge between %s and %s", source.id, dest.id)
 
         edge: Edge = source.edge(dest)
-        color: str = edge.state.get_color()
+        color: str = edge.state.color()
 
         if edge.weight == 1:
             # Ignore unit weights while viewing

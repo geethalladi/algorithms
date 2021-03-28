@@ -25,6 +25,12 @@ class Edge:
     directed: bool = False
     state: State = State.UNDISCOVERED
 
+    def clear(self):
+        """
+        Clear the state of the edge
+        """
+        self.state = State.UNDISCOVERED
+
     def transpose(self):
         """
         Transpose this edge

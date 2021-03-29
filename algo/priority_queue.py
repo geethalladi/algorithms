@@ -5,7 +5,7 @@ Priority Queue Implementation
 import logging as log
 
 from dataclasses import dataclass
-from typing import Dict, Generic, List, Optional, Tuple, TypeVar
+from typing import Dict, Generic, List, Tuple, TypeVar
 
 from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
@@ -23,7 +23,7 @@ class Container(Generic[T]):
     """
     identity: str
     priority: int
-    task: Optional[T]
+    task: T
     position: int = -1
 
     def __str__(self):
@@ -50,7 +50,7 @@ class PriorityQueue(Generic[T]):
         self.reverse = reverse
         self.map = {}
 
-    def insert(self, identity: str, priority: int, task: Optional[T] = None):
+    def insert(self, identity: str, priority: int, task: T = None):
         """
         Insert the element with the given priority
         """
@@ -72,7 +72,7 @@ class PriorityQueue(Generic[T]):
         c.position = self.size
         self._bubble_up(self.size)
 
-    def get(self) -> Tuple[str, Optional[T]]:
+    def get(self) -> Tuple[str, T]:
         """
         Return the task with the highest priority
         """

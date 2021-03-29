@@ -65,7 +65,7 @@ def init_priority_queue(graph: IGraph) -> PQ[Vertex]:
     queue = PQ[Vertex](reverse=True)
 
     for v in graph:
-        log.info('Adding %s, %s, %s', v.id, v.distance, v)
+        log.debug('Adding %s, %s, %s', v.id, v.distance, v)
         queue.insert(v.id, v.distance, v)
 
     return queue

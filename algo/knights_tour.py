@@ -216,7 +216,7 @@ class KT:
 
         if not self.is_tour_complete():
             assert left != 0
-            log.error('No Tour of size %s found', self.size)
+            log.info('No Tour of size %s found', self.size)
             return []
 
         assert (

@@ -35,7 +35,7 @@ class Heap:
         self.length += 1
         # ensure the tree order is maintained
         self.entries.append(element)
-        log.info('Inserting element %s at %s', element, self.length)
+        log.debug('Inserting element %s at %s', element, self.length)
 
         # ensure the heap order is maintained
         self._bubble_up(self.length)
@@ -45,7 +45,7 @@ class Heap:
         Get the dominant element
         """
         assert not self.empty(), 'Empty Heap'
-        log.info('Get element from heap of size %s', self.length)
+        log.debug('Get element from heap of size %s', self.length)
 
         result: int = self.entries[1]
         replacement: int = self.entries.pop(self.length)
@@ -67,7 +67,7 @@ class Heap:
         based on the dominance relation
         """
         if index == 1:
-            log.info('Reached the top after bubbling up')
+            log.debug('Reached the top after bubbling up')
             return
         parent = self._parent(index)
         if self._is_dominant(index, parent):
@@ -77,7 +77,7 @@ class Heap:
             self._bubble_up(parent)
 
     def _bubble_down(self, index: int):
-        log.info('Bubbling down from index %s', index)
+        log.debug('Bubbling down from index %s', index)
         left = self._left(index)
         right = self._right(index)
 
@@ -90,7 +90,7 @@ class Heap:
         if d == index:
             # d is dominant when compared to its children
             # stoping bubbling down
-            log.info('Stopping bubbling down at %s', index)
+            log.debug('Stopping bubbling down at %s', index)
             return
 
         # Swap with the dominant child
@@ -169,7 +169,7 @@ class Heap:
         Visualize the heap
         """
         if self.empty():
-            log.info('Empty heap nothing to visualize')
+            log.debug('Empty heap nothing to visualize')
             return
 
         def add_edge(parent, child, edges):

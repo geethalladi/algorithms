@@ -4,9 +4,12 @@ Priority Queue Implementation
 
 import logging as log
 
+from dataclasses import dataclass
 from typing import Dict, Generic, List, Optional, Tuple, TypeVar
 
-from dataclasses import dataclass
+from algo.graphs.edge import EdgeInput
+from algo.graphs.graph import Graph
+
 
 __all__ = ['PriorityQueue']
 
@@ -45,6 +48,7 @@ class PriorityQueue(Generic[T]):
         # by default return the task
         # with the highest priority
         self.reverse = reverse
+        self.map = {}
 
     def insert(self, identity: str, priority: int, task: Optional[T] = None):
         """
@@ -92,9 +96,9 @@ class PriorityQueue(Generic[T]):
             identity)
 
         c: Container = self.map[identity]
-        old, c.priority = c.priority, new
+        old, c.priority = c.priority, new_priority
 
-        if self._is_dominant_value(new, old):
+        if self._is_dominant_value(new_priority, old):
             # new priority is more dominant
             self._bubble_up(c.position)
         else:

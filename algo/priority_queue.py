@@ -18,7 +18,7 @@ class Container(Generic[T]):
     """
     Creating a container class
     """
-    identity: int
+    identity: str
     priority: int
     task: Optional[T]
     position: int = -1
@@ -36,7 +36,7 @@ class PriorityQueue(Generic[T]):
     """
 
     entries: List[Container]
-    map: Dict[int, Container]
+    map: Dict[str, Container]
     size: int
 
     def __init__(self, reverse=False):
@@ -46,7 +46,7 @@ class PriorityQueue(Generic[T]):
         # with the highest priority
         self.reverse = reverse
 
-    def insert(self, identity: int, priority: int, task: Optional[T] = None):
+    def insert(self, identity: str, priority: int, task: Optional[T] = None):
         """
         Insert the element with the given priority
         """
@@ -67,7 +67,7 @@ class PriorityQueue(Generic[T]):
         self.size += 1
         self._bubble_up(self.size)
 
-    def get(self) -> Tuple[int, Optional[T]]:
+    def get(self) -> Tuple[str, Optional[T]]:
         """
         Return the task with the highest priority
         """
@@ -84,7 +84,7 @@ class PriorityQueue(Generic[T]):
 
         return (result.identity, result.task)
 
-    def update(self, identity: int, new: int):
+    def update(self, identity: str, new_priority: int):
         """
         Update the priority of an existing element
         """

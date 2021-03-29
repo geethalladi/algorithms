@@ -120,20 +120,11 @@ class PriorityQueue(Generic[T]):
     def _find_dominant(self, pos: int):
         assert self._valid(pos), 'Invalid position {}'.format(pos)
 
-        left, right = self._left(pos), self._right(pos)
-
         result: int = pos
-        # if left child exists
-        if self._valid(left):
-            # and is dominant
-            if self._is_dominant(left, result):
-                result = left
-
-        # if right child exists
-        if self._valid(right):
-            # and is dominant
-            if self._is_dominant(right, result):
-                result = right
+        for child in [self._left(pos), self._right(pos)]:
+            # if child exists and is dominant
+            if self._valid(child) and self._is_dominant(child, result):
+                result = child
 
         return result
 

@@ -69,6 +69,7 @@ class PriorityQueue(Generic[T]):
         # maintain the left most tree property
         self.entries.append(c)
         self.size += 1
+        c.position = self.size
         self._bubble_up(self.size)
 
     def get(self) -> Tuple[str, Optional[T]]:
@@ -98,6 +99,8 @@ class PriorityQueue(Generic[T]):
 
         c: Container = self.map[identity]
         old, c.priority = c.priority, new_priority
+
+        log.info('Updating %s from %s -> %s', identity, old, new_priority)
 
         if self._is_dominant_value(new_priority, old):
             # new priority is more dominant
@@ -129,7 +132,7 @@ class PriorityQueue(Generic[T]):
         return result
 
     def _bubble_up(self, pos: int):
-        if pos == 1:
+        if pos <= 1:
             # done with bubbling up
             return
 
@@ -197,8 +200,8 @@ class PriorityQueue(Generic[T]):
             if not self._valid(child):
                 return
             e: EdgeInput = (
-                '{}({})'.format(self.entries[parent], parent),
-                '{}({})'.format(self.entries[child], child)
+                '{}, {}'.format(parent, self.entries[parent]),
+                '{}, {}'.format(child, self.entries[child])
             )
             edges.append(e)
 

@@ -174,8 +174,8 @@ class Heap(Generic[CT]):
             if not self._valid(child):
                 return
             e: EdgeInput = (
-                '{}({})'.format(self.entries[parent], parent),
-                '{}({})'.format(self.entries[child], child)
+                '{}, {}'.format(parent, self.entries[parent]),
+                '{}, {}'.format(child, self.entries[child])
             )
             edges.append(e)
 

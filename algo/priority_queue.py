@@ -125,13 +125,13 @@ class PriorityQueue(Generic[T]):
         # if left child exists
         if self._valid(left):
             # and is dominant
-            if self._is_dominant(left, pos):
+            if self._is_dominant(left, result):
                 result = left
 
         # if right child exists
         if self._valid(right):
             # and is dominant
-            if self._is_dominant(right, pos):
+            if self._is_dominant(right, result):
                 result = right
 
         return result

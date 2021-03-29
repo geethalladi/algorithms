@@ -56,3 +56,17 @@ class TestPriorityQueue:
         assert pq.get() == ('B', None)
         assert pq.get() == ('A', None)
         assert pq.get() == ('D', None)
+
+    def test_tasks(self):
+        pq = PriorityQueue()
+        pq.insert('A', -1, 'Hello')
+        pq.insert('B', 2, 'World')
+        pq.insert('C', 3, 'New One')
+        pq.insert('D', 4, 'Priority')
+
+        pq.update('D', 0)
+
+        assert pq.get() == ('C', 'New One')
+        assert pq.get() == ('B', 'World')
+        assert pq.get() == ('D', 'Priority')
+        assert pq.get() == ('A', 'Hello')

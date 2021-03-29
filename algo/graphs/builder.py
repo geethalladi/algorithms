@@ -33,8 +33,6 @@ class GraphBuilderMixin:  # pylint: disable=too-few-public-methods
         """
         Build a graph instance
         """
-        assert len(lst) > 0, "Empty Edge list"
-
         result: IGraph = cls._create(name, directed)
         edges: List[EdgeInput] = EdgeInput.make(lst)
         vertices: Set[str] = GraphBuilderMixin.__vertices(edges)

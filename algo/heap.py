@@ -3,9 +3,8 @@ Module for implementing min and max heap data structures
 """
 
 import logging as log
-import sys
 
-from typing import List
+from typing import Generic, List, TypeVar, Protocol
 
 from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
@@ -13,25 +12,47 @@ from algo.graphs.graph import Graph
 __all__ = ['sort', 'Heap']
 
 
-class Heap:
+CT = TypeVar('CT', bound='Comparable')
+
+
+class Comparable(Protocol):  # pylint: disable=too-few-public-methods
+    """
+    Protocol for Comparable
+    """
+
+    def __lt__(self: CT, other: CT) -> bool:
+        """
+        Return true, if self < other
+        """
+        ...
+
+
+class Heap(Generic[CT]):
     """
     Heap as a data structure
     """
 
     # entries for storing the elements
     # using 1-based index
-    entries: List[int]
+    entries: List[CT]
     length: int
 
     def __init__(self, reverse: bool = False):
-        self.entries = [sys.maxsize]
+        self.entries = []
         self.length = 0
         self.reverse = reverse
 
-    def insert(self, element: int):
+    def insert(self, element: CT):
         """
         Insert the element into the heap
         """
+
+        if self.length == 0:
+            # TODO: remove this dirty hack
+            # Insert twice for the first element
+            # to simulate 1 based index
+            self.entries.append(element)
+
         self.length += 1
         # ensure the tree order is maintained
         self.entries.append(element)
@@ -40,15 +61,15 @@ class Heap:
         # ensure the heap order is maintained
         self._bubble_up(self.length)
 
-    def get(self) -> int:
+    def get(self) -> CT:
         """
         Get the dominant element
         """
         assert not self.empty(), 'Empty Heap'
         log.debug('Get element from heap of size %s', self.length)
 
-        result: int = self.entries[1]
-        replacement: int = self.entries.pop(self.length)
+        result: CT = self.entries[1]
+        replacement: CT = self.entries.pop(self.length)
         self.length -= 1
 
         if self.empty():
@@ -130,7 +151,7 @@ class Heap:
         return self._is_dominant_value(self.entries[i], self.entries[j])
 
     # pylint: disable=invalid-name
-    def _is_dominant_value(self, x: int, y: int) -> bool:
+    def _is_dominant_value(self, x: CT, y: CT) -> bool:
         """
         Check if value 'x' dominates value 'y'
         """
@@ -206,7 +227,7 @@ def sort(values: List[int], reverse: bool = False) -> List[int]:
     """
     Sort the list using heap data structure
     """
-    h = Heap(reverse)
+    h = Heap[int](reverse)
     for v in values:
         h.insert(v)
 

@@ -176,6 +176,12 @@ class PriorityQueue(Generic[T]):
     def _valid(self, pos: int):
         return 1 <= pos <= self.size
 
+    def __contains__(self, identity: str):
+        """
+        Check membership
+        """
+        return identity in self.map
+
     @classmethod
     def _parent(cls, pos: int):
         return pos // 2

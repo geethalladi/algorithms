@@ -35,108 +35,88 @@ class Heap(Generic[CT]):
     # entries for storing the elements
     # using 1-based index
     entries: List[CT]
-    length: int
+    size: int
 
     def __init__(self, reverse: bool = False):
         self.entries = []
-        self.length = 0
+        self.size = 0
         self.reverse = reverse
 
     def insert(self, element: CT):
         """
         Insert the element into the heap
         """
-
-        if self.length == 0:
+        if self.size == 0:
             # TODO: remove this dirty hack
             # Insert twice for the first element
             # to simulate 1 based index
             self.entries.append(element)
 
-        self.length += 1
         # ensure the tree order is maintained
         self.entries.append(element)
-        log.debug('Inserting element %s at %s', element, self.length)
+        self.size += 1
+        log.debug('Inserting element %s at %s', element, self.size)
 
         # ensure the heap order is maintained
-        self._bubble_up(self.length)
+        self._bubble_up(self.size)
 
     def get(self) -> CT:
         """
         Get the dominant element
         """
         assert not self.empty(), 'Empty Heap'
-        log.debug('Get element from heap of size %s', self.length)
+        log.debug('Get element from heap of size %s', self.size)
 
-        result: CT = self.entries[1]
-        replacement: CT = self.entries.pop(self.length)
-        self.length -= 1
+        self._swap(1, self.size)
+        result: CT = self.entries.pop(self.size)
+        self.size -= 1
 
-        if self.empty():
-            # no need to bubble down
-            return result
-
-        # maintains the tree order
-        self.entries[1] = replacement
         # maintain the heap property
-        self._bubble_down(1)
+        if not self.empty():
+            self._bubble_down(1)
+
         return result
 
-    def _bubble_up(self, index: int):
+    def _bubble_up(self, pos: int):
         """
         Bubble up till it reaches its equilibrium
         based on the dominance relation
         """
-        if index == 1:
+        if pos == 1:
             log.debug('Reached the top after bubbling up')
             return
-        parent = self._parent(index)
-        if self._is_dominant(index, parent):
+        parent = self._parent(pos)
+        if self._is_dominant(pos, parent):
             # If more dominant than the parent
-            self._swap(index, parent)
+            self._swap(pos, parent)
             # tail call recursion
             self._bubble_up(parent)
 
-    def _bubble_down(self, index: int):
-        log.debug('Bubbling down from index %s', index)
-        d: int = self._find_dominant(index)
-        if d == index:
-            # index is dominant when compared to its children
+    def _bubble_down(self, pos: int):
+        log.debug('Bubbling down from index %s', pos)
+        d: int = self._find_dominant(pos)
+        if d == pos:
+            # pos is dominant when compared to its children
             # stoping bubbling down
-            log.debug('Stopping bubbling down at %s', index)
+            log.debug('Stopping bubbling down at %s', pos)
             return
 
         # Swap with the dominant child
         # and continue bubbling down
-        self._swap(d, index)
+        self._swap(d, pos)
         self._bubble_down(d)
 
-    def _find_dominant(self, index: int):
+    def _find_dominant(self, pos: int):
         """
-        Find dominant between element at 'index' and its children
+        Find dominant between element at 'pos' and its children
         """
-        assert self._valid_index(index), 'Index {} is not inside heap'.format(
-            index)
+        assert self._valid(pos), 'Index {} is not inside heap'.format(
+            pos)
 
-        left, right = self._left(index), self._right(index)
-
-        # For leaf node, return the index
-        if (not self._valid_index(left)) and (not self._valid_index(right)):
-            return index
-
-        # checking the dominance with left child
-        result: int = index
-        if self._is_dominant(left, index):
-            result = left
-
-        # no right child then return the result
-        if (right > self.length):
-            return result
-
-        # both the child exists
-        # and the right dominates
-        if self._is_dominant(right, result):
-            result = right
+        result: int = pos
+        for child in [self._left(pos), self._right(pos)]:
+            if self._valid(child) and self._is_dominant(child, result):
+                result = child
 
         return result
 
@@ -145,8 +125,8 @@ class Heap(Generic[CT]):
         Returns true if index 'i' is more dominant
         than index 'j'
         """
-        assert self._valid_index(i), 'Index {} is not within heap'.format(i)
-        assert self._valid_index(j), 'Index {} is not within heap'.format(j)
+        assert self._valid(i), 'Index {} is not within heap'.format(i)
+        assert self._valid(j), 'Index {} is not within heap'.format(j)
 
         return self._is_dominant_value(self.entries[i], self.entries[j])
 
@@ -165,22 +145,22 @@ class Heap(Generic[CT]):
         """
         Swap the value at both the indices
         """
-        assert self._valid_index(i), 'Index {} is not within heap'.format(i)
-        assert self._valid_index(j), 'Index {} is not within heap'.format(j)
+        assert self._valid(i), 'Index {} is not within heap'.format(i)
+        assert self._valid(j), 'Index {} is not within heap'.format(j)
 
         self.entries[i], self.entries[j] = self.entries[j], self.entries[i]
 
-    def _valid_index(self, i):
+    def _valid(self, i):
         """
         Check if the index is valid
         """
-        return 1 <= i <= self.length
+        return 1 <= i <= self.size
 
     def empty(self) -> bool:
         """
         Check if the heap is empty
         """
-        return self.length <= 0
+        return self.size <= 0
 
     def visualize(self):
         """
@@ -191,7 +171,7 @@ class Heap(Generic[CT]):
             return
 
         def add_edge(parent, child, edges):
-            if not self._valid_index(child):
+            if not self._valid(child):
                 return
             e: EdgeInput = (
                 '{}({})'.format(self.entries[parent], parent),
@@ -200,8 +180,8 @@ class Heap(Generic[CT]):
             edges.append(e)
 
         edges: List[EdgeInput] = []
-        # TODO: can be pruned to self.length // 2.
-        for i in range(1, self.length):
+        # TODO: can be pruned to self.size // 2.
+        for i in range(1, self.size):
             left, right = self._left(i), self._right(i)
             add_edge(i, left, edges)
             add_edge(i, right, edges)
@@ -210,17 +190,17 @@ class Heap(Generic[CT]):
         g.view(pause=True)
 
     @classmethod
-    def _parent(cls, index: int) -> int:
+    def _parent(cls, pos: int) -> int:
         # floor(n, 2)
-        return index // 2
+        return pos // 2
 
     @classmethod
-    def _left(cls, index: int) -> int:
-        return index * 2
+    def _left(cls, pos: int) -> int:
+        return pos * 2
 
     @classmethod
-    def _right(cls, index: int) -> int:
-        return (2 * index) + 1
+    def _right(cls, pos: int) -> int:
+        return (2 * pos) + 1
 
 
 def sort(values: List[int], reverse: bool = False) -> List[int]:

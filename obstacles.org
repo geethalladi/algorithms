@@ -9,9 +9,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Updating Dijkstra's to use min heap
-
-
 ** Fibonacci Numbers using DP                                         :algo:
 ** Edit distance using DP                                             :algo:
 ** Dropping Egg                                                       :algo:
@@ -33,6 +30,9 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Update prim's spanning tree to use Priority queue
+** DONE Updating Dijkstra's to use Priority queue
+
 ** DONE Heap as a container type
 ** DONE Container Type in python
 ** DONE Priority Queue using heap                                     :algo:

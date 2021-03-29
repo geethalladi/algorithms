@@ -9,9 +9,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Heap as a container type
-** Container Type in python
-** Priority Queue using heap                                          :algo:
 ** Updating Dijkstra's to use min heap
 
 
@@ -36,6 +33,9 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Heap as a container type
+** DONE Container Type in python
+** DONE Priority Queue using heap                                     :algo:
 ** DONE Implementing min / max heap                                   :algo:
 ** DONE Heap Sort                                                     :algo:
 ** DONE Cleaning up dijkstra's implementation

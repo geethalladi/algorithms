@@ -27,6 +27,10 @@ class TestHeap:
         assert sort([1, 2, 3, 4, -1, -2, -3, -4, 0]
                     ) == [-4, -3, -2, -1, 0, 1, 2, 3, 4]
 
+    def test_sort_reverse(self):
+        assert sort([1, 2, 3, 4, -1, -2, -3, -4, 0], reverse=True
+                    ) == [4, 3, 2, 1, 0, -1, -2, -3, -4]
+
     def test_heap(self):
         h = Heap()
         h.insert(1)

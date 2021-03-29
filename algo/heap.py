@@ -205,11 +205,11 @@ class Heap:
         return (2 * index) + 1
 
 
-def sort(values: List[int]) -> List[int]:
+def sort(values: List[int], reverse: bool = False) -> List[int]:
     """
     Sort the list using heap data structure
     """
-    h = Heap()
+    h = Heap(reverse)
     for v in values:
         h.insert(v)
 

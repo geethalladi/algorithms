@@ -9,8 +9,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Implementing min / max heap                                        :algo:
-** Heap Sort                                                          :algo:
 ** Priority Queue using heap                                          :algo:
 ** Updating Dijkstra's to use min heap
 
@@ -36,6 +34,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Implementing min / max heap                                   :algo:
+** DONE Heap Sort                                                     :algo:
 ** DONE Cleaning up dijkstra's implementation
 ** DONE edges() method in Graph
 - added unit tests

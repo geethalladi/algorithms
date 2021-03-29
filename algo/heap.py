@@ -3,10 +3,14 @@ Module for implementing min and max heap data structures
 """
 
 import logging as log
+import sys
 
 from typing import List
 
-__all__ = ['sort']
+from algo.graphs.edge import EdgeInput
+from algo.graphs.graph import Graph
+
+__all__ = ['sort', 'Heap']
 
 
 class Heap:
@@ -20,7 +24,7 @@ class Heap:
     length: int
 
     def __init__(self, reverse: bool = False):
-        self.entries = []
+        self.entries = [sys.maxsize]
         self.length = 0
         self.reverse = reverse
 
@@ -30,25 +34,30 @@ class Heap:
         """
         self.length += 1
         # ensure the tree order is maintained
-        self.entries[self.length] = element
+        self.entries.append(element)
+        log.info('Inserting element %s at %s', element, self.length)
+
         # ensure the heap order is maintained
         self._bubble_up(self.length)
-
-    def empty(self) -> bool:
-        """
-        Check if the heap is empty
-        """
-        return self.length <= 0
 
     def get(self) -> int:
         """
         Get the dominant element
         """
         assert not self.empty(), 'Empty Heap'
+        log.info('Get element from heap of size %s', self.length)
+
         result: int = self.entries[1]
-        # maintains the tree order
-        self.entries[1] = self.entries[self.length]
+        replacement: int = self.entries.pop(self.length)
         self.length -= 1
+
+        if self.empty():
+            # no need to bubble down
+            return result
+
+        # maintains the tree order
+        self.entries[1] = replacement
+        # maintain the heap property
         self._bubble_down(1)
         return result
 
@@ -58,7 +67,7 @@ class Heap:
         based on the dominance relation
         """
         if index == 1:
-            log.debug('Reached the top after bubbling up')
+            log.info('Reached the top after bubbling up')
             return
         parent = self._parent(index)
         if self._is_dominant(index, parent):
@@ -68,19 +77,20 @@ class Heap:
             self._bubble_up(parent)
 
     def _bubble_down(self, index: int):
-        log.debug('Bubbling down from index %s', index)
+        log.info('Bubbling down from index %s', index)
         left = self._left(index)
         right = self._right(index)
 
-        if (left > self.length) and (right > self.length):
-            # leaf node
-            log.debug('Reached a leaf node after bubbling down')
-            return
+        # if (left > self.length) and (right > self.length):
+        #     # leaf node
+        #
+        #     return
 
         d: int = self._find_dominant(index, left, right)
         if d == index:
             # d is dominant when compared to its children
             # stoping bubbling down
+            log.info('Stopping bubbling down at %s', index)
             return
 
         # Swap with the dominant child
@@ -93,7 +103,7 @@ class Heap:
             index)
 
         # For leaf node, return the index
-        if (left > self.length) and (right > self.length):
+        if (not self._valid_index(left)) and (not self._valid_index(right)):
             return index
 
         # checking the dominance with left child
@@ -117,8 +127,8 @@ class Heap:
         Returns true if index 'i' is more dominant
         than index 'j'
         """
-        assert (1 <= i <= self.length), 'Index {} is not within heap'.format(i)
-        assert (1 <= j <= self.length), 'Index {} is not within heap'.format(j)
+        assert self._valid_index(i), 'Index {} is not within heap'.format(i)
+        assert self._valid_index(j), 'Index {} is not within heap'.format(j)
 
         return self._is_dominant_value(self.entries[i], self.entries[j])
 
@@ -137,10 +147,49 @@ class Heap:
         """
         Swap the value at both the indices
         """
-        assert (1 <= i <= self.length), 'Index {} is not within heap'.format(i)
-        assert (1 <= j <= self.length), 'Index {} is not within heap'.format(j)
+        assert self._valid_index(i), 'Index {} is not within heap'.format(i)
+        assert self._valid_index(j), 'Index {} is not within heap'.format(j)
 
         self.entries[i], self.entries[j] = self.entries[j], self.entries[i]
+
+    def _valid_index(self, i):
+        """
+        Check if the index is valid
+        """
+        return 1 <= i <= self.length
+
+    def empty(self) -> bool:
+        """
+        Check if the heap is empty
+        """
+        return self.length <= 0
+
+    def visualize(self):
+        """
+        Visualize the heap
+        """
+        if self.empty():
+            log.info('Empty heap nothing to visualize')
+            return
+
+        def add_edge(parent, child, edges):
+            if not self._valid_index(child):
+                return
+            e: EdgeInput = (
+                '{}({})'.format(self.entries[parent], parent),
+                '{}({})'.format(self.entries[child], child)
+            )
+            edges.append(e)
+
+        edges: List[EdgeInput] = []
+        # TODO: can be pruned to self.length // 2.
+        for i in range(1, self.length):
+            left, right = self._left(i), self._right(i)
+            add_edge(i, left, edges)
+            add_edge(i, right, edges)
+
+        g = Graph.build('heap', edges, directed=False)
+        g.view(pause=True)
 
     @classmethod
     def _parent(cls, index: int) -> int:
@@ -160,4 +209,12 @@ def sort(values: List[int]) -> List[int]:
     """
     Sort the list using heap data structure
     """
-    return values
+    h = Heap()
+    for v in values:
+        h.insert(v)
+
+    result = []
+    while not h.empty():
+        result.append(h.get())
+
+    return result

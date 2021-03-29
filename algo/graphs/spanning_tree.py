@@ -5,6 +5,8 @@ import sys
 
 from typing import List
 
+from algo.priority_queue import PriorityQueue as PQ
+
 from algo.graphs.edge import Edge
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
@@ -26,10 +28,11 @@ def prim(graph: IGraph, start: str):
 
     graph.get_vertex(start).distance = 0
 
-    queue: List[Vertex] = list(graph)
+    queue: PQ[Vertex] = init_priority_queue(graph)
 
-    while len(queue) > 0:
-        vertex: Vertex = minimum(queue)
+    while not queue.empty():
+        _, vertex = queue.get()
+
         # this edge is choosen
         if vertex.parent:
             edge: Edge = vertex.parent.edge(vertex)
@@ -45,18 +48,16 @@ def prim(graph: IGraph, start: str):
             if cost < neigh.distance:
                 neigh.parent = vertex
                 neigh.distance = cost
+                # update the priority
+                queue.update(neigh.id, neigh.distance)
 
 
-def minimum(queue: List[Vertex]) -> Vertex:
+def init_priority_queue(graph: IGraph) -> PQ[Vertex]:
     """
-    Chose the one with the minimum distance
+    Initialize the priority queue
     """
-    assert len(queue) > 0, 'Empty PQ in prim'
-
-    index, v = 0, queue[0]
-    for i in range(1, len(queue)):
-        w = queue[i]
-        if w.distance < v.distance:
-            index, v = i, w
-
-    return queue.pop(index)
+    # the one with the smallest priority wins
+    queue: PQ[Vertex] = PQ[Vertex](reverse=True)
+    for v in graph:
+        queue.insert(v.id, v.distance, v)
+    return queue

@@ -76,6 +76,7 @@ class PriorityQueue(Generic[T]):
         Return the task with the highest priority
         """
         assert not self.empty(), 'PQ is empty'
+        # self.visualize()
 
         self._swap(1, self.size)
         result: Container = self.entries.pop(self.size)
@@ -192,3 +193,30 @@ class PriorityQueue(Generic[T]):
     @classmethod
     def _right(cls, pos: int):
         return (pos * 2) + 1
+
+    def visualize(self):
+        """
+        Visualize the heap
+        """
+        if self.empty():
+            log.debug('Empty heap nothing to visualize')
+            return
+
+        def add_edge(parent, child, edges):
+            if not self._valid(child):
+                return
+            e: EdgeInput = (
+                '{}({})'.format(self.entries[parent], parent),
+                '{}({})'.format(self.entries[child], child)
+            )
+            edges.append(e)
+
+        edges: List[EdgeInput] = []
+        # TODO: can be pruned to self.length // 2.
+        for i in range(1, self.size):
+            left, right = self._left(i), self._right(i)
+            add_edge(i, left, edges)
+            add_edge(i, right, edges)
+
+        g = Graph.build('heap', edges, directed=False)
+        g.view(pause=True)

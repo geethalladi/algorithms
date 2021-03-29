@@ -100,7 +100,7 @@ class PriorityQueue(Generic[T]):
         c: Container = self.map[identity]
         old, c.priority = c.priority, new_priority
 
-        log.info('Updating %s from %s -> %s', identity, old, new_priority)
+        log.debug('Updating %s from %s -> %s', identity, old, new_priority)
         if self._is_dominant_value(new_priority, old):
             # new priority is more dominant
             self._bubble_up(c.position)
@@ -109,7 +109,7 @@ class PriorityQueue(Generic[T]):
             self._bubble_down(c.position)
 
     def _bubble_down(self, pos: int):
-        log.info('Bubbling downwards from %s', pos)
+        log.debug('Bubbling downwards from %s', pos)
         # find the dominant among its children
         index: int = self._find_dominant(pos)
 
@@ -135,7 +135,7 @@ class PriorityQueue(Generic[T]):
             # done with bubbling up
             return
 
-        log.info('Bubbling upwards from %s', pos)
+        log.debug('Bubbling upwards from %s', pos)
         parent = self._parent(pos)
         if self._is_dominant(pos, parent):
             # if the child dominates its parent

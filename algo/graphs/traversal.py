@@ -34,7 +34,7 @@ def breadth_first_search(graph: IGraph, start: str):
     v: Vertex = graph.get_vertex(start)
     assert v is not None, 'Invalid start key {}'.format(start)
 
-    log.info('Starting BFS from %s', start)
+    log.debug('Starting BFS from %s', start)
     graph.clear()
 
     # Parent is None and distance = 0 (by default)
@@ -91,7 +91,7 @@ def dfs_single_node(graph: IGraph, start: str, hooks: Hooks) -> int:
     assert v is not None, 'Invalid start key {}'.format(start)
 
     # DFS from the given start node
-    log.info('Starting DFS from %s', start)
+    log.debug('Starting DFS from %s', start)
     return dfs_visit(graph, graph.get_vertex(start), 1, hooks)
 
 

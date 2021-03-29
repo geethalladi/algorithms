@@ -17,7 +17,7 @@ def topological_sort(graph: IGraph) -> Sequence[Vertex]:
     Topological sorting of the graph
     """
     if has_cycle(graph):
-        log.info('Graph %s has a cycle. TopoSort not possible', graph)
+        log.info('Graph %s has a cycle. TopoSort not possible', graph.name)
         return []
     # do a Depth First Search (Forest style)
     dfs(graph)

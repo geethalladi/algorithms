@@ -38,7 +38,7 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
         # Choosing the vertex with shortest
         # distance in this round
         _, v = queue.get()
-        log.info('Using vertex %s with distance %s', v, v.distance)
+        log.debug('Using vertex %s with distance %s', v, v.distance)
         for neighbour in v.neighbours():
             edge: Edge = v.edge(neighbour)
             # in shortest path we use the full distance

@@ -9,6 +9,8 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Heap as a container type
+** Container Type in python
 ** Priority Queue using heap                                          :algo:
 ** Updating Dijkstra's to use min heap
 

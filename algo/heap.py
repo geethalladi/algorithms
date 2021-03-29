@@ -78,17 +78,9 @@ class Heap:
 
     def _bubble_down(self, index: int):
         log.debug('Bubbling down from index %s', index)
-        left = self._left(index)
-        right = self._right(index)
-
-        # if (left > self.length) and (right > self.length):
-        #     # leaf node
-        #
-        #     return
-
-        d: int = self._find_dominant(index, left, right)
+        d: int = self._find_dominant(index)
         if d == index:
-            # d is dominant when compared to its children
+            # index is dominant when compared to its children
             # stoping bubbling down
             log.debug('Stopping bubbling down at %s', index)
             return
@@ -98,9 +90,14 @@ class Heap:
         self._swap(d, index)
         self._bubble_down(d)
 
-    def _find_dominant(self, index, left, right):
-        assert 1 <= index <= self.length, 'Index {} is not inside heap'.format(
+    def _find_dominant(self, index: int):
+        """
+        Find dominant between element at 'index' and its children
+        """
+        assert self._valid_index(index), 'Index {} is not inside heap'.format(
             index)
+
+        left, right = self._left(index), self._right(index)
 
         # For leaf node, return the index
         if (not self._valid_index(left)) and (not self._valid_index(right)):

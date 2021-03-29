@@ -1,9 +1,8 @@
 """
 Spanning Tree Implementation
 """
+import logging as log
 import sys
-
-from typing import List
 
 from algo.priority_queue import PriorityQueue as PQ
 
@@ -39,17 +38,25 @@ def prim(graph: IGraph, start: str):
             edge.state = State.PROCESSED
 
         for neigh in vertex.neighbours():
-            if neigh not in queue:
+            if already_added(neigh, queue):
                 # this avoids circular edges in MST
                 continue
+
             # in shortest path we use the full distance
             # in mst we just use the edge weight alone
             cost = vertex.weight(neigh)
             if cost < neigh.distance:
                 neigh.parent = vertex
                 neigh.distance = cost
-                # update the priority
-                queue.update(neigh.id, neigh.distance)
+                # update the priority queue
+                queue.update(neigh.id, cost)
+
+
+def already_added(vertex: Vertex, queue: PQ[Vertex]):
+    """
+    Check if the vertex has been added to the spanning tree
+    """
+    return vertex.id not in queue
 
 
 def init_priority_queue(graph: IGraph) -> PQ[Vertex]:

@@ -57,7 +57,7 @@ class PriorityQueue(Generic[T]):
         assert identity not in self.map, 'Task with id {} already exists'.format(
             identity)
         c: Container = Container(identity, priority, task)
-        log.info('Inserting %s', c)
+        log.debug('Inserting %s', c)
         # add it to the map
         self.map[identity] = c
 
@@ -101,7 +101,6 @@ class PriorityQueue(Generic[T]):
         old, c.priority = c.priority, new_priority
 
         log.info('Updating %s from %s -> %s', identity, old, new_priority)
-
         if self._is_dominant_value(new_priority, old):
             # new priority is more dominant
             self._bubble_up(c.position)

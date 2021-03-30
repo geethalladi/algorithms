@@ -26,12 +26,6 @@ class Container(Generic[T]):
     task: T
     position: int = -1
 
-    def __str__(self):
-        return '[{}, {}, {}, {}]'.format(self.identity,
-                                         self.priority,
-                                         self.position,
-                                         self.task)
-
 
 class PriorityQueue(Generic[T]):
     """

@@ -2,7 +2,8 @@
 Different implementation of fibonacci series
 """
 
-# import logging as log
+import logging as log
+from typing import Dict
 
 
 def fib_recursive(n: int) -> int:  # pylint: disable=invalid-name
@@ -15,3 +16,29 @@ def fib_recursive(n: int) -> int:  # pylint: disable=invalid-name
     if n == 1:
         return 1
     return fib_recursive(n - 1) + fib_recursive(n - 2)
+
+# use functool cache for a better implementation
+# constructing the table by hand for a learning experience
+
+
+# can be replaced with a list
+# dictionary gives a more table like feel
+cache_table: Dict[int, int] = {
+    0: 0,
+    1: 1
+}
+
+
+def fib_cached(n: int) -> int:  # pylint: disable=invalid-name
+    """
+    Cached version of fibonacci series
+    """
+
+    # return from the cache if already computed
+    if n in cache_table:
+        return cache_table[n]
+
+    log.info('Computing Fibo[%s]', n)
+    result = fib_cached(n - 1) + fib_cached(n - 2)
+    cache_table[n] = result
+    return result

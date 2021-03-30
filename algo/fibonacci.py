@@ -3,7 +3,7 @@ Different implementation of fibonacci series
 """
 
 import logging as log
-from typing import Dict
+from typing import List, Dict
 
 
 def fib_recursive(n: int) -> int:  # pylint: disable=invalid-name
@@ -42,3 +42,19 @@ def fib_cached(n: int) -> int:  # pylint: disable=invalid-name
     result = fib_cached(n - 1) + fib_cached(n - 2)
     cache_table[n] = result
     return result
+
+
+def fib_dp(n: int) -> int:  # pylint: disable=invalid-name
+    """
+    Fibonacci based on dynamic programming technique
+    """
+    if n <= 0:
+        return 0
+    # table for storing partial results
+    table: List[int] = [0, 1]
+
+    for i in range(2, n + 1):
+        result = table[i-1] + table[i-2]
+        table.append(result)
+
+    return table[n]

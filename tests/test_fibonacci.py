@@ -11,6 +11,7 @@
 
 import logging as log
 import time
+
 from typing import List
 
 import pytest
@@ -49,9 +50,10 @@ class TestFibonacci:
         for i in range(0, 45):
             log.debug('F[%s] = %s', i, fdp(i))
         end = time.process_time()
+        # takes 0.005469000000000002 seconds
         log.info('Took %s to complete recursive Fibonacci series', (end - start))
 
-    @pytest.mark.skip(reason="Took ")
+    @pytest.mark.skip(reason="Took 1229.847708 seconds (20.5 minutes)")
     def test_recursive_fib_timer(self):
         start = time.process_time()
         for i in range(0, 45):

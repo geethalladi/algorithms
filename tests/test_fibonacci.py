@@ -8,6 +8,9 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
+import logging as log
+import time
+
 from typing import List
 
 from algo.fibonacci import fib_recursive as fr
@@ -30,3 +33,7 @@ class TestFibonacci:
 
         for i in range(0, len(self.result)):
             assert fr(i) == self.result[i]
+
+    def test_recursive_fib_timer(self):
+        for i in range(0, 45):
+            log.info('F[%s] = %s', i, fr(i))

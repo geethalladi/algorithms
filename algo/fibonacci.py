@@ -2,10 +2,10 @@
 Different implementation of fibonacci series
 """
 
-import logging as log
+# import logging as log
 
 
-def fib_recursive(n: int) -> int:
+def fib_recursive(n: int) -> int:  # pylint: disable=invalid-name
     """
     Naive recursive implementation of fibonacci
     """
@@ -14,4 +14,4 @@ def fib_recursive(n: int) -> int:
         return 0
     if n == 1:
         return 1
-    return fib_recursive(n-1) + fib_recursive(n-2)
+    return fib_recursive(n - 1) + fib_recursive(n - 2)

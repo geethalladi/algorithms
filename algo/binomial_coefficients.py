@@ -1,9 +1,6 @@
 """
 Algorithm to compute binomial coefficients
 
-Based on Pascal's Triangle. Uses Dynamic Programming
-design technique
-
 Dynamic Programming - Identify the partial results required
 Construct a table to store all the partial results. Populate
 the table. Based on these partial results, compute the final
@@ -15,6 +12,17 @@ from typing import List
 
 
 def binomial_coefficient(n: int, k: int) -> int:  # pylint: disable=invalid-name
+    """
+    Binomial Coefficients using Dynamic Programming.
+
+    The implementation is based on constructing the Pascal's triangle using
+    Dynamic Programming Technique. Store all the partial results in the table
+    and use them to compute the required (n, k), 'given n, choose k'.
+
+    This method avoids using recursion at runtime by computing the partial
+    results from the beginning (0, 0) till the original result. It then boils
+    down, to print the result for (n, k) from the table
+    """
     assert (k <= n), 'Cannot choose when k, {} is more than n {}'.format(k, n)
 
     # table is a 2D square matrix

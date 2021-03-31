@@ -4,7 +4,8 @@ Generate a knight's tour for the given n x n chess board
 import logging as log
 
 from ast import literal_eval
-from typing import NamedTuple, List, Sequence, Tuple
+from dataclasses import dataclass
+from typing import List, Sequence, Tuple
 
 from algo.graphs.edge import EdgeInput
 from algo.graphs.graph import Graph
@@ -12,8 +13,11 @@ from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
 from algo.graphs.vertex import Vertex
 
+__all__ = ['knights_tour', 'is_valid_tour']
 
-class Position(NamedTuple):
+
+@dataclass
+class Position:
     """
     Abstract Type for Position
     """
@@ -146,8 +150,7 @@ def __get_neighbours(pos: Position, size: int) -> List[Neighbour]:
     return result
 
 
-# pylint: disable=unused-argument
-def __start_position(size: int) -> Position:
+def __start_position(_: int) -> Position:
     return Position(0, 0)
 
 

@@ -38,7 +38,7 @@ def fib_cached(n: int) -> int:  # pylint: disable=invalid-name
     if n in cache_table:
         return cache_table[n]
 
-    log.info('Computing Fibo[%s]', n)
+    log.debug('Computing Fibo[%s]', n)
     result = fib_cached(n - 1) + fib_cached(n - 2)
     cache_table[n] = result
     return result

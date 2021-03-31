@@ -9,6 +9,8 @@ from typing import List
 import logging as log
 log.basicConfig(level=log.INFO)
 
+__all__ = ['binary_search']
+
 
 def binary_search(elements: List[int], key: int) -> int:
     """

@@ -4,8 +4,6 @@ between the given two four letter words. The only valid operation is replacing
 one letter with another. All the intermediate words should be valid words
 """
 
-import logging as log
-
 from typing import Dict, Sequence, List
 
 from algo.graphs.edge import EdgeInput
@@ -14,7 +12,7 @@ from algo.graphs.igraph import IGraph
 from algo.graphs.traversal import breadth_first_search as bfs
 from algo.graphs.vertex import Vertex
 
-log.basicConfig(level=log.INFO)
+__all__ = ['find_shortest_path']
 
 """
 Construct an unweighted graph with the given dictionary words. The words

@@ -8,6 +8,8 @@ import logging as log
 
 log.basicConfig(level=log.INFO)
 
+__all__ = ['sort']
+
 
 def sort(elements: List[int]) -> List[int]:
     """
@@ -33,11 +35,11 @@ def __merge_sort(elements: List[int], low: int, high: int) -> List[int]:
     Apply merge sort in the given list, between [low, high]
     """
 
-    log.debug("__merge(%s)", str(elements[low:(high+1)]))
+    log.debug("__merge(%s)", str(elements[low:(high + 1)]))
     if low >= high:
         # This list is already sorted
-        log.debug("NO SORTING OPERATION REQUIRED. RETURNING...")
-        return elements[low:(high+1)]
+        log.debug('NO SORTING OPERATION REQUIRED. RETURNING...')
+        return elements[low:(high + 1)]
 
     mid = (low + high) // 2
 

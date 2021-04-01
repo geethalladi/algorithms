@@ -17,7 +17,7 @@ class Cell:
 
     cost: int
     op: str
-    parent: Optional[Tuple[int, int]] = None
+    parent: Tuple[int, int] = (0, 0)
 
     @classmethod
     def empty(cls):
@@ -47,38 +47,86 @@ def edit_distance(source: str, dest: str) -> Tuple[int, str]:
     more details
     """
 
-    if source == dest:
-        return (0, '')
+    table: List[List[Cell]] = __edit_distance(source, dest)
+
+    cost: int = table[len(source)][len(dest)].cost
+    path: str = find_path(table, len(source), len(dest))
+
+    return (cost, path)
+
+
+def __edit_distance(source: str, dest: str) -> List[List[Cell]]:
 
     # for 1 based index (simplicity of accessing table)
     start, end = (' ' + source), (' ' + dest)
     rows, cols = (len(start)), (len(end))
     table: List[List[Cell]] = init_table(rows, cols)
 
-    for i in range(0, rows):
-        for j in range(0, cols):
-            # match / modify cost
-            match: Cell = Cell(0, 'M')
+    # table[i][j] -> minimum difference between
+    # 'i' length prefix of source to match 'j' length
+    # prefix of dest. When 'i' and 'j' are equal to their
+    # respective lengths, then we have the result
+
+    # No transformation required
+    table[0][0] = Cell(0, '', (-1, -1))
+
+    # Converting a 0 length source to destination
+    for j in range(1, cols):
+        # Insert all the characters
+        table[0][j] = Cell(j, 'I', (0, j - 1))
+
+    # Converting any string to 0 length destination
+    for i in range(1, rows):
+        # Delete all the characters
+        table[i][0] = Cell(i, 'D', (i - 1, 0))
+
+    # Computing the table
+    for i in range(1, rows):
+        for j in range(1, cols):
+            # match / substitute cost
+            m: Cell
+            # they match
+            if start[i] == end[j]:
+                # (ABCD, ADCD) -> C(ABC, ADC) + 0
+                m = Cell(table[i - 1][j - 1].cost,
+                         'M',
+                         (i - 1, j - 1))
+            else:
+                # substitute
+                # (ABCD, ADCE) -> C(ABC, ADC) + 1 (D for E)
+                m = Cell(table[i - 1][j - 1].cost + 1,  # for substitute
+                         'S',
+                         (i - 1, j - 1))
 
             # insert cost
-            insert: Cell = Cell(1, 'I')
+            # (ADC, ABCE) -> C(ADC, ABC) + 1 (Insert E)
+            insert: Cell = Cell(table[i][j - 1].cost + 1,  # for insertion
+                                'I',
+                                (i, j - 1))
 
             # delete cost
-            delete: Cell = Cell(1, 'D')
+            # (ADCE, ABC) -> C(ADC, ABC) + 1 (Delete E)
+            delete: Cell = Cell(table[i - 1][j].cost + 1,  # for deletion
+                                'D',
+                                (i - 1, j))
 
             # Update the parent
-            m = minimum(match, insert, delete)
+            m = minimum(m, insert, delete)
             table[i][j] = m
 
-    path: str = find_path(table)
-    return (table[len(source)][len(dest)].cost, path)
+    return table
 
 
-def find_path(_: List[List[Cell]]) -> str:
+def find_path(table: List[List[Cell]], x: int, y: int) -> str:
     """
     Find the edit path
     """
-    return ''
+    if (x < 0 or y < 0):
+        return ''
+
+    c: Cell = table[x][y]
+
+    return find_path(table, *(c.parent)) + c.op
 
 
 def init_table(rows: int, cols: int) -> List[List[Cell]]:

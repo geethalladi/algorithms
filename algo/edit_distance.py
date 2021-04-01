@@ -5,7 +5,7 @@ for this implementation
 """
 
 from dataclasses import dataclass
-from typing import Any, List, Optional, Tuple
+from typing import ClassVar, List, Optional, Tuple
 
 
 @dataclass
@@ -13,9 +13,20 @@ class Cell:
     """
     Cell for storing the operation
     """
+    Empty: ClassVar['Cell']
     cost: int
     op: str
     parent: Optional[Tuple[int, int]] = None
+
+    @classmethod
+    def empty(cls):
+        """
+        defines a default empty instance
+        """
+        if cls.Empty:
+            return cls.Empty
+        cls.Empty = Cell(0, '')
+        return cls.Empty
 
 
 def edit_distance(source: str, dest: str) -> Tuple[int, str]:
@@ -68,15 +79,15 @@ def find_path(_: List[List[Cell]]) -> str:
     return ''
 
 
-def init_table(rows: int, cols: int):
+def init_table(rows: int, cols: int) -> List[List[Cell]]:
     """
     Initialize the table
     """
-    table: List[List[Any]] = []
+    table: List[List[Cell]] = []
     for r in range(0, rows):
         table.append([])
         for _ in range(0, cols):
-            table[r].append(None)
+            table[r].append(Cell.empty())
     return table
 
 

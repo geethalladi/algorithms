@@ -17,6 +17,9 @@ class TestEditDistance:
     def test_substitute(self):
         assert ed('ADCD', 'ABCE') == (2, 'MSMS')
 
+    def test_match(self):
+        assert ed('ADCD', 'ABCD') == (1, 'MSMM')
+
     def test_insert(self):
         assert ed('hell', 'hello') == (1, 'MMMMI')
 

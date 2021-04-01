@@ -6,7 +6,8 @@ from dataclasses import dataclass
 from typing import Any, List
 
 
-__all__ = ['longest_common_subsequence']
+__all__ = ['longest_common_subsequence',
+           'max_monotonically_increasing']
 
 
 @dataclass
@@ -109,3 +110,11 @@ def init_table(rows: int, cols: int) -> List[List[Cell]]:
         for _ in range(0, cols):
             table[i].append(Cell())
     return table
+
+
+def max_monotonically_increasing(nums: List[int]) -> List[int]:
+    left: str = ''.join([str(n) for n in nums])
+    right: str = ''.join(sorted([str(n) for n in nums]))
+
+    result = longest_common_subsequence(left, right)
+    return [int(c) for c in list(result)]

@@ -2,6 +2,8 @@
 Implementation of longest common subsequence
 """
 
+import logging as log
+
 from dataclasses import dataclass
 from typing import Any, List
 
@@ -113,8 +115,22 @@ def init_table(rows: int, cols: int) -> List[List[Cell]]:
 
 
 def max_monotonically_increasing(nums: List[int]) -> List[int]:
+    """
+    Return the maximum monotonically increasing sub sequence
+
+    Using Longest Common Subsequence as an abstraction. The problem
+    of finding maximum monotonically increasing subsequence can be
+    converted to LC subsequence between the original string and the
+    string of sorted numbers. The longest common subsequence of this
+    input becomes the required result
+    """
+    assert all([(0 <= n <= 9)
+                for n in nums]), 'Input is expected to be single digit'
+
     left: str = ''.join([str(n) for n in nums])
     right: str = ''.join(sorted([str(n) for n in nums]))
 
     result = longest_common_subsequence(left, right)
+    log.info(result)
+
     return [int(c) for c in list(result)]

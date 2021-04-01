@@ -28,6 +28,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Sibling Package
 - As of now, using the full package path
 - Find ways to use relative package paths
+** DONE Maximum Monotonically Increasing Subsequence                  :algo:
 ** DONE Longest Common Subsequence                                    :algo:
 ** DONE Edit distance using DP                                        :algo:
 ** DONE Exporting methods from modules

@@ -3,7 +3,6 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
-import logging
 from algo.sub_sequence import longest_common_subsequence as lcb
 from algo.sub_sequence import max_monotonically_increasing as mono
 
@@ -22,6 +21,7 @@ class TestSubsequence:
         assert lcb('yyabczzdexx', 'zzabxxcdeyy') == 'abcde'
 
     def test_monotonic_sequence(self):
-
-
- assert mono([1, 4, 2, 3, 5, 8, 6, 7, 9]) == [1, 2, 3, 5, 6, 7, 9]
+        assert mono([1, 2]) == [1, 2]
+        assert mono([2, 1, 3]) == [1, 3]
+        assert mono([2, 1]) == [1]
+        assert mono([1, 4, 2, 3, 5, 8, 6, 7, 9]) == [1, 2, 3, 5, 6, 7, 9]

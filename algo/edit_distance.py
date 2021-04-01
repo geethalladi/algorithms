@@ -13,7 +13,8 @@ class Cell:
     """
     Cell for storing the operation
     """
-    Empty: ClassVar['Cell']
+    Empty: ClassVar[Optional['Cell']] = None
+
     cost: int
     op: str
     parent: Optional[Tuple[int, int]] = None
@@ -25,6 +26,7 @@ class Cell:
         """
         if cls.Empty:
             return cls.Empty
+
         cls.Empty = Cell(0, '')
         return cls.Empty
 

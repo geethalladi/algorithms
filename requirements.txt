@@ -1,6 +1,7 @@
 appdirs==1.4.4
 appnope==0.1.2
 argon2-cffi==20.1.0
+astor==0.8.1
 astroid==2.4.2
 async-generator==1.10
 attrs==20.3.0
@@ -11,6 +12,7 @@ bleach==3.2.1
 certifi==2020.12.5
 cffi==1.14.4
 click==7.1.2
+colorama==0.4.4
 coverage==5.5
 decorator==4.4.2
 defusedxml==0.6.0
@@ -20,7 +22,9 @@ entrypoints==0.3
 filelock==3.0.12
 flake8==3.8.4
 flake8-mypy==17.8.0
+funcparserlib==0.3.6
 graphviz==0.13.2
+hy==0.20.0
 importlib-metadata==3.3.0
 importlib-resources==3.3.0
 iniconfig==1.1.1
@@ -77,6 +81,7 @@ qtconsole==5.0.1
 QtPy==1.9.0
 regex==2020.11.13
 rope==0.18.0
+rply==0.7.8
 Send2Trash==1.5.0
 six==1.15.0
 stevedore==3.3.0

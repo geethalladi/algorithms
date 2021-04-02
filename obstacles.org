@@ -9,26 +9,40 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Longest Increasing Subsequence                                     :algo:
 ** Dropping Egg                                                       :algo:
-** Strongly Connected Components                                      :algo:
 ** Edge Classification using DFS
 - Tree
 - Forward
 - Backward
 - Cross
+** Strongly Connected Components                                      :algo:
 ** Articulation Vertex                                                :algo:
 ** Union find                                                         :algo:
-** Domain Specific Language in hy
-- Lisp dialect for python
-** Kruskal's minimal spanning tree                                    :algo:
+** Two coloring (bipartite graph)
+** Writing better recurrence relations
+- Solve problems by coming up with recurrence relations
+** Solve more problems using
+*** Depth First Search
+*** Directed acyclic Graph
+*** Graph modeling
+*** Breadth First Search
+*** Spanning Tree
+*** Shortest Path
 ** Basic network flow                                                 :algo:
+** Kruskal's minimal spanning tree                                    :algo:
 ** Warnsdroff algorithm                                               :algo:
 - for knight's tour
 ** Modules and their imports                                            :py:
-*** Sibling Package
-- As of now, using the full package path
-- Find ways to use relative package paths
+- Sibling Package
+  - As of now, using the full package path
+  - Find ways to use relative package paths
+** DONE Updated the next set of algorithm implementation
+** DONE Domain Specific Language in hy
+- Lisp dialect for python
+- Initial setup and walk through
 ** DONE Maximum Monotonically Increasing Subsequence                  :algo:
+- Modeled it as a variant of Longest Common Subsequence
 ** DONE Longest Common Subsequence                                    :algo:
 ** DONE Edit distance using DP                                        :algo:
 ** DONE Exporting methods from modules

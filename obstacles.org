@@ -9,7 +9,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Rewrite the front end with a macro
 ** Longest Increasing Subsequence                                     :algo:
 ** Dropping Egg                                                       :algo:
 ** Edge Classification using DFS
@@ -38,6 +37,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Sibling Package
   - As of now, using the full package path
   - Find ways to use relative package paths
+** DONE Rewrite the front end with a macro
 ** DONE lisp front end for Graph building
 ** DONE Install hy and fix the workflow
 - Installed hy and jedhy

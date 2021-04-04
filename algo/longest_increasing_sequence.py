@@ -89,9 +89,11 @@ def __find_sequence(table: List[Cell]) -> Tuple[int, int]:
 
 
 def __get_sequence(table: List[Cell], index: int) -> List[int]:
-    if table[index].parent == -1:
-        e: int = table[index].element
-        return [e]
+    """
+    Recursively reconstruct the entire sequence
+    """
+    if index == -1:
+        return []
 
     result: List[int] = __get_sequence(table, table[index].parent)
     result.append(table[index].element)

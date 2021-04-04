@@ -7,64 +7,91 @@ Using dynamic programming technique to solve this problem
 import logging as log
 
 from dataclasses import dataclass
-from typing import List
+from typing import List, Tuple
 
 __all__ = ['longest_increasing_sequence']
 
 
 @dataclass
 class Cell:
+    """
+    ADT for storing data in the table (DP)
+    """
     size: int
     element: int
     parent: int = -1
 
 
-def longest_increasing_sequence(xs: List[int]) -> List[int]:
-    assert len(xs) > 0, 'Empty sequence'
+def longest_increasing_sequence(nums: List[int]) -> List[int]:
+    """
+    Return the longest increasing sequence in the given input.
+
+    Uses Dynamic Programming recurrence to solve the problem. At each
+    index 'i' store the size of the longest sequence, ending at that
+    index. This size is computed by looking at the previous longest
+    sequence whose largest element is less than the given element,
+    `nums[i]`.
+
+    The DP stores all the possible longest sequence ending at each
+    index. The final result is obtained by finding the maximum of
+    these sizes.
+
+    Once the end index is identified, the parent property can be used
+    to traceback the exact sequence.
+
+    """
+    assert len(nums) > 0, 'Empty sequence'
 
     table: List[Cell] = []
-    table.append(Cell(1, xs[0], -1))
+    table.append(Cell(1, nums[0], -1))
 
-    for i in range(1, len(xs)):
-        element: int = xs[i]
-        (max, index) = find_max_size(table, i, element)
-        table.append(Cell(max + 1, element, index))
+    for i in range(1, len(nums)):
+        element: int = nums[i]
+        (size, index) = __find_longest_sequence(table, i, element)
+        table.append(Cell(size + 1, element, index))
 
-    (max, index) = find_max(table)
+    (size, index) = __find_sequence(table)
 
-    result = get_sequence(table, index)
+    result = __get_sequence(table, index)
 
-    assert len(result) == max
+    assert len(result) == size, 'Longest sequence does not match'
     return result
 
 
-def find_max_size(table: List[Cell], index: int, element: int):
-    max_size, max_index = 0, -1
+def __find_longest_sequence(table: List[Cell], index: int, element: int) -> Tuple[int, int]:
+    """
+    Find the longest sequence in range [0, i) whose values are less
+    than the given element
+    """
+    size, end = 0, -1
 
     for i in range(0, index):
-        if (table[i].element <= element) and table[i].size > max_size:
-            max_size, max_index = table[i].size, i
+        if (table[i].element <= element) and size < table[i].size:
+            size, end = table[i].size, i
 
-    log.info('Max for %s is (%s, %s) ', index, max_size, max_index)
-    return (max_size, max_index)
+    log.debug('Max for %s is (%s, %s) ', index, size, end)
+    return (size, end)
 
 
-def find_max(table: List[Cell]):
-    max, index = table[0].size, 0
+def __find_sequence(table: List[Cell]) -> Tuple[int, int]:
+    """
+    Finally find the longest all the computed sequences
+    """
+    size, index = table[0].size, 0
 
     for i in range(1, len(table)):
-        log.info('Index %s has size %s', i, table[i].size)
-        if max < table[i].size:
-            max, index = table[i].size, i
+        log.debug('Index %s has size %s', i, table[i].size)
+        if size < table[i].size:
+            size, index = table[i].size, i
 
-    return (max, index)
+    return (size, index)
 
 
-def get_sequence(table: List[Cell], index: int) -> List[int]:
+def __get_sequence(table: List[Cell], index: int) -> List[int]:
     if table[index].parent == -1:
         e: int = table[index].element
         return [e]
 
-    result: List[int] = get_sequence(table, table[index].parent)
+    result: List[int] = __get_sequence(table, table[index].parent)
     result.append(table[index].element)
     return result

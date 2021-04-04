@@ -17,8 +17,8 @@ class Cell:
     """
     ADT for storing data in the table (DP)
     """
-    size: int
     element: int
+    size: int
     parent: int = -1
 
 
@@ -43,12 +43,13 @@ def longest_increasing_sequence(nums: List[int]) -> List[int]:
     assert len(nums) > 0, 'Empty sequence'
 
     table: List[Cell] = []
-    table.append(Cell(1, nums[0], -1))
+    table.append(Cell(nums[0], 1, -1))
 
     for i in range(1, len(nums)):
         element: int = nums[i]
         (size, index) = __find_longest_sequence(table, i, element)
-        table.append(Cell(size + 1, element, index))
+        # add one more to the existing (longest) sequence
+        table.append(Cell(element, size + 1, index))
 
     (size, index) = __find_sequence(table)
 

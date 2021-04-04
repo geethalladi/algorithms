@@ -113,6 +113,8 @@ def init_table(rows: int, cols: int) -> List[List[Cell]]:
             table[i].append(Cell())
     return table
 
+# TODO: extract this to a separate module
+
 
 def max_monotonically_increasing(nums: List[int]) -> List[int]:
     """

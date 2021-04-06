@@ -10,12 +10,6 @@ from typing import List
 
 class Solution:  # pylint: disable=too-many-public-methods
     """ Solution ADT """
-    table: List[List[int]]
-
-    def __init__(self):
-        self.table = []
-        self.max_eggs = 0
-        self.max_floors = 0
 
     def __get(self, i, j, x, table) -> int:
         return max(table[i-1][x-1],

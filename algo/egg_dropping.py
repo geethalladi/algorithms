@@ -79,13 +79,3 @@ def __compute_cost(x: int, eggs: int, floors: int, table: List[List[Cell]]) -> C
         return Cell(eggs, c.moves + 1, (eggs - 1, x - 1))
 
     return Cell(eggs, d.moves + 1, (eggs, floors - x))
-
-
-# def __find_minimum_cost(results: List[Cell]) -> Cell:
-#     assert len(results) > 0, 'Empty partial results'
-#     return min(results, key=lambda x: x.moves)
-#     # mn: Cell = results[0]
-#     # for i in range(1, len(results)):
-#     #     if results[i].moves < mn.moves:
-#     #         mn = results[i]
-#     # return mn

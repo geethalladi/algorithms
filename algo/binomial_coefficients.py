@@ -62,12 +62,3 @@ def init_table(size: int):
         for _ in range(0, size):
             table[i].append(0)
     return table
-
-
-# def print_table(table: List[List[int]]):
-#     """
-#     Print the table
-#     """
-#     log.info('***********************')
-#     for r in table:
-#         log.info(r)

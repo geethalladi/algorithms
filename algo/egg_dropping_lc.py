@@ -7,8 +7,6 @@ import sys
 
 from typing import List
 
-__all__ = ['egg_dropping']
-
 
 def egg_dropping(eggs: int, floors: int) -> int:
     """
@@ -36,12 +34,10 @@ def egg_dropping(eggs: int, floors: int) -> int:
         for j in range(2, floors + 1):
             result = sys.maxsize
             for x in range(1, j + 1):
-                c = __compute_cost(x, i, j, table)
+                c = max(table[i-1][x-1],
+                        table[i][j-x]) + 1
                 if c < result:
                     result = c
             table[i][j] = result
+
     return table[eggs][floors]
-
-
-def __compute_cost(x: int, eggs: int, floors: int, table: List[List[int]]) -> int:
-    return max(table[eggs - 1][x - 1], table[eggs][floors - x]) + 1

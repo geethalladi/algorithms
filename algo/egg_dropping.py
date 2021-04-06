@@ -36,8 +36,8 @@ def egg_dropping(eggs: int, floors: int) -> int:
             partials: List[Cell] = [__compute_cost(x, i, j, table)
                                     for x in range(1, floors + 1)]
             result: Cell = min(partials, key=lambda c: c.moves)
-            log.info('Cost for %s eggs with %s floors is %s',
-                     i, j, result.moves)
+            # log.info('Cost for %s eggs with %s floors is %s',
+            #          i, j, result.moves)
             table[i][j] = result
 
     return table[eggs][floors].moves
@@ -71,7 +71,7 @@ def __compute_cost(x: int, eggs: int, floors: int, table: List[List[Cell]]) -> C
     # if it does not
     d: Cell = table[eggs][floors - x]
 
-    log.debug('From %s floor, %s, %s', x, c, d)
+    # log.debug('From %s floor, %s, %s', x, c, d)
 
     # what is the maximum moves when the egg is thrown from floor 'x'
     # 1+ to account for throwing from floor 'x'

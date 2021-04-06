@@ -34,7 +34,7 @@ def egg_dropping(eggs: int, floors: int) -> int:
             # Try dropping the egg from each of the 'x' floors
             # and find its minimum
             partials: List[Cell] = [__compute_cost(x, i, j, table)
-                                    for x in range(1, floors + 1)]
+                                    for x in range(1, j + 1)]
             result: Cell = min(partials, key=lambda c: c.moves)
             # log.info('Cost for %s eggs with %s floors is %s',
             #          i, j, result.moves)

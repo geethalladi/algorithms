@@ -61,9 +61,10 @@ class Solution:  # pylint: disable=too-many-public-methods
             table[1][j] = j
 
         for i in range(2, eggs + 1):
+            start = 1
             for j in range(2, floors + 1):
                 result = sys.maxsize
-                for x in range(1, j + 1):
+                for x in range(start, j + 1):
                     c = max(table[i-1][x-1],
                             table[i][j-x]) + 1
 

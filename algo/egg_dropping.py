@@ -33,14 +33,12 @@ def egg_dropping(eggs: int, floors: int) -> int:
         for j in range(2, floors + 1):
             # Try dropping the egg from each of the 'x' floors
             # and find its minimum
-            results: List[Cell] = []
-            for x in range(1, floors + 1):
-                result: Cell = __compute_cost(x, i, j, table)
-                results.append(result)
-
-            table[i][j] = __find_minimum_cost(results)
+            partials: List[Cell] = [__compute_cost(x, i, j, table)
+                                    for x in range(1, floors + 1)]
+            result: Cell = min(partials, key=lambda c: c.moves)
             log.info('Cost for %s eggs with %s floors is %s',
-                     i, j, table[i][j].moves)
+                     i, j, result.moves)
+            table[i][j] = result
 
     return table[eggs][floors].moves
 
@@ -55,13 +53,13 @@ def __init_table(eggs: int, floors: int) -> List[List[Cell]]:
         for _ in range(0, floors + 1):
             result[i].append(empty)
 
-    # with a single egg, and n floors, the ans is n
-    for j in range(0, floors + 1):
-        result[1][j] = Cell(1, j, (1, j - 1))
-
     # on a single floor with k eggs, the answer is 1
     for i in range(0, eggs + 1):
         result[i][1] = Cell(i, 1, (-1, -1))
+
+    # with a single egg, and n floors, the ans is n
+    for j in range(0, floors + 1):
+        result[1][j] = Cell(1, j, (1, j - 1))
 
     return result
 
@@ -73,7 +71,7 @@ def __compute_cost(x: int, eggs: int, floors: int, table: List[List[Cell]]) -> C
     # if it does not
     d: Cell = table[eggs][floors - x]
 
-    log.info('From %s floor, %s, %s', x, c, d)
+    log.debug('From %s floor, %s, %s', x, c, d)
 
     # what is the maximum moves when the egg is thrown from floor 'x'
     # 1+ to account for throwing from floor 'x'
@@ -83,10 +81,11 @@ def __compute_cost(x: int, eggs: int, floors: int, table: List[List[Cell]]) -> C
     return Cell(eggs, d.moves + 1, (eggs, floors - x))
 
 
-def __find_minimum_cost(results: List[Cell]) -> Cell:
-    assert len(results) > 0, 'Empty partial results'
-    mn: Cell = results[0]
-    for i in range(1, len(results)):
-        if results[i].moves < mn.moves:
-            mn = results[i]
-    return mn
+# def __find_minimum_cost(results: List[Cell]) -> Cell:
+#     assert len(results) > 0, 'Empty partial results'
+#     return min(results, key=lambda x: x.moves)
+#     # mn: Cell = results[0]
+#     # for i in range(1, len(results)):
+#     #     if results[i].moves < mn.moves:
+#     #         mn = results[i]
+#     # return mn

@@ -44,10 +44,4 @@ def egg_dropping(eggs: int, floors: int) -> int:
 
 
 def __compute_cost(x: int, eggs: int, floors: int, table: List[List[int]]) -> int:
-    c = table[eggs - 1][x - 1]
-    d = table[eggs][floors - x]
-
-    if c >= d:
-        return c + 1
-
-    return d + 1
+    return max(table[eggs - 1][x - 1], table[eggs][floors - x]) + 1

@@ -44,15 +44,9 @@ def egg_dropping(eggs: int, floors: int) -> int:
 
 
 def __compute_cost(x: int, eggs: int, floors: int, table: List[List[int]]) -> int:
-    # if egg breaks
     c = table[eggs - 1][x - 1]
-    # if it does not
     d = table[eggs][floors - x]
 
-    # log.debug('From %s floor, %s, %s', x, c, d)
-
-    # what is the maximum moves when the egg is thrown from floor 'x'
-    # 1+ to account for throwing from floor 'x'
     if c >= d:
         return c + 1
 

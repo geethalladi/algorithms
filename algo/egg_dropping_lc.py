@@ -53,11 +53,14 @@ class Solution:  # pylint: disable=too-many-public-methods
 
         result = sys.maxsize
         start = 1
+
         for x in range(start, floor + 1):
-            if table[eggs-1][x-1] >= table[eggs][floor-x]:
-                c = table[eggs-1][x-1] + 1
+            t1 = table[eggs-1][x-1]
+            t2 = table[eggs][floor-x]
+            if t1 >= t2:
+                c = t1 + 1
             else:
-                c = table[eggs][floor-x] + 1
+                c = t2 + 1
 
             if c < result:
                 result = c

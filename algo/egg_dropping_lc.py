@@ -37,25 +37,29 @@ class Solution:  # pylint: disable=too-many-public-methods
             table[1][j] = j
 
         for i in range(2, eggs + 1):
-            start = 1
             for j in range(2, floors + 1):
-                result = sys.maxsize
-                for x in range(start, j + 1):
-                    if table[i-1][x-1] >= table[i][j-x]:
-                        c = table[i-1][x-1] + 1
-                        l1 = x-1
-                    else:
-                        c = table[i][j-x] + 1
-                        l1 = j-x
-
-                    if c < result:
-                        result = c
-                        l2 = l1
-                        table[i][j] = result
-
-                # # # remember the previous best level
-                # if l2 > start:
-                #     log.info('Start is modified to %s', l2)
-                #     start = l2
+                result = self.compute_result_for(i, j, table)
+                table[i][j] = result
 
         return table[eggs][floors]
+
+    def compute_result_for(self, eggs, floor, table):
+        """
+        For the given (eggs, floor), find the minimum drops
+        required. Identify the best floor `x` where this drop
+        can happen. The best floor `x` is where `t1` = `t2`
+        Using binary search to find this floor
+        """
+
+        result = sys.maxsize
+        start = 1
+        for x in range(start, floor + 1):
+            if table[eggs-1][x-1] >= table[eggs][floor-x]:
+                c = table[eggs-1][x-1] + 1
+            else:
+                c = table[eggs][floor-x] + 1
+
+            if c < result:
+                result = c
+
+        return result

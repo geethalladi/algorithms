@@ -9,6 +9,19 @@ from typing import List
 
 __all__ = ['egg_dropping']
 
+"""
+Lessons learnt by Leetcode submission and acceptance.
+
+- Don't log, not even debug logs (String processing and output takes time)
+- Avoid function calls. Calling and returning consumes time
+- Use only the memory that is required. Storing large tables (DP)
+  might not be a good idea
+- Code readability will be sacrificed
+- Only solve the given problem. Having more data to help yourself
+  in future, to add a new feature on top, does not align with
+  leetcode's submission and acceptance model.
+"""
+
 
 def egg_dropping(eggs: int, floors: int) -> int:
     """

@@ -20,8 +20,6 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** Two coloring (bipartite graph)
 ** Writing better recurrence relations
 - Solve problems by coming up with recurrence relations
-** Dropping Egg optimization
-- Based on the method from leetcode
 ** Solve more problems using
 *** Depth First Search
 *** Directed acyclic Graph
@@ -37,6 +35,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Sibling Package
   - As of now, using the full package path
   - Find ways to use relative package paths
+** DONE Dropping Egg optimization
+- Based on the method from leetcode
+- Finally the submission went through
+- Added the findings as source code comments
 ** DONE Dropping Egg                                                  :algo:
 ** DONE Longest Increasing Subsequence                                :algo:
 ** DONE Rewrite the front end with a macro

@@ -47,7 +47,7 @@ def egg_dropping(eggs: int, floors: int) -> int:
 
     for i in range(2, eggs + 1):
         for j in range(2, floors + 1):
-            result = __compute_cost(i, j, table)
+            result = compute_cost(i, j, table)
             table[i][j] = result
             log.debug('E(%s, %s) = %s', i, j, result)
 
@@ -55,7 +55,7 @@ def egg_dropping(eggs: int, floors: int) -> int:
 
 
 # pylint: disable=invalid-name
-def __compute_cost(eggs: int, floors: int, table: List[List[Cell]]) -> Cell:
+def compute_cost(eggs: int, floors: int, table: List[List[Cell]]) -> Cell:
     """
     Try dropping the egg from each of the 'x' floors
     and find its minimum

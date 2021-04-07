@@ -7,6 +7,8 @@ import logging as log
 
 from typing import List
 
+__all__ = ['egg_dropping']
+
 
 def egg_dropping(eggs: int, floors: int) -> int:
     """
@@ -30,14 +32,14 @@ def egg_dropping(eggs: int, floors: int) -> int:
 
     for i in range(2, eggs + 1):
         for j in range(2, floors + 1):
-            result = compute_result_for(i, j, table)
+            result = compute_cost(i, j, table)
             table[i][j] = result
-            log.debug('E(%s, %s) = %s', i, j, table)
+            log.debug('E(%s, %s) = %s', i, j, result)
 
     return table[eggs][floors]
 
 
-def compute_result_for(eggs, floors, table):
+def compute_cost(eggs: int, floors: int, table: List[List[int]]) -> int:
     """
     For the given (eggs, floors), find the minimum drops
     required. Identify the best floors `x` where this drop
@@ -53,8 +55,8 @@ def compute_result_for(eggs, floors, table):
     low, high = 1, floors + 1
     while (low <= high):
         x = (low + high) // 2
-        t1 = table[eggs-1][x-1]
-        t2 = table[eggs][floors-x]
+        t1 = table[eggs - 1][x - 1]
+        t2 = table[eggs][floors - x]
         if t1 == t2:
             # Found the optimal point where
             # the max(t1, t2) will be at its

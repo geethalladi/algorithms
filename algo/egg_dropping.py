@@ -74,4 +74,5 @@ def compute_cost(eggs: int, floors: int, table: List[List[Cell]]) -> Cell:
         else:
             partials.append(Cell(eggs, d.moves + 1, (eggs, floors - x)))
 
+    # find which 'x' gives me the minimum result (minimum of all maximums)
     return min(partials, key=lambda c: c.moves)

@@ -6,6 +6,13 @@
 import logging as log
 import time
 
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
+# pylint: disable=no-self-use
+
+import pytest
+
 from algo.egg_dropping import egg_dropping as eg
 from algo.egg_dropping_optimized import egg_dropping as ego
 
@@ -15,6 +22,7 @@ class TestEggDropping:  # pylint: disable=too-few-public-methods
     A Test Suite for egg_dropping
     """
 
+    @pytest.mark.skip(reason="Takes 70 seconds to complete")
     def test_original(self):
         start = time.process_time()
         assert eg(2, 2) == 2

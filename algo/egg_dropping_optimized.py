@@ -45,7 +45,9 @@ def compute_result_for(eggs, floors, table):
     The curve resembles 'X' where t1 keeps on increasing
     and t2 keeps decreasing. The min(max(t1, t2)) occurs
     around the mid points. Using binary search to find
-    this floor
+    this floor. This procedure was based on the solution
+    from leetcode.
+    (https://leetcode.com/problems/super-egg-drop/solution/)
     """
 
     low, high = 1, floors + 1

@@ -52,17 +52,34 @@ class Solution:  # pylint: disable=too-many-public-methods
         """
 
         result = sys.maxsize
+
         start = 1
 
-        for x in range(start, floor + 1):
+        low, high, x = start, floor + 1, start
+        while (low <= high):
+            x = (low + high) // 2
             t1 = table[eggs-1][x-1]
             t2 = table[eggs][floor-x]
-            if t1 >= t2:
-                c = t1 + 1
+            if t1 < t2:
+                low = x + 1
+            elif t2 < t1:
+                high = x - 1
             else:
-                c = t2 + 1
+                break
 
-            if c < result:
-                result = c
+        result = 1 + max(t1, t2)
+
+        # for x in range(start, floor + 1):
+        #     t1 = table[eggs-1][x-1]
+        #     t2 = table[eggs][floor-x]
+        #     if t1 >= t2:
+        #         c = t1 + 1
+        #     else:
+        #         c = t2 + 1
+
+        #     if c < result:
+        #         result = c
+
+        # assert result == r2, f'Values are {result}, {r2}'
 
         return result

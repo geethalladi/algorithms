@@ -36,7 +36,14 @@ class GraphViewMixin:
         """
         log.debug('Adding nodes to dot representation')
         dot.node(vertex.id, str(vertex),
-                 color=vertex.color())
+                 color=cls.color(vertex))
+
+    @classmethod
+    def color(cls, v: Vertex):
+        """
+        Return the color of the vertex
+        """
+        return v.state.color()
 
     @classmethod
     def __is_edge_required(cls, source: Vertex, dest: Vertex, directed: bool):

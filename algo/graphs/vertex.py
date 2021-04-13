@@ -137,6 +137,12 @@ class Vertex:
         msg = 'Conflicting Edge {} exists against {}'.format(existing, given)
         raise AssertionError(msg)
 
+    def is_processed(self):
+        """
+        Has the vertex been processed already
+        """
+        return self.state == State.PROCESSED
+
     def set_parent(self, parent: 'Vertex', edge: Edge):
         """
         Set the parent and the distance

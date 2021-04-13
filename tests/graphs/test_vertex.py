@@ -59,18 +59,17 @@ class TestVertex:
         v1.state = State.PROCESSED
         assert v1.state == State.PROCESSED
 
-    def test_color(self):
-        v1: Vertex = Vertex('a')
-        assert v1.color() == State.UNDISCOVERED.color()
-        v1.state = State.DISCOVERED
-        assert v1.color() == State.DISCOVERED.color()
-        v1.state = State.PROCESSED
-        assert v1.color() == State.PROCESSED.color()
+    # def test_color(self):
+    #     v1: Vertex = Vertex('a')
+    #     assert v1.color() == State.UNDISCOVERED.color()
+    #     v1.state = State.DISCOVERED
+    #     assert v1.color() == State.DISCOVERED.color()
+    #     v1.state = State.PROCESSED
+    #     assert v1.color() == State.PROCESSED.color()
 
     def test_clear(self):
         v1: Vertex = Vertex('a')
         v1.state = State.DISCOVERED
-        assert v1.color() == State.DISCOVERED.color()
         assert v1.state == State.DISCOVERED
         assert v1.distance == 0
         assert v1.parent is None

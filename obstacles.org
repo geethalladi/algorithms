@@ -9,7 +9,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Two coloring (bipartite graph)
 ** Articulation Vertex                                                :algo:
 ** Edge Classification using DFS
 *** Undirected graph
@@ -39,6 +38,9 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Sibling Package
   - As of now, using the full package path
   - Find ways to use relative package paths
+** DONE Making Color as a property in Vertex
+- Rewriting color for graph visualization
+** DONE Two coloring (bipartite graph)
 ** DONE Dropping Egg optimization
 - Based on the method from leetcode
 - Finally the submission went through

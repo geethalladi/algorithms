@@ -9,15 +9,19 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
+** Two coloring (bipartite graph)
+** Articulation Vertex                                                :algo:
 ** Edge Classification using DFS
+*** Undirected graph
+- Tree
+- Back
+*** Directed Graph
 - Tree
 - Forward
 - Backward
 - Cross
 ** Strongly Connected Components                                      :algo:
-** Articulation Vertex                                                :algo:
 ** Union find                                                         :algo:
-** Two coloring (bipartite graph)
 ** Writing better recurrence relations
 - Solve problems by coming up with recurrence relations
 ** Solve more problems using

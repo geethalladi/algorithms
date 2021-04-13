@@ -137,11 +137,6 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
         # Ideal Condition
         # To make sure edge is processed only once
         edge: Edge = vertex.edge(nbr)
-        if ((nbr.state == State.DISCOVERED) or graph.directed):
-            # only process edge (leave the vertex)
-            edge.state = State.DISCOVERED
-            if hooks.process_edge:
-                hooks.process_edge(vertex, nbr, edge)
 
         # found new vertex: process both edge and vertex
         if nbr.state == State.UNDISCOVERED:
@@ -158,6 +153,12 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
 
             # recurse with the new edge
             time = dfs_visit(graph, nbr, time, hooks)
+
+        elif (graph.directed or (not nbr.is_processed())):
+            # only process edge (leave the vertex)
+            edge.state = State.DISCOVERED
+            if hooks.process_edge:
+                hooks.process_edge(vertex, nbr, edge)
 
     # Fully Processed
     log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)

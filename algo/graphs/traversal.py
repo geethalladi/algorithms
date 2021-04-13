@@ -156,11 +156,13 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
             time = dfs_visit(graph, nbr, time, hooks)
 
         elif (graph.directed or (not nbr.is_processed())):
-            # only process edge (leave the vertex)
-            # assert edge.state == State.UNDISCOVERED, f'{edge.state} is not UNDISCOVERED'
-            edge.state = State.DISCOVERED
-            if hooks.process_edge:
-                hooks.process_edge(vertex, nbr, edge)
+            # this avoids reprocessing the edge
+            # again from (dest, source)
+            if edge.state == State.UNDISCOVERED:
+                # only process edge (leave the vertex)
+                edge.state = State.DISCOVERED
+                if hooks.process_edge:
+                    hooks.process_edge(vertex, nbr, edge)
 
     # Fully Processed
     log.debug('Vertex %s is %s at %s', vertex, State.PROCESSED, time)

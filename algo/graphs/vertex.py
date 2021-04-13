@@ -25,6 +25,7 @@ class Vertex:
     parent: 'Vertex'
     discovery: int
     finish: int
+    color: str
     connected_to: Dict['Vertex', Edge]
 
     def __init__(self, key: str):
@@ -50,6 +51,7 @@ class Vertex:
         # Setting the discovery / finish time to 0
         self.discovery = 0
         self.finish = 0
+        self.color = None
         # clear the contents of the edge
         for e in self.edges():
             e.clear()

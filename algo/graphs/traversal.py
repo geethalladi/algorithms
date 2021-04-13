@@ -143,6 +143,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
             # setting the parent
             nbr.set_parent(vertex, edge)
 
+            assert edge.state == State.UNDISCOVERED
             edge.state = State.DISCOVERED
             if hooks.process_edge:
                 hooks.process_edge(vertex, nbr, edge)
@@ -156,6 +157,7 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
 
         elif (graph.directed or (not nbr.is_processed())):
             # only process edge (leave the vertex)
+            # assert edge.state == State.UNDISCOVERED, f'{edge.state} is not UNDISCOVERED'
             edge.state = State.DISCOVERED
             if hooks.process_edge:
                 hooks.process_edge(vertex, nbr, edge)

@@ -55,13 +55,10 @@ def is_back_edge(_: Vertex, dest: Vertex) -> bool:
     return dest.state == State.DISCOVERED
 
 
-def color_vertex(source: Vertex, dest: Vertex, edge: Edge):
+def color_vertex(source: Vertex, dest: Vertex, _: Edge):
     """
     Color the new vertex
     """
-    # # this should be a new edge, seen for the first time
-    # assert edge.state == State.UNDISCOVERED, f'{edge.state} is not UNDISCOVERED'
-
     if source.color is None:
         source.color = 'blue'
 
@@ -70,7 +67,6 @@ def color_vertex(source: Vertex, dest: Vertex, edge: Edge):
         raise BipartiteError(msg)
 
     dest.color = complement(source.color)
-    return
 
 
 def complement(color: str) -> str:

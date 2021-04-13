@@ -39,10 +39,12 @@ class GraphViewMixin:
                  color=cls.color(vertex))
 
     @classmethod
-    def color(cls, v: Vertex):
+    def color(cls, v: Vertex) -> str:
         """
         Return the color of the vertex
         """
+        if v.color:
+            return v.color
         return v.state.color()
 
     @classmethod

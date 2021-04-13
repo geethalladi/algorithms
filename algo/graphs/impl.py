@@ -77,7 +77,8 @@ def complement(color: str) -> str:
     """
     Return the complement of this color
     """
-    assert color == 'blue' or color == 'brown'
+    assert color in ['blue', 'brown']
+
     if color == 'blue':
         return 'brown'
     return 'blue'

@@ -2,15 +2,28 @@
 Edge ADT
 """
 
+from enum import Enum, auto, unique
 from dataclasses import dataclass
 from typing import NamedTuple, Tuple, Optional, Iterable
 
 from algo.graphs.state import State
 
-__all__ = ['Edge', 'EdgeInput']
+__all__ = ['Edge', 'EdgeInput', 'EdgeType']
 
 
 # Moving away from NamedTuples as they are immutable
+
+@unique
+class EdgeType(Enum):
+    """
+    Edge type as an enum
+    """
+    UNKNOWN = auto()
+    TREE = auto()
+    BACK = auto()
+    FORWARD = auto()
+    CROSS = auto()
+
 
 @dataclass
 class Edge:
@@ -24,12 +37,14 @@ class Edge:
     weight: int = 1
     directed: bool = False
     state: State = State.UNDISCOVERED
+    type: EdgeType = EdgeType.UNKNOWN
 
     def clear(self):
         """
         Clear the state of the edge
         """
         self.state = State.UNDISCOVERED
+        self.type = EdgeType.UNKNOWN
 
     def transpose(self):
         """

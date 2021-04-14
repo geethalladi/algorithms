@@ -22,8 +22,12 @@ class TestEggDropping:  # pylint: disable=too-few-public-methods
     A Test Suite for egg_dropping
     """
 
-    @pytest.mark.skip(reason="Takes 70 seconds to complete")
     def test_original(self):
+        assert eg(2, 2) == 2
+        assert eg(2, 6) == 3
+
+    @pytest.mark.skip(reason="Takes 70 seconds to complete")
+    def test_original_large_input(self):
         start = time.process_time()
         assert eg(2, 2) == 2
         assert eg(2, 6) == 3

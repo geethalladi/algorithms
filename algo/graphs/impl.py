@@ -24,12 +24,6 @@ class BipartiteError(ValueError):
     Custom error for bipartite graphs
     """
 
-# def is_back_edge(_: Vertex, dest: Vertex) -> bool:
-#     """
-#     Check if the given edge is a backedge
-#     """
-#     return dest.state == State.DISCOVERED
-
 
 def has_cycle(graph: IGraph) -> bool:
     """

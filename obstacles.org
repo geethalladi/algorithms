@@ -10,15 +10,6 @@
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
 ** Articulation Vertex                                                :algo:
-** Edge Classification using DFS
-*** Undirected graph
-- Tree
-- Back
-*** Directed Graph
-- Tree
-- Forward
-- Backward
-- Cross
 ** Strongly Connected Components                                      :algo:
 ** Union find                                                         :algo:
 ** Writing better recurrence relations
@@ -38,6 +29,18 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Sibling Package
   - As of now, using the full package path
   - Find ways to use relative package paths
+** DONE Edge Classification using DFS
+*** Undirected graph
+- Tree
+- Back
+*** Directed Graph
+- Tree
+- Forward
+- Backward
+- Cross
+** DONE Type property in Edge
+- EdgeType as an Enum
+- Default value for this field
 ** DONE Optional is unsubscriptable
 - Update the package version
 ** DONE Fixing reprocessing of edge in DFS

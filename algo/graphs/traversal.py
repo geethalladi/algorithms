@@ -180,7 +180,7 @@ def classify_edge(source: Vertex, dest: Vertex) -> EdgeType:
     Classify this edge
     """
     if dest.parent == source:
-        return EdgeType.FORWARD
+        return EdgeType.TREE
 
     # "checking dest's parent is not source" is not required here
     # adding it for the sake of completion

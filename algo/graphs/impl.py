@@ -66,7 +66,7 @@ def is_bipartite(graph: IGraph, source: str = None) -> bool:
         return False
 
 
-def edge_classifier(graph: IGraph):
+def edge_classifier(graph: IGraph, start: str = None):
     """
     Classify all the edges in the given graph
     """
@@ -79,4 +79,4 @@ def edge_classifier(graph: IGraph):
         edge.type = result
 
     # Do the depth first search
-    dfs(graph, hooks=Hooks(process_edge=classifier))
+    dfs(graph, start, hooks=Hooks(process_edge=classifier))

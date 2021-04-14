@@ -23,6 +23,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 ** Writing better recurrence relations
 - Solve problems by coming up with recurrence relations
 ** Kruskal's minimal spanning tree                                    :algo:
+** Refactor visualizer for heap and PQ
 ** Basic network flow                                                 :algo:
 ** Warnsdroff algorithm                                               :algo:
 - for knight's tour

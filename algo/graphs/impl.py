@@ -24,11 +24,23 @@ class BipartiteError(ValueError):
     Custom error for bipartite graphs
     """
 
+# def is_back_edge(_: Vertex, dest: Vertex) -> bool:
+#     """
+#     Check if the given edge is a backedge
+#     """
+#     return dest.state == State.DISCOVERED
+
 
 def has_cycle(graph: IGraph) -> bool:
     """
     Check if the graph has a cycle
     """
+
+    def raise_back_edge(source: Vertex, dest: Vertex, _: Edge):
+        if classify_edge(source, dest) == EdgeType.BACK:
+            raise CycleError(
+                f'Backend edge exists between {source} and {dest}')
+
     try:
         # do a depth first forest search with the given hooks
         dfs(graph, None, Hooks(process_edge=raise_back_edge))
@@ -36,23 +48,6 @@ def has_cycle(graph: IGraph) -> bool:
     except CycleError as exp:
         log.info('Cycle found: %s', exp)
         return True
-
-
-def raise_back_edge(source: Vertex, dest: Vertex, edge: Edge):
-    """
-    Check if the edge is a back edge
-    """
-    log.debug('Checking back edge in %s, %s, %s', source, dest, edge)
-    if is_back_edge(source, dest):
-        msg = 'Backend edge exists between {} and {}'.format(source, dest)
-        raise CycleError(msg)
-
-
-def is_back_edge(_: Vertex, dest: Vertex) -> bool:
-    """
-    Check if the given edge is a backedge
-    """
-    return dest.state == State.DISCOVERED
 
 
 def color_vertex(source: Vertex, dest: Vertex, _: Edge):

@@ -3,14 +3,21 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=no-self-use
 
-import logging as log
-
 from typing import Sequence
 
 from algo.graphs.edge import EdgeInput, EdgeType as ET
 from algo.graphs.graph import Graph
 from algo.graphs.igraph import IGraph
 from algo.graphs.impl import is_bipartite, edge_classifier
+
+
+class TestHasCycle:
+    """
+    A Test Suite for testing cycle
+    """
+
+    def test(self):
+        assert 1 == 1
 
 
 class TestEdgeClassifier:
@@ -85,14 +92,15 @@ class TestEdgeClassifier:
         }
         edge_classifier(g, '1')
         for e in g.edges():
-            log.info(e)
             assert e.type == result[f'({e.source}, {e.dest})']
 
     def test_directed_cross(self):
         edges: Sequence[EdgeInput] = [
             ('1', '2'),
             ('2', '3'),
-            ('4', '2')
+            ('1', '4'),
+            ('4', '2'),
+            ('4', '3')
         ]
         g: IGraph = Graph.build('test_graph_builder',
                                 edges, directed=True)
@@ -100,11 +108,12 @@ class TestEdgeClassifier:
         result = {
             '(1, 2)': ET.TREE,
             '(2, 3)': ET.TREE,
-            '(4, 2)': ET.CROSS
+            '(1, 4)': ET.TREE,
+            '(4, 2)': ET.CROSS,
+            '(4, 3)': ET.CROSS
         }
         edge_classifier(g, '1')
         for e in g.edges():
-            log.info(e)
             assert e.type == result[f'({e.source}, {e.dest})']
 
 
@@ -161,12 +170,3 @@ class TestBiPartite:
         g: IGraph = Graph.build('test_graph_builder',
                                 edges, directed=True)
         assert not is_bipartite(g, 'A')
-
-
-class TestHasCycle:
-    """
-    A Test Suite for testing cycle
-    """
-
-    def test(self):
-        assert 1 == 1

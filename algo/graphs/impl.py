@@ -3,14 +3,14 @@ Graph Algorithm Implementations
 """
 import logging as log
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import Edge, EdgeType
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
-from algo.graphs.traversal import depth_first_search as dfs
+from algo.graphs.traversal import depth_first_search as dfs, classify_edge
 from algo.graphs.traversal import Hooks
 from algo.graphs.vertex import Vertex
 
-__all__ = ['has_cycle', 'is_bipartite']
+__all__ = ['has_cycle', 'is_bipartite', 'edge_classifier']
 
 
 class CycleError(ValueError):
@@ -92,3 +92,19 @@ def is_bipartite(graph: IGraph, source: str = None) -> bool:
     except BipartiteError as exp:
         log.info('Not Bipartite: %s', exp)
         return False
+
+
+def edge_classifier(graph: IGraph):
+    """
+    Classify all the edges in the given graph
+    """
+
+    def classifier(source: Vertex, dest: Vertex, edge: Edge):
+        assert edge.type == EdgeType.UNKNOWN, f'Edge Type for {edge} is already known'
+
+        result: EdgeType = classify_edge(source, dest)
+        log.info('Edge %s is of type %s', edge, result)
+        edge.type = result
+
+    # Do the depth first search
+    dfs(graph, hooks=Hooks(process_edge=classifier))

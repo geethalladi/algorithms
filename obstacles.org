@@ -38,6 +38,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Sibling Package
   - As of now, using the full package path
   - Find ways to use relative package paths
+** DONE Optional is unsubscriptable
+- Update the package version
 ** DONE Fixing reprocessing of edge in DFS
 ** DONE Making Color as a property in Vertex
 - Rewriting color for graph visualization

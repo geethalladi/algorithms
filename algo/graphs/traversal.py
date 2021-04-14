@@ -7,7 +7,7 @@ from queue import Queue
 from typing import Callable, Optional
 
 
-from algo.graphs.edge import Edge
+from algo.graphs.edge import Edge, EdgeType
 from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
 from algo.graphs.vertex import Vertex
@@ -172,3 +172,19 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
         hooks.process_vertex_late(vertex)
 
     return time
+
+
+def classify_edge(source: Vertex, dest: Vertex, edge: Edge):
+    """
+    Classify this edge
+    """
+    assert edge.type == EdgeType.UNKNOWN, f'Edge Type for {edge} is already known'
+
+
+def edge_classifier(graph: IGraph):
+    """
+    Classify all the edges in the given graph
+    """
+    # Do the depth first search
+    depth_first_search(graph,
+                       hooks=Hooks(process_edge=classify_edge))

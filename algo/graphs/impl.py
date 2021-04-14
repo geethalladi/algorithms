@@ -5,7 +5,6 @@ import logging as log
 
 from algo.graphs.edge import Edge, EdgeType
 from algo.graphs.igraph import IGraph
-from algo.graphs.state import State
 from algo.graphs.traversal import depth_first_search as dfs, classify_edge
 from algo.graphs.traversal import Hooks
 from algo.graphs.vertex import Vertex
@@ -29,11 +28,10 @@ def has_cycle(graph: IGraph) -> bool:
     """
     Check if the graph has a cycle
     """
-
     def raise_back_edge(source: Vertex, dest: Vertex, _: Edge):
         if classify_edge(source, dest) == EdgeType.BACK:
-            raise CycleError(
-                f'Backend edge exists between {source} and {dest}')
+            msg = f'Backend edge exists between {source} and {dest}'
+            raise CycleError(msg)
 
     try:
         # do a depth first forest search with the given hooks
@@ -44,39 +42,24 @@ def has_cycle(graph: IGraph) -> bool:
         return True
 
 
-def color_vertex(source: Vertex, dest: Vertex, _: Edge):
-    """
-    Color the new vertex
-    """
-    if source.color is None:
-        source.color = 'blue'
-
-    if source.color == dest.color:
-        msg = 'Neighbours with same color found {} and {}'.format(source, dest)
-        raise BipartiteError(msg)
-
-    dest.color = complement(source.color)
-
-
-def complement(color: str) -> str:
-    """
-    Return the complement of this color
-    """
-    assert color in ['blue', 'brown']
-
-    if color == 'blue':
-        return 'brown'
-    return 'blue'
-
-
 def is_bipartite(graph: IGraph, source: str = None) -> bool:
     """
     Returns true if the given graph is bipartite, if all
     the vertices can be colored with only two colors
     """
+    complement = {'blue': 'brown', 'brown': 'blue'}
+
+    def color(source: Vertex, dest: Vertex, _: Edge):
+        if source.color is None:
+            source.color = 'blue'
+        if source.color == dest.color:
+            msg = f'Neighbours with same color found {source} and {dest}'
+            raise BipartiteError(msg)
+        dest.color = complement[source.color]
+
     try:
         # do a depth first forest search with the given hooks
-        dfs(graph, source, Hooks(process_edge=color_vertex))
+        dfs(graph, source, Hooks(process_edge=color))
         return True
     except BipartiteError as exp:
         log.info('Not Bipartite: %s', exp)

@@ -10,11 +10,9 @@
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
 ** Add unit tests for has_cycle
+** Union find                                                         :algo:
 ** Articulation Vertex                                                :algo:
 ** Strongly Connected Components                                      :algo:
-** Union find                                                         :algo:
-** Writing better recurrence relations
-- Solve problems by coming up with recurrence relations
 ** Solve more problems using
 *** Depth First Search
 *** Directed acyclic Graph
@@ -22,8 +20,10 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 *** Breadth First Search
 *** Spanning Tree
 *** Shortest Path
-** Basic network flow                                                 :algo:
+** Writing better recurrence relations
+- Solve problems by coming up with recurrence relations
 ** Kruskal's minimal spanning tree                                    :algo:
+** Basic network flow                                                 :algo:
 ** Warnsdroff algorithm                                               :algo:
 - for knight's tour
 ** Modules and their imports                                            :py:

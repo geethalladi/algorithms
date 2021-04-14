@@ -9,7 +9,6 @@
   #  our acting. The impediment to action advances action. What stands
   #  in the way becomes the way" - Marcus Aurelius
 The following are the hurdles / obstacles faced while implementing algorithms in python
-** Add unit tests for edge_classifier
 ** Add unit tests for has_cycle
 ** Articulation Vertex                                                :algo:
 ** Strongly Connected Components                                      :algo:
@@ -31,6 +30,7 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Sibling Package
   - As of now, using the full package path
   - Find ways to use relative package paths
+** DONE Add unit tests for edge_classifier
 ** DONE Edge Classification using DFS
 *** Undirected graph
 - Tree

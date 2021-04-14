@@ -11,9 +11,18 @@ from algo.graphs.igraph import IGraph
 from algo.graphs.impl import is_bipartite
 
 
-class TestGraphImplementations:
+class TestEdgeClassifier:
     """
-    A Test Suite for GraphImplementations
+    A Test Suite for edge classification
+    """
+
+    def test(self):
+        assert 1 == 1
+
+
+class TestBiPartite:
+    """
+    A Test Suite for bipartite
     """
 
     def test_bipartite(self):
@@ -64,3 +73,12 @@ class TestGraphImplementations:
         g: IGraph = Graph.build('test_graph_builder',
                                 edges, directed=True)
         assert not is_bipartite(g, 'A')
+
+
+class TestHasCycle:
+    """
+    A Test Suite for testing cycle
+    """
+
+    def test(self):
+        assert 1 == 1

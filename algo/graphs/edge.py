@@ -73,6 +73,9 @@ class Edge:
             return self.__key() == other.__key()  # pylint: disable=protected-access
         return NotImplemented
 
+    def __str__(self):
+        return f'[{self.source}, {self.dest}, {self.directed}]'
+
 
 class EdgeInput(NamedTuple):
     """

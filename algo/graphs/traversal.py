@@ -12,7 +12,8 @@ from algo.graphs.igraph import IGraph
 from algo.graphs.state import State
 from algo.graphs.vertex import Vertex
 
-__all__ = ['breadth_first_search', 'depth_first_search', 'Hooks']
+__all__ = ['breadth_first_search', 'depth_first_search', 'Hooks',
+           'classify_edge']
 
 
 @dataclass
@@ -174,17 +175,23 @@ def dfs_visit(graph: IGraph, vertex: Vertex, time: int, hooks: Hooks) -> int:
     return time
 
 
-def classify_edge(source: Vertex, dest: Vertex, edge: Edge):
+def classify_edge(source: Vertex, dest: Vertex) -> EdgeType:
     """
     Classify this edge
     """
-    assert edge.type == EdgeType.UNKNOWN, f'Edge Type for {edge} is already known'
+    if dest.parent == source:
+        return EdgeType.FORWARD
 
+    # "checking dest's parent is not source" is not required here
+    # adding it for the sake of completion
+    if (dest.parent != source) and (dest.state == State.DISCOVERED):
+        return EdgeType.BACK
 
-def edge_classifier(graph: IGraph):
-    """
-    Classify all the edges in the given graph
-    """
-    # Do the depth first search
-    depth_first_search(graph,
-                       hooks=Hooks(process_edge=classify_edge))
+    if (dest.state == State.PROCESSED) and (source.discovery < dest.discovery):
+        # then source is likely one of its ancestors
+        return EdgeType.FORWARD
+
+    if (dest.state == State.PROCESSED) and (source.discovery > dest.discovery):
+        return EdgeType.CROSS
+
+    raise AssertionError(f'Invalid edge classification for {source}, {dest}')

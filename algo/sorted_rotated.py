@@ -9,7 +9,7 @@ from typing import List
 
 from algo.binary_search import search
 
-__all__ = ['find']
+__all__ = ['find', 'rotation_index']
 
 
 def find(elements: List[int], key: int) -> int:
@@ -49,7 +49,7 @@ def rotation_index(elements: List[int]) -> int:
     # Flaw: Fails for [5, 5, 5, 5, 5, 5, 5, 3, 5]
     # Assumption the list will not have duplicates
     if (elements[low] <= elements[mid]) and (elements[mid] <= elements[high]):
-        log.info('No rotation found in [{low}, {mid}, {high}]')
+        log.debug('No rotation found in [%s, %s, %s]', low, mid, high)
         return 0
 
     while low <= high:
@@ -58,9 +58,9 @@ def rotation_index(elements: List[int]) -> int:
         # Since mid will not be part of next iteration
         # we have to check if rotation is around mid
         # on both the sides
-        if is_rotation_point(elements, mid):
+        if __is_rotation_point(elements, mid):
             return mid
-        if is_rotation_point(elements, mid + 1):
+        if __is_rotation_point(elements, mid + 1):
             return mid + 1
         if elements[low] > elements[mid]:
             high = mid - 1
@@ -70,7 +70,7 @@ def rotation_index(elements: List[int]) -> int:
     raise AssertionError(f"Unable to find rotation in {elements}")
 
 
-def is_rotation_point(elements: List[int], pos: int) -> bool:
+def __is_rotation_point(elements: List[int], pos: int) -> bool:
     """
     Predicate to check if this is the point of rotation
     """

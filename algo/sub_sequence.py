@@ -133,6 +133,6 @@ def max_monotonically_increasing(nums: List[int]) -> List[int]:
     right: str = ''.join(sorted([str(n) for n in nums]))
 
     result = longest_common_subsequence(left, right)
-    log.info(result)
+    log.debug(result)
 
     return [int(c) for c in list(result)]

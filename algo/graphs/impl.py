@@ -38,7 +38,7 @@ def has_cycle(graph: IGraph) -> bool:
         dfs(graph, None, Hooks(process_edge=raise_back_edge))
         return False
     except CycleError as exp:
-        log.info('Cycle found: %s', exp)
+        log.debug('Cycle found: %s', exp)
         return True
 
 
@@ -62,7 +62,7 @@ def is_bipartite(graph: IGraph, source: str = None) -> bool:
         dfs(graph, source, Hooks(process_edge=color))
         return True
     except BipartiteError as exp:
-        log.info('Not Bipartite: %s', exp)
+        log.debug('Not Bipartite: %s', exp)
         return False
 
 
@@ -75,7 +75,7 @@ def edge_classifier(graph: IGraph, start: str = None):
         assert edge.type == EdgeType.UNKNOWN, f'Edge Type for {edge} is already known'
 
         result: EdgeType = classify_edge(source, dest)
-        log.info('Edge %s is of type %s', edge, result)
+        log.debug('Edge %s is of type %s', edge, result)
         edge.type = result
 
     # Do the depth first search

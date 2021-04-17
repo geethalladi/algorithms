@@ -22,9 +22,9 @@ def dijkstra(graph: IGraph, source: str) -> IGraph:
     assert source in graph, 'Source {} not in graph'.format(source)
 
     # TODO: Do we need to clone this graph
-    log.info('Implementing dijkstra\'s algorihm on %s from %s',
-             graph.name,
-             source)
+    log.debug('Implementing dijkstra\'s algorihm on %s from %s',
+              graph.name,
+              source)
     # Initialize the graph' state
     graph.clear()
     for v in graph:

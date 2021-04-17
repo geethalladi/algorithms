@@ -102,7 +102,7 @@ def knights_tour(size: int) -> Sequence[Vertex]:
     """
     assert (size > 0), "Invalid size given"
 
-    log.info('Generating knights tour of size, %s', size)
+    log.debug('Generating knights tour of size, %s', size)
     graph: IGraph = __create_knights_tour_graph(size)
     return __generate_a_tour(graph, size)
 
@@ -114,7 +114,7 @@ def __create_knights_tour_graph(size: int) -> IGraph:
     valid knight's move from a position (x, y) should be
     connected via an edge
     """
-    log.info('Creating KT Graph of size %s', size)
+    log.debug('Creating KT Graph of size %s', size)
 
     neighbours: List[Neighbour] = []
     for i in range(0, size):
@@ -124,7 +124,7 @@ def __create_knights_tour_graph(size: int) -> IGraph:
     edges: List[EdgeInput] = [EdgeInput(str(p1), str(p2))
                               for (p1, p2) in neighbours]
 
-    log.info('Created edge set of size %s', len(edges))
+    log.debug('Created edge set of size %s', len(edges))
     log.debug('Edge list %s', edges)
     return Graph.build('Knights_Tour_{}'.format(size), edges, directed=False)
 
@@ -159,7 +159,7 @@ def __generate_a_tour(graph: IGraph, size: int) -> List[Vertex]:
     Given a graph with knight's positions as neighbour,
     generate a possible tour starting at (0,0)
     """
-    log.info('Generating a tour from %s', graph.name)
+    log.debug('Generating a tour from %s', graph.name)
     graph.clear()
     start: str = str(__start_position(size))
     return KT(graph).tour(start)

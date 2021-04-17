@@ -9,7 +9,7 @@ from typing import List
 import logging as log
 log.basicConfig(level=log.INFO)
 
-__all__ = ['binary_search']
+__all__ = ['binary_search', 'search']
 
 
 def binary_search(elements: List[int], key: int) -> int:
@@ -20,10 +20,10 @@ def binary_search(elements: List[int], key: int) -> int:
     found
     """
     start, end = 0, (len(elements) - 1)
-    return __bs(elements, key, start, end)
+    return search(elements, key, start, end)
 
 
-def __bs(elements: List[int], key: int, start: int, end: int) -> int:
+def search(elements: List[int], key: int, start: int, end: int) -> int:
     """
     Private function doing the recursive binary search
     """
@@ -40,7 +40,7 @@ def __bs(elements: List[int], key: int, start: int, end: int) -> int:
 
     if key < elements[mid]:
         # then find in the left half
-        return __bs(elements, key, start, mid - 1)
+        return search(elements, key, start, mid - 1)
 
     # find in the right half
-    return __bs(elements, key, mid + 1, end)
+    return search(elements, key, mid + 1, end)

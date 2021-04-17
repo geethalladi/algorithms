@@ -31,6 +31,8 @@ The following are the hurdles / obstacles faced while implementing algorithms in
 - Sibling Package
   - As of now, using the full package path
   - Find ways to use relative package paths
+** DONE Sorting in sorted array which is rotated
+- Making search routine in binary-search module public
 ** DONE Add unit tests for edge_classifier
 ** DONE Edge Classification using DFS
 *** Undirected graph

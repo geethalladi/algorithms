@@ -34,3 +34,12 @@ use. Need to make some performance optimizations before using it in production.
 Some of the solutions, would not fully qualify in the "leetcode" runtime. The "low hanging"
 optimization would be to delete all the logging statement and "merge" a few function definitions
 together to make it run fast.
+
+** Prerequisite
+- Install python version '3.9.x'
+- Create `python virtual environment` and install `pip`
+- Activate using `source ./venv/bin/activate`
+- Install packages using `make install`
+
+** Unit tests
+- Run using `make test`

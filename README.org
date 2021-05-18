@@ -4,15 +4,17 @@ Creating a python package containing implementation of some of the well known al
 them were created for my own learning purpose. Readability and Correctness are given more weightage
 over run time performance. Use them with care.
 
+It was a lot of fun !
+
 ** Algorithm Design Manual Lecture Practice
 
-This repository is a space for me to play around with the algorithms. Most of theme I learnt by
+This repository is a space for me to play around with the algorithms. Most of them I learnt by
 watching the Algorithm Design Manual Lectures by Steve Skiena. Hopefully, I can implement more
 around the following topics
 
 *** Graph Algorithms
-**** Shortest Path
-**** Spanning Trees
+**** DONE Shortest Path
+**** DONE Spanning Trees
 **** DONE Breadth First Search
 **** DONE Depth First Search
 **** DONE Adjacency List representation
@@ -20,3 +22,15 @@ around the following topics
 *** Backtracking
 *** Others
 For the list of current TODO items grep for TODO in `adm.org` file.
+
+** Note on performance
+
+Readability and correctness comes first. Performance and run time are not of paramount importance
+here. Though the implementation is correct and unit tested, it is not (yet) suited for Production
+use. Need to make some performance optimizations before using it in production.
+
+** My experience
+
+Some of the solutions, would not fully qualify in the "leetcode" runtime. The "low hanging"
+optimization would be to delete all the logging statement and "merge" a few function definitions
+together to make it run fast.

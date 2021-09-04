@@ -18,7 +18,7 @@ around the following topics
 **** DONE Breadth First Search
 **** DONE Depth First Search
 **** DONE Adjacency List representation
-*** Dynamic Programming
+*** DONE Dynamic Programming
 *** Backtracking
 *** Others
 For the list of current TODO items grep for TODO in `adm.org` file.

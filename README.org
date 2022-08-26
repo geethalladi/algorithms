@@ -1,24 +1,25 @@
-* README
+* Algorithms
 
-Creating a python package containing implementation of some of the well known algorithms. Most of
-them were created for my own learning purpose. Readability and Correctness are given more weightage
+Creating a python package containing implementation of some of the well known
+graph algorithms. This is mostly for educational / learning purposes and not yet
+read for production use. Readability and Correctness are given more weightage
 over run time performance. Use them with care.
 
 It was a lot of fun !
 
 ** Algorithm Design Manual Lecture Practice
 
-This repository is a space for me to play around with the algorithms. Most of them I learnt by
-watching the Algorithm Design Manual Lectures by Steve Skiena. Hopefully, I can implement more
-around the following topics
+This repository is a space for me to play around with the algorithms. Most of
+them I learnt by watching the [[https://www.youtube.com/watch?v=ZFjhkohHdAA&list=PLOtl7M3yp-DV69F32zdK7YJcNXpTunF2b][Algorithm Design Manual Lectures by Steve Skiena]].
+Hopefully, I can implement more around the following topics
 
 *** Graph Algorithms
-**** DONE Shortest Path
-**** DONE Spanning Trees
-**** DONE Breadth First Search
-**** DONE Depth First Search
-**** DONE Adjacency List representation
-*** DONE Dynamic Programming
+- [X] Shortest Path
+- [X] Spanning Trees
+- [X] Breadth First Search
+- [X] Depth First Search
+- [X] Adjacency List representation
+**** DONE Dynamic Programming
 *** Backtracking
 *** Others
 For the list of current TODO items grep for TODO in `adm.org` file.
